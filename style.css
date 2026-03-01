@@ -1,95 +1,36 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Misbar AI | رادار مِسبار</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div id="particles-js"></div>
+/* الهيدر واللغات */
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.lang-dropdown { position: relative; cursor: pointer; }
+.lang-menu { 
+    display: none; position: absolute; top: 100%; right: 0; 
+    background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(15px);
+    border: 1px solid #333; border-radius: 12px; min-width: 150px; z-index: 2000;
+}
+.lang-menu a { display: block; color: #fff; padding: 10px; text-decoration: none; font-size: 0.85rem; }
+.lang-dropdown:hover .lang-menu { display: block; }
 
-    <nav class="apple-nav">
-        <div class="nav-right">
-            <div class="lang-dropdown">
-                <span class="lang-trigger">🌐</span>
-                <div class="lang-menu">
-                    <a href="#">العربية</a><a href="#">English</a><a href="#">Français</a>
-                    <a href="#">Español</a><a href="#">Deutsch</a><a href="#">日本語</a>
-                    <a href="#">中文</a><a href="#">Русский</a><a href="#">Italiano</a><a href="#">Português</a>
-                </div>
-            </div>
-            <div class="logo">Misbar AI</div>
-        </div>
+/* مفتاح مجاني فقط */
+.free-toggle-wrapper { display: flex; align-items: center; gap: 10px; padding: 0 15px; border-left: 1px solid #333; margin-left: 10px; }
+.switch { position: relative; width: 40px; height: 20px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background: #333; border-radius: 20px; transition: 0.4s; }
+.slider:before { position: absolute; content: ""; height: 14px; width: 14px; left: 3px; bottom: 3px; background: white; transition: 0.4s; border-radius: 50%; }
+input:checked + .slider { background: #34c759; }
+input:checked + .slider:before { transform: translateX(20px); }
 
-        <div class="nav-center">
-            <div class="search-wrapper">
-                <input type="text" id="smartSearch" class="search-input" placeholder="ابحث في الأدوات...">
-                <button class="search-btn">بحث</button>
-            </div>
-        </div>
+/* البطاقات (زيادة الطول) */
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 30px; padding: 40px 5%; }
+.card { 
+    min-height: 320px; /* طول كافٍ للاسم والوصف */
+    background: rgba(28, 28, 30, 0.6); border-radius: 24px; padding: 30px 15px;
+    border: 1px solid #333; display: flex; flex-direction: column; justify-content: space-between;
+}
 
-        <div class="nav-left">
-            <button class="btn-auth">دخول</button>
-        </div>
-    </nav>
+/* الترقيم */
+.pagination { display: flex; justify-content: center; gap: 10px; padding: 50px 0; }
+.page-link { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border: 1px solid #333; border-radius: 10px; color: #fff; text-decoration: none; }
+.page-link.active { background: #007aff; border-color: #007aff; }
 
-    <div class="featured-slider" id="featuredZone"></div>
-
-    <div class="filter-container">
-        <div class="filter-tags">
-            <div class="free-toggle-wrapper">
-                <span>مجاني فقط</span>
-                <label class="switch">
-                    <input type="checkbox" id="freeOnlySwitch">
-                    <span class="slider"></span>
-                </label>
-            </div>
-            
-            <button class="tag-btn active" data-category="All">الكل</button>
-            <button class="tag-btn" data-category="Writing">Writing</button>
-            <button class="tag-btn" data-category="Image">Image</button>
-            <button class="tag-btn" data-category="Video">Video</button>
-            
-            <div class="more-dropdown">
-                <button class="tag-btn">المزيد ▼</button>
-                <div class="more-content" id="extraFilters">
-                    <button data-category="Coding">Coding</button>
-                    <button data-category="SEO">SEO</button>
-                    <button data-category="Audio">Audio</button>
-                    <button data-category="Design">Design</button>
-                    <button data-category="Security">Security</button>
-                    <button data-category="Data">Data</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="grid" id="mainGrid"></div>
-
-    <div class="pagination" id="pagination">
-        <a href="#" class="page-link active">1</a>
-        <a href="#" class="page-link">2</a>
-        <a href="#" class="page-link">3</a>
-        <a href="#" class="page-link">4</a>
-        <a href="#" class="page-link">5</a>
-    </div>
-
-    <footer class="main-footer">
-        <div class="footer-extra-space"></div> <div class="footer-content">
-            <div class="footer-section">
-                <h3>Misbar AI</h3>
-                <p>الرادار الأول لأدوات الذكاء الاصطناعي عالمياً.</p>
-            </div>
-            <div class="footer-section">
-                <h3>روابط سريعة</h3>
-                <a href="#">أضف أداة</a><a href="#">سياسة الخصوصية</a>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
+/* الفوتر والمساحة الإضافية */
+.footer-extra-space { height: 100px; background: linear-gradient(to bottom, transparent, #080808); }
+.main-footer { background: #080808; padding-bottom: 50px; }
