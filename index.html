@@ -4,42 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Misbar AI | رادار مِسبار</title>
-    
-    <meta name="description" content="رادار مسبار - الدليل الأكبر لأدوات الذكاء الاصطناعي">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-
     <style>
-        /* التنسيقات الأساسية المستوحاة من صورتك */
+        /* الأساسيات */
         body { margin: 0; background-color: #000; color: #fff; font-family: 'Cairo', sans-serif; overflow-x: hidden; }
         
+        /* الهيدر */
         .apple-nav { position: sticky; top: 0; backdrop-filter: blur(20px); background: rgba(0,0,0,0.8); display: flex; justify-content: space-between; align-items: center; padding: 0 5%; z-index: 1000; border-bottom: 0.5px solid #333; height: 75px; }
-        .logo { font-size: 1.7rem; font-weight: 900; color: #00d1ff; }
+        .logo { font-size: 1.7rem; font-weight: 900; background: linear-gradient(to right, #00d1ff, #007aff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
+        /* قائمة اللغات */
+        .lang-dropdown { position: relative; cursor: pointer; padding: 10px; }
+        .lang-menu { display: none; position: absolute; top: 100%; right: 0; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px); border: 1px solid #333; border-radius: 12px; min-width: 160px; z-index: 1001; }
+        .lang-menu a { display: block; color: white; padding: 10px 15px; text-decoration: none; font-size: 0.9rem; }
+        .lang-menu a:hover { background: rgba(0,122,255,0.3); }
+        .lang-dropdown:hover .lang-menu { display: block; }
+
+        /* البحث والسويتش */
         .nav-center { display: flex; align-items: center; gap: 20px; flex-grow: 1; justify-content: center; }
-        .search-wrapper { display: flex; background: rgba(44, 44, 46, 0.8); border: 1px solid #333; border-radius: 14px; width: 350px; }
-        .search-input { background: transparent; border: none; padding: 10px; color: #fff; flex-grow: 1; outline: none; font-family: 'Cairo'; }
-        .search-btn { background: #111; color: #fff; border: none; padding: 0 15px; cursor: pointer; border-right: 1px solid #333; }
+        .search-wrapper { display: flex; background: rgba(44, 44, 46, 0.8); border: 1px solid #333; border-radius: 14px; overflow: hidden; width: 380px; }
+        .search-input { background: transparent; border: none; padding: 12px; color: #fff; flex-grow: 1; outline: none; font-family: 'Cairo'; }
+        .search-btn-black { background: #111; color: #fff; border: none; padding: 0 20px; cursor: pointer; font-weight: bold; border-right: 1px solid #333; }
 
-        /* قسم الهيرو (كما في الصورة) */
-        .featured-slider { display: flex; justify-content: center; gap: 20px; padding: 40px 5%; overflow-x: auto; scrollbar-width: none; }
-        .hero-card { min-width: 380px; height: 250px; border-radius: 30px; position: relative; overflow: hidden; border: 1px solid #333; flex-shrink: 0; }
-        .hero-info { position: absolute; bottom: 20px; right: 20px; text-align: right; z-index: 2; }
+        .switch-container { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: #8e8e93; }
+        .switch { position: relative; width: 44px; height: 24px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #34c759; }
+        input:checked + .slider:before { transform: translateX(20px); }
 
-        /* التصنيفات (شريط التصنيفات) */
-        .filter-tags { display: flex; justify-content: center; gap: 10px; padding: 20px; flex-wrap: wrap; }
-        .tag-btn { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #333; padding: 8px 20px; border-radius: 20px; cursor: pointer; transition: 0.3s; }
-        .tag-btn.active { background: #007aff; border-color: #007aff; }
+        /* الفيتشر كاردز (6 كروت) */
+        .featured-slider { display: flex; padding: 25px 5%; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .hero-card { min-width: 320px; height: 220px; border-radius: 28px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 25px; border: 1px solid #333; flex-shrink: 0; scroll-snap-align: start; }
 
-        /* شبكة الأدوات */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 25px; padding: 30px 5%; }
-        .card { background: rgba(28,28,30,0.6); border-radius: 25px; padding: 20px; text-align: center; border: 1px solid #222; backdrop-filter: blur(10px); transition: 0.4s; position: relative; }
-        .card:hover { transform: translateY(-10px); border-color: #007aff; }
-        
-        .tool-img { width: 60px; height: 60px; border-radius: 15px; margin-bottom: 15px; object-fit: cover; }
-        .btn-try { background: #007aff; color: white; text-decoration: none; display: block; padding: 10px; border-radius: 12px; font-weight: bold; margin-top: 15px; }
+        /* --- تنسيق شريط التصنيفات (محدث) --- */
+        .filter-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 20px 5%;
+            overflow-x: auto;
+            scrollbar-width: none;
+            white-space: nowrap;
+        }
+        .filter-tags::-webkit-scrollbar { display: none; }
+
+        .tag-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .tag-btn:hover, .tag-btn.active {
+            background: #007aff; /* لون أبل الأزرق */
+            border-color: #007aff;
+        }
+
+        /* قائمة المزيد */
+        .more-dropdown { position: relative; margin-right: 5px; }
+        .more-content { display: none; position: absolute; top: 110%; right: 0; background: rgba(0,0,0,0.95); border: 1px solid #333; border-radius: 15px; padding: 12px; min-width: 200px; z-index: 100; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .more-content button { background: #1a1a1a; border: 1px solid #333; color: white; padding: 8px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; }
+        .more-dropdown:hover .more-content { display: grid; }
+
+        /* --- الشبكة والبطاقات (تطويل البطاقات 20%) --- */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); 
+            gap: 25px; 
+            padding: 30px 5%; 
+            min-height: 960px; /* تم تعديل الطول الإجمالي للشبكة */
+        }
+        .card { 
+            background: rgba(28, 28, 30, 0.5); 
+            border-radius: 24px; 
+            padding: 40px 20px; /* زيادة الـ Padding لتطويل البطاقة داخلياً */
+            text-align: center; 
+            border: 1px solid #222; 
+            position: relative; 
+            backdrop-filter: blur(15px); 
+            transition: 0.4s; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 300px; /* ضمان حد أدنى لطول البطاقة */
+        }
+        .card:hover { border-color: #007aff; transform: translateY(-10px); }
+        .tool-logo { width: 65px; height: 65px; border-radius: 18px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: bold; }
+        .badge { position: absolute; top: 15px; left: 15px; font-size: 10px; padding: 4px 10px; border-radius: 10px; }
+        .free { background: rgba(52, 199, 89, 0.15); color: #34c759; }
+        .paid { background: rgba(255, 59, 48, 0.15); color: #ff3b30; }
+        .btn-try { background: #007aff; color: white; text-decoration: none; display: block; padding: 10px; border-radius: 14px; margin-top: 15px; font-size: 0.85rem; font-weight: bold; }
+
+        /* نظام الترقيم */
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 12px; padding: 60px 0; }
+        .page-link { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 1px solid #333; cursor: pointer; color: #fff; background: rgba(255,255,255,0.05); text-decoration: none; }
+        .page-link.active { background: #007aff; border-color: #007aff; font-weight: bold; }
+
+        /* Footer */
+        footer { background: #080808; padding: 80px 5% 40px; border-top: 1px solid #1a1a1a; margin-top: 50px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 50px; }
+        .footer-logo { font-size: 1.8rem; font-weight: 900; margin-bottom: 20px; color: #fff; }
+        .footer-links h4 { color: #007aff; margin-bottom: 25px; font-size: 1.1rem; }
+        .footer-links a { display: block; color: #8e8e93; text-decoration: none; margin-bottom: 12px; font-size: 0.9rem; }
+        .contact-box input { width: 100%; background: #151515; border: 1px solid #333; padding: 12px; border-radius: 10px; color: #fff; margin-bottom: 15px; outline: none; }
+        .btn-footer { width: 100%; background: #007aff; border: none; padding: 12px; border-radius: 10px; color: #fff; font-weight: bold; cursor: pointer; }
 
         #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
     </style>
@@ -49,83 +124,125 @@
     <div id="particles-js"></div>
 
     <nav class="apple-nav">
-        <div class="logo">Misbar AI</div>
+        <div class="nav-right">
+            <div class="lang-dropdown">
+                <span style="font-size: 1.4rem;">🌐</span>
+                <div class="lang-menu">
+                    <a href="#">العربية</a><a href="#">English</a><a href="#">Français</a>
+                    <a href="#">Español</a><a href="#">Deutsch</a><a href="#">日本語</a>
+                </div>
+            </div>
+            <div class="logo">Misbar AI</div>
+        </div>
+
         <div class="nav-center">
+            <div class="switch-container">
+                <span>مجاني فقط</span>
+                <label class="switch">
+                    <input type="checkbox" id="freeOnlySwitch">
+                    <span class="slider"></span>
+                </label>
+            </div>
             <div class="search-wrapper">
-                <input type="text" id="smartSearch" class="search-input" placeholder="ابحث في 30,000 أداة...">
-                <button class="search-btn">بحث</button>
+                <input type="text" id="smartSearch" class="search-input" placeholder="ابحث في 30,000 أداة ذكية...">
+                <button class="search-btn-black">بحث</button>
             </div>
         </div>
-        <button style="background:transparent; border:1px solid #007aff; color:#007aff; padding:8px 20px; border-radius:10px; cursor:pointer;">دخول</button>
+
+        <div><button style="background:transparent; border:1.5px solid #007aff; color:#007aff; padding:8px 20px; border-radius:12px; font-weight:bold; cursor:pointer;">دخول</button></div>
     </nav>
 
-    <div class="featured-slider">
-        <div class="hero-card" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8)), url('https://picsum.photos/400/300?sig=23') center/cover;">
-            <div class="hero-info">
-                <h3 style="margin:0">Midjourney v7</h3>
-                <p style="font-size:0.8rem; color:#ccc">توليد صور بجودة سينمائية مذهلة.</p>
-            </div>
-        </div>
-        <div class="hero-card" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8)), url('https://picsum.photos/400/300?sig=21') center/cover;">
-            <div class="hero-info">
-                <h3 style="margin:0">Sora Video</h3>
-                <p style="font-size:0.8rem; color:#ccc">تحويل النصوص لفيديوهات واقعية.</p>
-            </div>
-        </div>
-    </div>
+    <div class="featured-slider" id="featuredZone"></div>
 
     <div class="filter-tags">
         <button class="tag-btn active">الكل</button>
         <button class="tag-btn">Writing</button>
         <button class="tag-btn">Image Generation</button>
         <button class="tag-btn">Video Editing</button>
+        <button class="tag-btn">Coding AI</button>
+        <div class="more-dropdown">
+            <button class="tag-btn">المزيد ▼</button>
+            <div class="more-content">
+                <button>SEO Tools</button><button>Email AI</button><button>Security</button>
+                <button>3D Design</button><button>Data Science</button><button>Audio AI</button>
+            </div>
+        </div>
     </div>
 
     <div class="grid" id="mainGrid"></div>
 
+    <div class="pagination">
+        <a href="#" class="page-link">«</a>
+        <a href="#" class="page-link active">1</a>
+        <a href="#" class="page-link">2</a>
+        <a href="#" class="page-link">3</a>
+        <a href="#" class="page-link">4</a>
+        <a href="#" class="page-link">»</a>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">Misbar AI</div>
+                <p style="color:#8e8e93; font-size:0.9rem; line-height:1.8;">رادار مِسبار هو الدليل العربي الأضخم لأدوات الذكاء الاصطناعي، نهدف لتمكين المبدعين العرب بأحدث التقنيات.</p>
+            </div>
+            <div class="footer-links">
+                <h4>اكتشف</h4>
+                <a href="#">أفضل الأدوات</a><a href="#">أدوات مجانية</a><a href="#">التصنيفات</a>
+            </div>
+            <div class="footer-links">
+                <h4>الدعم</h4>
+                <a href="#">أضف أداة</a><a href="#">اتصل بنا</a><a href="#">الخصوصية</a>
+            </div>
+            <div class="contact-box">
+                <h4>اشترك معنا</h4>
+                <input type="email" placeholder="بريدك الإلكتروني">
+                <button class="btn-footer">إرسال</button>
+            </div>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
-        // 1. إعداد Firebase (تأكد من استخدام بياناتك الحقيقية)
-        const firebaseConfig = {
-            projectId: "misbar-2026",
-            // أضف الـ ApiKey والـ AppId الخاصين بك هنا
-        };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
+        particlesJS('particles-js', { "particles": { "number": { "value": 40 }, "opacity": { "value": 0.2 }, "move": { "speed": 0.4 } } });
 
-        // 2. تفعيل الخلفية
-        particlesJS('particles-js', { "particles": { "number": { "value": 40 }, "opacity": { "value": 0.2 }, "move": { "speed": 0.5 } } });
+        const heroes = [
+            {n: "Sora Video", d: "تحويل النصوص لفيديوهات واقعية.", img: "21"},
+            {n: "GPT-5 Turbo", d: "الجيل القادم من الذكاء الاصطناعي.", img: "22"},
+            {n: "Midjourney v7", d: "توليد صور بجودة سينمائية مذهلة.", img: "23"},
+            {n: "Claude 3.5", d: "المساعد الأذكى لتحليل البيانات.", img: "24"},
+            {n: "Luma Dream", d: "تحريك الصور بذكاء فائق.", img: "25"},
+            {n: "Gemini Ultra", d: "قوة جوجل الكاملة في متناول يدك.", img: "26"}
+        ];
+        document.getElementById('featuredZone').innerHTML = heroes.map(h => `
+            <div class="hero-card" style="background: linear-gradient(transparent, rgba(0,0,0,0.9)), url('https://picsum.photos/400/300?sig=${h.img}') center/cover;">
+                <h3 style="margin:0; font-size:1.3rem;">${h.n}</h3>
+                <p style="margin:8px 0 0; font-size:0.8rem; color:#ccc;">${h.d}</p>
+            </div>
+        `).join('');
 
-        // 3. جلب الـ 30,000 أداة (بشكل جزئي للسرعة)
-        async function loadTools() {
-            const mainGrid = document.getElementById('mainGrid');
-            mainGrid.innerHTML = '<p style="grid-column: 1/-1; text-align:center;">جاري تحميل أدوات مِسبار...</p>';
+        const mockData = Array.from({length: 60}, (_, i) => ({
+            name: "أداة ذكية " + (i + 1),
+            price: i % 3 === 0 ? 'free' : 'paid',
+            color: `hsl(${i * 12}, 60%, 45%)`
+        }));
 
-            try {
-                const snapshot = await db.collection('tools').limit(100).get();
-                const tools = snapshot.docs.map(doc => doc.data());
-                
-                mainGrid.innerHTML = tools.map(tool => `
-                    <div class="card">
-                        <img src="${tool.image || 'https://logo.clearbit.com/openai.com'}" class="tool-img" onerror="this.src='https://ui-avatars.com/api/?name=${tool.title}'">
-                        <div style="font-weight:900; margin-bottom:10px;">${tool.title}</div>
-                        <div style="font-size:0.8rem; color:#8e8e93; height:45px; overflow:hidden;">${tool.description}</div>
-                        <a href="${tool.original_link}" target="_blank" class="btn-try">جرب الآن</a>
-                    </div>
-                `).join('');
-            } catch (e) {
-                mainGrid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:red;">حدث خطأ في جلب البيانات.</p>';
-            }
+        function render(data) {
+            document.getElementById('mainGrid').innerHTML = data.map(item => `
+                <div class="card">
+                    <span class="badge ${item.price}">${item.price === 'free' ? 'مجاني' : 'مدفوع'}</span>
+                    <div class="tool-logo" style="background:${item.color}">${item.name[0]}</div>
+                    <div style="font-weight:900; font-size:1rem;">${item.name}</div>
+                    <a href="#" class="btn-try">جرب الآن</a>
+                </div>
+            `).join('');
         }
+        render(mockData);
 
-        // 4. البحث الفوري
-        document.getElementById('smartSearch').oninput = (e) => {
-            const val = e.target.value.toLowerCase();
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(c => c.style.display = c.innerText.toLowerCase().includes(val) ? 'block' : 'none');
+        document.getElementById('freeOnlySwitch').onchange = function() {
+            alert("هذه الميزة متاحة للمسجلين فقط.");
+            this.checked = false;
         };
-
-        loadTools();
     </script>
 </body>
 </html>
