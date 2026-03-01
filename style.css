@@ -1,4 +1,36 @@
-/* تنسيق شريط التصنيفات */
+/* الأساسيات */
+body { 
+    margin: 0; 
+    background-color: #000; 
+    color: #fff; 
+    font-family: 'Cairo', sans-serif; 
+    overflow-x: hidden; 
+}
+
+/* الهيدر */
+.apple-nav { 
+    position: sticky; 
+    top: 0; 
+    backdrop-filter: blur(20px); 
+    background: rgba(0,0,0,0.7); 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px 5%; 
+    z-index: 1000; 
+    border-bottom: 0.5px solid #333; 
+    height: 60px; 
+}
+
+.logo { 
+    font-size: 1.5rem; 
+    font-weight: 900; 
+    background: linear-gradient(to right, #00d1ff, #007aff); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+}
+
+/* تنسيق شريط التصنيفات (حسب الصورة المرفقة) */
 .filter-tags {
     display: flex;
     justify-content: center;
@@ -23,7 +55,135 @@
 }
 
 .tag-btn:hover, .tag-btn.active {
-    background: #007aff; /* لون أبل الأزرق */
+    background: #007aff; 
     border-color: #007aff;
 }
 
+/* قسم الفيتشر كاردز (6 كروت) */
+.featured-slider { 
+    display: flex; 
+    padding: 20px 5%; 
+    gap: 15px; 
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
+    scrollbar-width: none; 
+}
+.featured-slider::-webkit-scrollbar { display: none; }
+
+.hero-card { 
+    min-width: 300px; 
+    height: 200px; 
+    border-radius: 25px; 
+    position: relative; 
+    overflow: hidden; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: flex-end; 
+    padding: 20px; 
+    border: 1px solid #333; 
+    scroll-snap-align: start; 
+    flex-shrink: 0; 
+}
+
+/* الشبكة والبطاقات (تم تطويلها بنسبة 20%) */
+.grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+    gap: 20px; 
+    padding: 20px 5%; 
+    min-height: 960px; /* طول الشبكة الإجمالي */
+}
+
+.card { 
+    background: rgba(28, 28, 30, 0.6); 
+    border-radius: 20px; 
+    padding: 35px 15px; /* زيادة التباعد الداخلي لتطويل البطاقة */
+    text-align: center; 
+    border: 1px solid #333; 
+    transition: 0.3s; 
+    backdrop-filter: blur(10px); 
+    position: relative;
+    min-height: 240px; /* ضمان طول موحد للبطاقات */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card:hover { 
+    transform: translateY(-5px); 
+    border-color: #007aff; 
+}
+
+.tool-logo { 
+    width: 50px; 
+    height: 50px; 
+    border-radius: 12px; 
+    margin: 0 auto 10px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 22px; 
+    font-weight: bold; 
+}
+
+.badge { 
+    position: absolute; 
+    top: 10px; 
+    left: 10px; 
+    font-size: 9px; 
+    padding: 2px 8px; 
+    border-radius: 8px; 
+}
+
+.free { background: rgba(52, 199, 89, 0.2); color: #34c759; }
+.paid { background: rgba(255, 59, 48, 0.2); color: #ff3b30; }
+
+.btn-try { 
+    background: #007aff; 
+    color: white; 
+    text-decoration: none; 
+    display: block; 
+    padding: 7px; 
+    border-radius: 10px; 
+    margin-top: 10px; 
+    font-size: 0.8rem; 
+}
+
+/* نظام الترقيم (1234) */
+.pagination { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px; 
+    padding: 40px 0; 
+}
+
+.page-link { 
+    width: 35px; 
+    height: 35px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    border-radius: 50%; 
+    border: 1px solid #333; 
+    cursor: pointer; 
+    transition: 0.3s; 
+    color: #ccc; 
+    text-decoration: none; 
+}
+
+.page-link.active, .page-link:hover { 
+    background: #007aff; 
+    color: white; 
+    border-color: #007aff; 
+}
+
+/* خلفية الجزيئات */
+#particles-js { 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: -1; 
+}
