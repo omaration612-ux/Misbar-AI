@@ -9,37 +9,24 @@
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
-        
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; }
         body { background: #000; color: #fff; overflow-x: hidden; }
-        
-        /* طبقة النجوم خلف كل شيء */
         #particles-js { position: fixed; width: 100%; height: 100%; z-index: 1; top: 0; left: 0; }
         #app { position: relative; z-index: 10; }
-
-        /* الهيدر */
         .nav { position: sticky; top: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(20px); display: flex; justify-content: space-between; align-items: center; padding: 12px 5%; border-bottom: 1px solid #222; }
         .logo { font-size: 1.5rem; font-weight: 900; color: #00d1ff; text-decoration: none; }
         .search-area { flex: 0 1 40%; background: #1c1c1e; border-radius: 12px; border: 1px solid #333; padding: 5px 15px; display: flex; }
         .search-input { background: none; border: none; color: #fff; width: 100%; outline: none; padding: 8px; font-size: 0.9rem; }
-
-        /* الكروت الكبيرة (الوجه) */
         .featured-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding: 20px 5%; gap: 20px; scrollbar-width: none; }
         .featured-slider::-webkit-scrollbar { display: none; }
         .big-card { min-width: 85%; height: 320px; border-radius: 30px; scroll-snap-align: center; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; border: 1px solid #333; background-size: cover; background-position: center; }
         .big-card::after { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); }
         .big-card-content { position: relative; z-index: 2; }
-
-        /* شريط الفلاتر الـ 13 */
         .filter-bar { display: flex; gap: 10px; padding: 10px 5%; overflow-x: auto; scrollbar-width: none; position: sticky; top: 70px; background: rgba(0,0,0,0.5); z-index: 100; }
-        .filter-bar::-webkit-scrollbar { display: none; }
         .f-btn { background: #1c1c1e; border: 1px solid #2c2c2e; padding: 8px 22px; border-radius: 20px; font-size: 0.85rem; color: #8e8e93; cursor: pointer; white-space: nowrap; transition: 0.3s; }
         .f-btn.active { background: #007aff; color: #fff; border-color: #007aff; font-weight: bold; }
-
-        /* شبكة الأدوات */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; padding: 20px 5%; }
         .card { background: rgba(28,28,30,0.7); border: 1px solid #222; border-radius: 25px; padding: 20px; text-align: center; transition: 0.3s; }
-        .card:hover { border-color: #007aff; transform: translateY(-5px); }
         .tool-icon { width: 60px; height: 60px; background: linear-gradient(45deg, #007aff, #00d1ff); border-radius: 18px; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; }
         .try-btn { background: #007aff; color: #fff; border: none; width: 100%; padding: 10px; border-radius: 12px; margin-top: 15px; cursor: pointer; font-weight: bold; }
     </style>
@@ -72,46 +59,5 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
-    <script>
-        // 1. الفئات والبيانات
-        const categories = ['All', 'Writing', 'Image', 'Video', 'Coding', 'Audio', 'Design', 'Marketing', 'Data', '3D Render', 'Security', 'SEO', 'Email AI'];
-        const mockTools = Array.from({length: 30}, (_, i) => ({
-            name: ['ChatGPT', 'Claude', 'Luma', 'Midjourney', 'Jasper'][i % 5] + ' Pro',
-            cat: categories[(i % (categories.length - 1)) + 1].toLowerCase()
-        }));
-
-        // 2. بناء أزرار الفلترة الـ 13
-        const fBar = document.getElementById('filterBar');
-        fBar.innerHTML = categories.map((c, i) => `
-            <button class="f-btn ${i===0?'active':''}" onclick="filterTools('${c.toLowerCase()}', this)">${c}</button>
-        `).join('');
-
-        // 3. عرض الأدوات
-        const grid = document.getElementById('toolsGrid');
-        function display(list) {
-            grid.innerHTML = list.map(t => `
-                <div class="card">
-                    <div class="tool-icon">${t.name[0]}</div>
-                    <div style="font-weight:700; font-size:0.9rem;">${t.name}</div>
-                    <button class="try-btn">جرب الآن</button>
-                </div>
-            `).join('');
-        }
-
-        // 4. وظائف الفلترة والبحث
-        window.filterTools = (cat, btn) => {
-            document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            display(cat === 'all' ? mockTools : mockTools.filter(x => x.cat === cat));
-        };
-
-        document.getElementById('searchInput').oninput = (e) => {
-            const val = e.target.value.toLowerCase();
-            display(mockTools.filter(t => t.name.toLowerCase().includes(val)));
-        };
-
-        // 5. تشغيل النجوم
-        particlesJS('particles-js', {
-            "particles": { "number": { "value": 80 }, "color": { "value": "#ffffff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value
-
+    <script src="script.js"></script> </body>
+</html>
