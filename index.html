@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,171 +7,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         /* الأساسيات */
-        body {
-            margin: 0;
-            background-color: #000;
-            color: #fff;
-            font-family: 'Cairo', sans-serif;
-            overflow-x: hidden;
-            direction: rtl;
-        }
+        body { margin: 0; background-color: #000; color: #fff; font-family: 'Cairo', sans-serif; overflow-x: hidden; }
+        
+        /* الهيدر */
+        .apple-nav { position: sticky; top: 0; backdrop-filter: blur(20px); background: rgba(0,0,0,0.7); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; z-index: 1000; border-bottom: 0.5px solid #333; height: 60px; }
+        .logo { font-size: 1.5rem; font-weight: 900; background: linear-gradient(to right, #00d1ff, #007aff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .search-bar { background: rgba(44, 44, 46, 0.8); border: 1px solid #333; padding: 10px 15px; border-radius: 12px; color: #fff; outline: none; width: 300px; }
 
-        /* نافذة التنقل - Apple Style */
-        .apple-nav {
-            position: sticky;
-            top: 0;
-            backdrop-filter: blur(20px);
-            background: rgba(0,0,0,0.7);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 5%;
-            z-index: 1000;
-            border-bottom: 0.5px solid #333;
-            height: 60px;
-        }
+        /* قسم الفيتشر كاردز (6 كروت) */
+        .featured-slider { display: flex; padding: 20px 5%; gap: 15px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .featured-slider::-webkit-scrollbar { display: none; }
+        .hero-card { min-width: 300px; height: 200px; border-radius: 25px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; border: 1px solid #333; scroll-snap-align: start; flex-shrink: 0; }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            background: linear-gradient(to right, #00d1ff, #007aff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        /* أزرار الفلترة */
+        .filter-tags { display: flex; gap: 10px; padding: 10px 5%; overflow-x: auto; scrollbar-width: none; }
+        .tag-btn { background: rgba(255, 255, 255, 0.08); color: #eee; border: 1px solid rgba(255, 255, 255, 0.1); padding: 6px 15px; border-radius: 20px; cursor: pointer; white-space: nowrap; transition: 0.3s; }
+        .tag-btn.active { background: #007aff; border-color: #007aff; }
 
-        .search-container {
-            display: flex;
-            align-items: center;
-            width: 40%;
-            gap: 10px;
-        }
-
-        .search-bar {
-            flex-grow: 1;
-            background: rgba(44, 44, 46, 0.8);
-            border: 1px solid #333;
-            padding: 10px 15px;
-            border-radius: 12px;
-            color: #fff;
-            outline: none;
-        }
-
-        /* شريط أزرار الفلترة (الذي طلبته) */
-        .filter-tags {
-            display: flex;
-            justify-content: flex-start;
-            gap: 12px;
-            padding: 20px 5%;
-            overflow-x: auto;
-            scrollbar-width: none; /* Firefox */
-            white-space: nowrap;
-            background: #000;
-        }
-
-        .filter-tags::-webkit-scrollbar { display: none; } /* Chrome/Safari */
-
-        .tag-btn {
-            background: rgba(255, 255, 255, 0.08);
-            color: #efefef;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 8px 20px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: 0.3s;
-            backdrop-filter: blur(10px);
-        }
-
-        .tag-btn:hover { background: rgba(255, 255, 255, 0.15); }
-
-        .tag-btn.active {
-            background: #007aff;
-            border-color: #007aff;
-            font-weight: bold;
-        }
-
-        /* قسم الهيرو (المختارات) */
-        .featured-slider {
-            display: flex;
-            padding: 20px 5%;
-            gap: 20px;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-
-        .hero-card {
-            min-width: 85%;
-            height: 250px;
-            border-radius: 30px;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 25px;
-            border: 1px solid #333;
-        }
-
-        /* الشبكة والبطاقات */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 20px;
-            padding: 20px 5%;
-        }
-
-        .card {
-            background: rgba(28, 28, 30, 0.8);
-            border-radius: 24px;
-            padding: 20px;
-            text-align: center;
-            border: 1px solid #333;
-            transition: 0.3s;
-        }
-
+        /* شبكة البطاقات (60 بطاقة) */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; padding: 20px 5%; }
+        .card { background: rgba(28, 28, 30, 0.6); border-radius: 20px; padding: 15px; text-align: center; border: 1px solid #333; transition: 0.3s; backdrop-filter: blur(10px); position: relative; }
         .card:hover { transform: translateY(-5px); border-color: #007aff; }
-
-        .tool-logo {
-            width: 65px;
-            height: 65px;
-            border-radius: 15px;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-        }
-
-        .badge {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 10px;
-            padding: 3px 10px;
-            border-radius: 10px;
-        }
-
+        .tool-logo { width: 50px; height: 50px; border-radius: 12px; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; color: #fff; }
+        .badge { position: absolute; top: 10px; left: 10px; font-size: 9px; padding: 2px 8px; border-radius: 8px; }
         .free { background: rgba(52, 199, 89, 0.2); color: #34c759; }
         .paid { background: rgba(255, 59, 48, 0.2); color: #ff3b30; }
+        .btn-try { background: #007aff; color: white; text-decoration: none; display: block; padding: 7px; border-radius: 10px; margin-top: 10px; font-size: 0.8rem; }
 
-        .btn-try {
-            background: #007aff;
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 8px;
-            border-radius: 12px;
-            margin-top: 15px;
-            font-size: 0.85rem;
-        }
+        /* نظام الترقيم (Pagination) */
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 10px; padding: 40px 0; }
+        .page-link { width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid #333; cursor: pointer; transition: 0.3s; color: #ccc; text-decoration: none; }
+        .page-link.active, .page-link:hover { background: #007aff; color: white; border-color: #007aff; }
 
-        #particles-js {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-        }
+        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
     </style>
 </head>
 <body>
@@ -180,102 +48,93 @@
 
     <nav class="apple-nav">
         <div class="logo">رادار مِسبار</div>
-        <div class="search-container">
-            <input type="text" id="smartSearch" class="search-bar" placeholder="ابحث في 30,000 أداة...">
-        </div>
-        <div style="display: flex; gap: 15px;">
-            <span style="color: #007aff; cursor: pointer; font-size: 0.9rem;">Sign up</span>
-            <span style="cursor: pointer; font-size: 0.9rem;">Sign in</span>
+        <input type="text" id="smartSearch" class="search-bar" placeholder="ابحث في 30,000 أداة...">
+        <div style="display: flex; gap: 10px;">
+            <span style="color: #007aff; cursor: pointer;">تسجيل</span>
         </div>
     </nav>
 
-    <div class="featured-slider" id="featuredZone">
-        </div>
+    <div class="featured-slider" id="featuredZone"></div>
 
     <div class="filter-tags" id="categoryFilters">
-        <button class="tag-btn active" data-category="All">All</button>
+        <button class="tag-btn active" data-category="All">الكل</button>
         <button class="tag-btn" data-category="Writing">Writing</button>
         <button class="tag-btn" data-category="Image">Image</button>
         <button class="tag-btn" data-category="Video">Video</button>
         <button class="tag-btn" data-category="Coding">Coding</button>
-        <button class="tag-btn" data-category="Audio">Audio</button>
         <button class="tag-btn" data-category="Design">Design</button>
-        <button class="tag-btn" data-category="Marketing">Marketing</button>
-        <button class="tag-btn" data-category="Data">Data</button>
-        <button class="tag-btn" data-category="SEO">SEO</button>
     </div>
 
-    <div class="grid" id="mainGrid">
-        </div>
+    <div class="grid" id="mainGrid"></div>
+
+    <div class="pagination">
+        <a href="#" class="page-link">«</a>
+        <a href="#" class="page-link active">1</a>
+        <a href="#" class="page-link">2</a>
+        <a href="#" class="page-link">3</a>
+        <a href="#" class="page-link">4</a>
+        <a href="#" class="page-link">»</a>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    
     <script>
-        // 1. إعداد الخلفية النجمية
-        particlesJS('particles-js', {
-            "particles": {
-                "number": { "value": 80 },
-                "color": { "value": "#ffffff" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.5 },
-                "size": { "value": 2 },
-                "line_linked": { "enable": false },
-                "move": { "enable": true, "speed": 0.5 }
-            }
-        });
+        // 1. الخلفية
+        particlesJS('particles-js', { "particles": { "number": { "value": 60 }, "color": { "value": "#ffffff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.3 }, "size": { "value": 2 }, "line_linked": { "enable": false }, "move": { "enable": true, "speed": 0.4 } } });
 
-        // 2. بيانات تجريبية (سيتم استبدالها بـ Firebase لاحقاً)
-        const categories = ['Writing', 'Image', 'Video', 'Coding', 'Audio', 'Design', 'Marketing', 'Data', 'SEO'];
-        const mockData = Array.from({length: 20}, (_, i) => ({
-            name: ['ChatGPT', 'Midjourney', 'Jasper', 'Claude', 'Luma'][i % 5] + ' ' + (i+1),
-            price: i % 3 === 0 ? 'free' : 'paid',
-            category: categories[i % categories.length],
-            desc: 'أداة ذكاء اصطناعي متطورة لهذا التصنيف.'
+        // 2. إنشاء 6 كروت فيتشر
+        const heroData = [
+            { title: "Sora Video", desc: "تحويل النص إلى فيديو واقعي", img: "101" },
+            { title: "GPT-5 Turbo", desc: "الجيل القادم من الذكاء", img: "102" },
+            { title: "Midjourney v7", desc: "فن رقمي لا حدود له", img: "103" },
+            { title: "Claude 3.5", desc: "تحليل بيانات فائق السرعة", img: "104" },
+            { title: "Luma Dream", desc: "تحريك الصور بلمسة واحدة", img: "105" },
+            { title: "Gemini Pro", desc: "دمج متكامل مع جوجل", img: "106" }
+        ];
+
+        document.getElementById('featuredZone').innerHTML = heroData.map(h => `
+            <div class="hero-card" style="background: linear-gradient(transparent, rgba(0,0,0,0.9)), url('https://picsum.photos/400/300?sig=${h.img}') center/cover;">
+                <h3 style="margin:0; font-size:1.2rem;">${h.title}</h3>
+                <p style="margin:5px 0 0; font-size:0.8rem; color:#ccc;">${h.desc}</p>
+            </div>
+        `).join('');
+
+        // 3. إنشاء 60 بطاقة أدوات
+        const cats = ['Writing', 'Image', 'Video', 'Coding', 'Design'];
+        const mockData = Array.from({length: 60}, (_, i) => ({
+            name: ['Tool', 'AI', 'Smart', 'Probe'][i % 4] + " " + (i + 1),
+            price: i % 2 === 0 ? 'free' : 'paid',
+            category: cats[i % cats.length],
+            color: `hsl(${i * 6}, 70%, 50%)`
         }));
 
-        // 3. وظيفة الرسم (Render)
         function render(data) {
-            const grid = document.getElementById('mainGrid');
-            grid.innerHTML = data.map(item => `
-                <div class="card" style="position:relative">
+            document.getElementById('mainGrid').innerHTML = data.map(item => `
+                <div class="card">
                     <span class="badge ${item.price}">${item.price === 'free' ? 'مجاني' : 'مدفوع'}</span>
-                    <div class="tool-logo" style="background: hsl(${Math.random() * 360}, 70%, 50%)">${item.name[0]}</div>
-                    <div style="font-weight:bold; margin-bottom:5px;">${item.name}</div>
-                    <div style="color:#8e8e93; font-size:0.7rem;">${item.category}</div>
+                    <div class="tool-logo" style="background:${item.color}">${item.name[0]}</div>
+                    <div style="font-weight:bold; font-size:0.9rem;">${item.name}</div>
+                    <div style="color:#8e8e93; font-size:0.7rem; margin-top:4px;">${item.category}</div>
                     <a href="#" class="btn-try">جرب الآن</a>
                 </div>
             `).join('');
         }
 
-        // 4. تفعيل أزرار الفلترة
+        // الفلترة والبحث
         document.querySelectorAll('.tag-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 document.querySelector('.tag-btn.active').classList.remove('active');
                 this.classList.add('active');
-                
-                const cat = this.dataset.category;
-                const filtered = cat === 'All' ? mockData : mockData.filter(item => item.category === cat);
-                render(filtered);
+                const c = this.dataset.category;
+                render(c === 'All' ? mockData : mockData.filter(x => x.category === c));
             });
         });
 
-        // 5. البحث الفوري
         document.getElementById('smartSearch').oninput = (e) => {
-            const val = e.target.value.toLowerCase();
-            render(mockData.filter(x => x.name.toLowerCase().includes(val)));
+            const v = e.target.value.toLowerCase();
+            render(mockData.filter(x => x.name.toLowerCase().includes(v)));
         };
 
-        // تشغيل ابتدائي
         render(mockData);
-
-        // تعبئة الهيرو كارد
-        document.getElementById('featuredZone').innerHTML = `
-            <div class="hero-card" style="background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.8)), url('https://picsum.photos/800/400?sig=1') center/cover;">
-                <div style="color:#00d1ff; font-weight:bold; font-size:0.8rem;">مختارات اليوم</div>
-                <h2 style="margin:5px 0;">Sora AI Video</h2>
-                <p style="color:#ccc; font-size:0.85rem;">مستقبل صناعة الفيديو من النصوص أصبح حقيقة.</p>
-            </div>
-        `;
     </script>
 </body>
 </html>
