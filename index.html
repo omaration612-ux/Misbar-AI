@@ -3,89 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>رادار مِسبار | AI RADAR</title>
+    <title>Misbar AI | رادار مِسبار</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        /* الأساسيات */
-        body { margin: 0; background-color: #000; color: #fff; font-family: 'Cairo', sans-serif; overflow-x: hidden; }
-        
-        /* الهيدر */
-        .apple-nav { position: sticky; top: 0; backdrop-filter: blur(20px); background: rgba(0,0,0,0.7); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; z-index: 1000; border-bottom: 0.5px solid #333; height: 60px; }
-        .logo { font-size: 1.5rem; font-weight: 900; background: linear-gradient(to right, #00d1ff, #007aff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .search-bar { background: rgba(44, 44, 46, 0.8); border: 1px solid #333; padding: 10px 15px; border-radius: 12px; color: #fff; outline: none; width: 300px; }
-
-        /* قسم الفيتشر كاردز */
-        .featured-slider { display: flex; padding: 20px 5%; gap: 15px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
-        .hero-card { min-width: 300px; height: 200px; border-radius: 25px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; border: 1px solid #333; flex-shrink: 0; }
-
-        /* أزرار الفلترة - إضافة margin-bottom لمنع التداخل */
-        .filter-tags { 
-            display: flex; 
-            justify-content: center; 
-            gap: 10px; 
-            padding: 20px 5%; 
-            margin-bottom: 30px; /* مساحة أمان لمنع التداخل مع البطاقات */
-            overflow-x: auto; 
-            scrollbar-width: none; 
-        }
-        .tag-btn { background: rgba(255, 255, 255, 0.08); color: #eee; border: 1px solid rgba(255, 255, 255, 0.1); padding: 8px 20px; border-radius: 20px; cursor: pointer; white-space: nowrap; transition: 0.3s; }
-        .tag-btn.active { background: #007aff; border-color: #007aff; }
-
-        /* شبكة البطاقات - تعديل الطول */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 25px; padding: 20px 5%; }
-        
-        .card { 
-            background: rgba(28, 28, 30, 0.6); 
-            border-radius: 24px; 
-            padding: 25px 15px; 
-            text-align: center; 
-            border: 1px solid #333; 
-            transition: 0.3s; 
-            backdrop-filter: blur(10px); 
-            position: relative;
-            min-height: 280px; /* زيادة الطول لاستيعاب الاسم والوصف */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .card:hover { transform: translateY(-5px); border-color: #007aff; }
-        
-        .tool-logo { width: 60px; height: 60px; border-radius: 15px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: bold; }
-        .tool-name { font-weight: bold; font-size: 1rem; margin-bottom: 8px; color: #fff; }
-        .tool-desc { color: #8e8e93; font-size: 0.75rem; line-height: 1.4; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        
-        .badge { position: absolute; top: 12px; left: 12px; font-size: 9px; padding: 3px 10px; border-radius: 10px; font-weight: bold; }
-        .free { background: rgba(52, 199, 89, 0.15); color: #34c759; }
-        .paid { background: rgba(255, 59, 48, 0.15); color: #ff3b30; }
-        .btn-try { background: #007aff; color: white; text-decoration: none; display: block; padding: 10px; border-radius: 12px; font-size: 0.85rem; font-weight: bold; }
-
-        /* الترقيم */
-        .pagination { display: flex; justify-content: center; align-items: center; gap: 12px; padding: 60px 0; }
-        .page-link { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 1px solid #333; cursor: pointer; color: #ccc; text-decoration: none; }
-        .page-link.active { background: #007aff; color: white; border-color: #007aff; }
-
-        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
-    </style>
 </head>
 <body>
-
     <div id="particles-js"></div>
 
     <nav class="apple-nav">
-        <div class="logo">رادار مِسبار</div>
-        <input type="text" id="smartSearch" class="search-bar" placeholder="ابحث في الأدوات الذكية...">
-        <div><span style="color: #007aff; cursor: pointer; font-weight: bold;">دخول</span></div>
+        <div class="nav-right">
+            <div class="lang-dropdown">
+                <span class="lang-trigger">🌐</span>
+                <div class="lang-menu">
+                    <a href="#">العربية</a><a href="#">English</a><a href="#">Français</a>
+                    <a href="#">Español</a><a href="#">Deutsch</a><a href="#">日本語</a>
+                    <a href="#">中文</a><a href="#">Русский</a><a href="#">Italiano</a><a href="#">Türkçe</a>
+                </div>
+            </div>
+            <div class="logo">Misbar AI</div>
+        </div>
+
+        <div class="nav-center">
+            <div class="search-wrapper">
+                <input type="text" id="smartSearch" class="search-input" placeholder="ابحث في الأدوات...">
+                <button class="search-btn">بحث</button>
+            </div>
+        </div>
+
+        <div class="nav-left">
+            <button class="btn-auth">دخول</button>
+        </div>
     </nav>
 
-    <div class="featured-slider" id="featuredZone"></div>
+    <div class="featured-slider" id="featuredZone">
+        </div>
 
-    <div class="filter-tags" id="categoryFilters">
-        <button class="tag-btn active" data-category="All">الكل</button>
-        <button class="tag-btn" data-category="Writing">Writing</button>
-        <button class="tag-btn" data-category="Image">Image Generation</button>
-        <button class="tag-btn" data-category="Video">Video Editing</button>
-        <button class="tag-btn" data-category="Coding">Coding AI</button>
-        <button class="tag-btn" data-category="Design">Design</button>
+    <div class="filter-container">
+        <div class="filter-tags">
+            <div class="free-toggle-wrapper">
+                <span>مجاني فقط</span>
+                <label class="switch">
+                    <input type="checkbox" id="freeOnlySwitch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            
+            <button class="tag-btn active" data-category="All">الكل</button>
+            <button class="tag-btn" data-category="Writing">كتابة</button>
+            <button class="tag-btn" data-category="Image">صور</button>
+            <button class="tag-btn" data-category="Video">فيديو</button>
+            
+            <div class="more-dropdown">
+                <button class="tag-btn">المزيد ▼</button>
+                <div class="more-content">
+                    <button data-category="Coding">برمجة</button>
+                    <button data-category="SEO">سيو</button>
+                    <button data-category="Audio">صوت</button>
+                    <button data-category="Design">تصميم</button>
+                    <button data-category="Security">أمن</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="grid" id="mainGrid"></div>
@@ -94,62 +72,20 @@
         <a href="#" class="page-link active">1</a>
         <a href="#" class="page-link">2</a>
         <a href="#" class="page-link">3</a>
+        <a href="#" class="page-link">4</a>
+        <a href="#" class="page-link">5</a>
     </div>
 
+    <footer class="main-footer">
+        <div class="footer-extra-space"></div> <div class="footer-content">
+            <div class="footer-section">
+                <h3>Misbar AI</h3>
+                <p>الرادار الأول لأدوات الذكاء الاصطناعي عالمياً.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script>
-        particlesJS('particles-js', { "particles": { "number": { "value": 50 }, "opacity": { "value": 0.2 }, "move": { "speed": 0.5 } } });
-
-        const cats = ['Writing', 'Image', 'Video', 'Coding', 'Design'];
-        const mockData = Array.from({length: 60}, (_, i) => ({
-            name: ['Jasper', 'ChatGPT', 'Midjourney', 'Claude', 'Sora'][i % 5] + " AI " + (i + 1),
-            desc: "أداة ذكاء اصطناعي متطورة تساعدك على إنجاز مهامك بسرعة واحترافية عالية في وقت قياسي.",
-            price: i % 3 === 0 ? 'free' : 'paid',
-            category: cats[i % cats.length],
-            color: `hsl(${i * 20}, 65%, 50%)`
-        }));
-
-        function render(data) {
-            document.getElementById('mainGrid').innerHTML = data.map(item => `
-                <div class="card">
-                    <span class="badge ${item.price}">${item.price === 'free' ? 'مجاني' : 'مدفوع'}</span>
-                    <div class="tool-logo" style="background:${item.color}">${item.name[0]}</div>
-                    <div class="tool-name">${item.name}</div>
-                    <div class="tool-desc">${item.desc}</div>
-                    <a href="#" class="btn-try">جرب الآن</a>
-                </div>
-            `).join('');
-        }
-
-        // تفعيل أزرار الفلترة
-        document.querySelectorAll('.tag-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelector('.tag-btn.active').classList.remove('active');
-                this.classList.add('active');
-                const category = this.dataset.category;
-                const filtered = category === 'All' ? mockData : mockData.filter(x => x.category === category);
-                render(filtered);
-            });
-        });
-
-        // تفعيل أزرار الترقيم
-        document.querySelectorAll('.page-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector('.page-link.active').classList.remove('active');
-                this.classList.add('active');
-                // هنا يمكن إضافة منطق تغيير الصفحة الفعلي لاحقاً
-                window.scrollTo({ top: document.getElementById('categoryFilters').offsetTop - 80, behavior: 'smooth' });
-            });
-        });
-
-        // تفعيل البحث
-        document.getElementById('smartSearch').oninput = (e) => {
-            const v = e.target.value.toLowerCase();
-            render(mockData.filter(x => x.name.toLowerCase().includes(v) || x.category.toLowerCase().includes(v)));
-        };
-
-        render(mockData);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
