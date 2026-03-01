@@ -1,30 +1,57 @@
-/* تنسيق شريط التصنيفات */
-.filter-tags {
+/* الأساسيات */
+body { 
+    margin: 0; 
+    background-color: #000; 
+    color: #fff; 
+    font-family: 'Cairo', sans-serif; 
     display: flex;
-    justify-content: center;
-    gap: 10px;
-    padding: 20px 5%;
-    overflow-x: auto;
-    scrollbar-width: none;
-    white-space: nowrap;
-}
-.filter-tags::-webkit-scrollbar { display: none; }
-
-.tag-btn {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 8px 18px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    transition: 0.3s;
-    backdrop-filter: blur(5px);
+    flex-direction: column;
+    min-height: 100vh; /* لضمان بقاء الفوتر في الأسفل */
 }
 
-.tag-btn:hover, .tag-btn.active {
-    background: #007aff; /* لون أبل الأزرق */
-    border-color: #007aff;
+/* الهيدر */
+.apple-nav { 
+    position: sticky; top: 0; z-index: 1000;
+    backdrop-filter: blur(20px); background: rgba(0,0,0,0.7); 
+    display: flex; justify-content: space-between; align-items: center; 
+    padding: 10px 5%; border-bottom: 0.5px solid #333; height: 60px; 
 }
 
+/* شريط الفلاتر - إضافة مسافة سفلية منعاً للتداخل */
+.filter-tags { 
+    display: flex; justify-content: center; gap: 10px; 
+    padding: 20px 5%; margin-bottom: 25px; /* مساحة أمان */
+    overflow-x: auto; scrollbar-width: none; 
+}
+.tag-btn { 
+    background: rgba(255, 255, 255, 0.1); color: #fff; 
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    padding: 8px 18px; border-radius: 20px; cursor: pointer; transition: 0.3s; 
+}
+.tag-btn.active { background: #007aff; border-color: #007aff; }
 
+/* البطاقات - زيادة الطول بنسبة 20% */
+.grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+    gap: 25px; padding: 0 5% 40px; 
+    flex: 1; /* تأخذ المساحة المتبقية ليدفع الفوتر للأسفل */
+}
+.card { 
+    background: rgba(28, 28, 30, 0.6); border-radius: 20px; 
+    padding: 25px 15px; text-align: center; border: 1px solid #333; 
+    transition: 0.3s; backdrop-filter: blur(10px); position: relative;
+    min-height: 280px; /* الطول الجديد الكافي للوصف */
+    display: flex; flex-direction: column; justify-content: space-between;
+}
+
+.tool-logo { width: 60px; height: 60px; border-radius: 15px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; }
+.tool-desc { color: #8e8e93; font-size: 0.75rem; margin: 10px 0; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* الفوتر (Sticks to bottom) */
+.main-footer {
+    background: #111;
+    border-top: 1px solid #333;
+    padding: 40px 5%;
+    margin-top: auto; /* يلتصق بالأسفل */
+}
