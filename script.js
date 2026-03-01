@@ -1,25 +1,53 @@
-(function() {
-    const root = document.getElementById('app-root');
+// 1. الفئات والبيانات
+const categories = ['All', 'Writing', 'Image', 'Video', 'Coding', 'Audio', 'Design', 'Marketing', 'Data', '3D Render', 'Security', 'SEO', 'Email AI'];
+const mockTools = Array.from({length: 30}, (_, i) => ({
+    name: ['ChatGPT', 'Claude', 'Luma', 'Midjourney', 'Jasper'][i % 5] + ' Pro',
+    cat: categories[(i % (categories.length - 1)) + 1].toLowerCase()
+}));
 
-    // 1. التنسيق الجمالي (أضفنا ستايل الكروت الكبيرة)
-    const style = document.createElement('style');
-    style.innerHTML = `
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
-        * { box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-        body { background: #000; color: #fff; }
-        .nav { position: sticky; top: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(20px); display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; border-bottom: 1px solid #222; z-index: 1000; }
-        .logo { font-size: 1.6rem; font-weight: 900; color: #00d1ff; text-decoration:none; }
-        
-        /* تصميم الكروت الكبيرة (Featured) */
-        .featured-slider { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding: 20px 5%; gap: 20px; scrollbar-width: none; }
-        .featured-slider::-webkit-scrollbar { display: none; }
-        .big-card { min-width: 85%; height: 300px; border-radius: 30px; scroll-snap-align: center; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; border: 1px solid #333; background-size: cover; background-position: center; }
-        .big-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); z-index: 1; }
-        .big-card-content { position: relative; z-index: 2; }
+// 2. بناء أزرار الفلترة الـ 13
+const fBar = document.getElementById('filterBar');
+if (fBar) {
+    fBar.innerHTML = categories.map((c, i) => `
+        <button class="f-btn ${i===0?'active':''}" onclick="filterTools('${c.toLowerCase()}', this)">${c}</button>
+    `).join('');
+}
 
-        .filter-bar { display: flex; gap: 10px; padding: 10px 5%; overflow-x: auto; scrollbar-width: none; }
-        .filter-bar::-webkit-scrollbar { display: none; }
-        .f-btn { background: #1c1c1e; border: 1px solid #2c2c2e; padding: 8px 22px; border-radius: 20px; font-size: 0.85rem; color: #8e8e93; cursor: pointer; white-space: nowrap; transition: 0.3s; }
-        .f-btn.active { background: #007aff; color: #fff; border-color: #007aff; }
+// 3. عرض الأدوات
+const grid = document.getElementById('toolsGrid');
+function display(list) {
+    if (grid) {
+        grid.innerHTML = list.map(t => `
+            <div class="card">
+                <div class="tool-icon">${t.name[0]}</div>
+                <div style="font-weight:700; font-size:0.9rem;">${t.name}</div>
+                <button class="try-btn">جرب الآن</button>
+            </div>
+        `).join('');
+    }
+}
 
-        .grid { display: grid; grid-template-
+// 4. وظائف الفلترة والبحث (window عشان يوصل لها الـ HTML)
+window.filterTools = (cat, btn) => {
+    document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    display(cat === 'all' ? mockTools : mockTools.filter(x => x.cat === cat));
+};
+
+const sInput = document.getElementById('searchInput');
+if (sInput) {
+    sInput.oninput = (e) => {
+        const val = e.target.value.toLowerCase();
+        display(mockTools.filter(t => t.name.toLowerCase().includes(val)));
+    };
+}
+
+// 5. تشغيل النجوم
+if (window.particlesJS) {
+    particlesJS('particles-js', {
+        "particles": { "number": { "value": 80 }, "color": { "value": "#ffffff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.5 }, "size": { "value": 2 }, "line_linked": { "enable": false }, "move": { "enable": true, "speed": 1 } }
+    });
+}
+
+// البدء بالعرض
+display(mockTools);
