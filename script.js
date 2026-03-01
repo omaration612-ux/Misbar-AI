@@ -1,31 +1,39 @@
-// تشغيل النجوم المتصلة
-particlesJS('particles-js', {
-    "particles": { "number": { "value": 100 }, "size": { "value": 1 }, "line_linked": { "enable": true, "opacity": 0.1 }, "move": { "speed": 1 } }
-});
+:root { --primary: #007aff; --bg: #000; --card: #1c1c1e; }
+body { margin: 0; background: var(--bg); color: #fff; font-family: -apple-system; direction: rtl; }
+#particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; }
 
-// توليد البطاقات (صفحة واحدة 5 في 9 = 45 بطاقة)
-const grid = document.getElementById('toolsGrid');
-for(let i=1; i<=45; i++) {
-    const type = i % 2 === 0 ? 'مجاني' : 'ادفع';
-    grid.innerHTML += `
-        <div class="card">
-            <span class="badge">${type}</span>
-            <div style="background:var(--glass); width:50px; height:50px; border-radius:12px; margin-bottom:15px; display:flex; align-items:center; justify-content:center; font-size:24px;">🚀</div>
-            <h4 style="margin:5px 0;">أداة مِسبار ${i}</h4>
-            <p style="font-size:12px; color:#777;">وصف مختصر جداً للأداة وقوتها التقنية...</p>
-            <button style="width:100%; margin-top:15px; padding:10px; border-radius:10px; border:none; background:#2c2c2e; color:#fff; cursor:pointer;">استكشف</button>
-        </div>
-    `;
-}
+/* Header Fix */
+.apple-header { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(0,0,0,0.8); border-bottom: 0.5px solid #333; }
+.header-left, .header-right { display: flex; align-items: center; gap: 20px; }
+.auth-btn { color: #fff; text-decoration: none; font-size: 13px; }
+.signup-now { background: var(--primary); padding: 6px 16px; border-radius: 20px; text-decoration: none; color: #fff; }
 
-// توليد نقاط العداد (10 نقاط)
-const dots = document.getElementById('pageDots');
-for(let i=1; i<=10; i++) {
-    dots.innerHTML += `<div class="dot ${i===1?'active':''}" style="width:8px; height:8px; background:#333; border-radius:50%; display:inline-block; margin:0 5px; cursor:pointer;"></div>`;
-}
+/* Switch Style */
+.switch { position: relative; display: inline-block; width: 40px; height: 20px; margin: 0 10px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 34px; }
+.slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 2px; bottom: 2px; background-color: white; transition: .4s; border-radius: 50%; }
+input:checked + .slider { background-color: var(--primary); }
+input:checked + .slider:before { transform: translateX(20px); }
 
-// حماية السويتش (للمسجلين فقط)
-document.getElementById('pricingToggle').addEventListener('change', function() {
-    alert("عذراً، يجب تسجيل الدخول للتحكم في نوع الفلترة.");
-    this.checked = false;
-});
+/* Hero Branding */
+.hero-brand { padding: 100px 5% 40px; text-align: right; }
+.hero-brand h1 { font-size: 70px; letter-spacing: 15px; margin: 0; opacity: 0.9; }
+.tagline { color: #888; font-size: 18px; margin-top: 15px; border-right: 3px solid var(--primary); padding-right: 15px; }
+
+/* Slider & Grid */
+.featured-section { padding: 20px 5%; }
+.slider-container { display: flex; gap: 15px; overflow-x: auto; padding: 20px 0; scrollbar-width: none; }
+.f-card { min-width: 250px; height: 130px; background: rgba(255,255,255,0.05); border: 1px solid #333; border-radius: 20px; padding: 20px; }
+
+.grid-container { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; padding: 40px 5%; }
+.card { background: var(--card); border-radius: 24px; padding: 20px; border: 1px solid #333; position: relative; }
+.status-tag { position: absolute; top: 15px; left: 15px; font-size: 10px; color: var(--primary); font-weight: bold; }
+
+/* Pagination & Footer */
+.google-pagination { display: flex; flex-direction: column; align-items: center; gap: 20px; padding: 40px; }
+.dots { display: flex; gap: 10px; }
+.dot { width: 8px; height: 8px; background: #333; border-radius: 50%; }
+.dot.active { background: var(--primary); transform: scale(1.3); }
+.footer-line { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--primary), transparent); margin-bottom: 20px; }
+.pro-footer { padding: 40px; text-align: center; color: #555; }
