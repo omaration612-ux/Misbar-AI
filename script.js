@@ -1,52 +1,91 @@
-// 1. بيانات الفيتشر كاردز (6 كروت)
-const heroes = [
-    {n: "Sora", d: "مستقبل الفيديو من OpenAI"}, {n: "GPT-5", d: "الذكاء الخارق القادم"},
-    {n: "Midjourney", d: "الفن التوليدي بأبهى صوره"}, {n: "Claude", d: "المساعد الأكثر أماناً"},
-    {n: "Gemini", d: "قوة جوجل المطلقة"}, {n: "Luma AI", d: "تحويل النص لواقع"}
-];
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misbar AI | رادار مِسبار</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="particles-js"></div>
 
-document.getElementById('featuredZone').innerHTML = heroes.map(h => `
-    <div class="hero-card" style="background: linear-gradient(transparent, #000), url('https://picsum.photos/400/250?sig=${Math.random()}') center/cover;">
-        <h3>${h.n}</h3><p>${h.d}</p>
-    </div>
-`).join('');
-
-// 2. بيانات الأدوات (60 أداة)
-const mockData = Array.from({length: 60}, (_, i) => ({
-    name: "أداة ذكية " + (i + 1),
-    desc: "وصف تفصيلي للأداة يوضح كيفية الاستفادة منها في مشاريعك اليومية.",
-    price: i % 3 === 0 ? 'free' : 'paid',
-    category: ["Writing", "Image", "Video", "Coding", "SEO"][i % 5]
-}));
-
-function render(data) {
-    document.getElementById('mainGrid').innerHTML = data.map(item => `
-        <div class="card">
-            <span class="badge ${item.price}">${item.price === 'free' ? 'مجاني' : 'مدفوع'}</span>
-            <div class="tool-logo" style="background:hsl(${Math.random()*360}, 60%, 50%)">${item.name[0]}</div>
-            <div class="tool-name">${item.name}</div>
-            <p class="tool-desc">${item.desc}</p>
-            <a href="#" class="btn-try">جرب الآن</a>
+    <nav class="apple-nav">
+        <div class="nav-right">
+            <div class="lang-dropdown">
+                <span class="lang-trigger">🌐</span>
+                <div class="lang-menu">
+                    <a href="#">العربية</a><a href="#">English</a><a href="#">Français</a>
+                    <a href="#">Español</a><a href="#">Deutsch</a><a href="#">日本語</a>
+                    <a href="#">中文</a><a href="#">Русский</a><a href="#">Italiano</a><a href="#">Türkçe</a>
+                </div>
+            </div>
+            <div class="logo">Misbar AI</div>
         </div>
-    `).join('');
-}
 
-// 3. تفعيل الفلترة والبحث
-document.querySelectorAll('.tag-btn, .more-content button').forEach(btn => {
-    btn.addEventListener('click', function() {
-        const cat = this.dataset.category;
-        render(cat === 'All' ? mockData : mockData.filter(x => x.category === cat));
-    });
-});
+        <div class="nav-center">
+            <div class="search-wrapper">
+                <input type="text" id="smartSearch" class="search-input" placeholder="ابحث في الأدوات...">
+                <button class="search-btn">بحث</button>
+            </div>
+        </div>
 
-// 4. تفعيل مفتاح "مجاني فقط" مع التنبيه
-document.getElementById('freeOnlySwitch').onchange = function() {
-    alert("عذراً! لاستخدام ميزة الفلترة المتقدمة (مجاني فقط)، يجب عليك التسجيل أولاً.");
-    this.checked = false;
-};
+        <div class="nav-left">
+            <button class="btn-auth">دخول</button>
+        </div>
+    </nav>
 
-// تشغيل أولي
-window.onload = () => {
-    render(mockData);
-    particlesJS('particles-js', { "particles": { "number": { "value": 40 }, "opacity": { "value": 0.2 } } });
-};
+    <div class="featured-slider" id="featuredZone">
+        </div>
+
+    <div class="filter-container">
+        <div class="filter-tags">
+            <div class="free-toggle-wrapper">
+                <span>مجاني فقط</span>
+                <label class="switch">
+                    <input type="checkbox" id="freeOnlySwitch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            
+            <button class="tag-btn active" data-category="All">الكل</button>
+            <button class="tag-btn" data-category="Writing">كتابة</button>
+            <button class="tag-btn" data-category="Image">صور</button>
+            <button class="tag-btn" data-category="Video">فيديو</button>
+            
+            <div class="more-dropdown">
+                <button class="tag-btn">المزيد ▼</button>
+                <div class="more-content">
+                    <button data-category="Coding">برمجة</button>
+                    <button data-category="SEO">سيو</button>
+                    <button data-category="Audio">صوت</button>
+                    <button data-category="Design">تصميم</button>
+                    <button data-category="Security">أمن</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid" id="mainGrid"></div>
+
+    <div class="pagination">
+        <a href="#" class="page-link active">1</a>
+        <a href="#" class="page-link">2</a>
+        <a href="#" class="page-link">3</a>
+        <a href="#" class="page-link">4</a>
+        <a href="#" class="page-link">5</a>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-extra-space"></div> <div class="footer-content">
+            <div class="footer-section">
+                <h3>Misbar AI</h3>
+                <p>الرادار الأول لأدوات الذكاء الاصطناعي عالمياً.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
