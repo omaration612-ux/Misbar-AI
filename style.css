@@ -1,1 +1,29 @@
+/* تنسيق شريط التصنيفات */
+.filter-tags {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 5%;
+    overflow-x: auto;
+    scrollbar-width: none;
+    white-space: nowrap;
+}
+.filter-tags::-webkit-scrollbar { display: none; }
+
+.tag-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: 0.3s;
+    backdrop-filter: blur(5px);
+}
+
+.tag-btn:hover, .tag-btn.active {
+    background: #007aff; /* لون أبل الأزرق */
+    border-color: #007aff;
+}
 
