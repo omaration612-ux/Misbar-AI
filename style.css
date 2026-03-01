@@ -1,38 +1,141 @@
-/* الأساسيات */
-body { margin: 0; background-color: #000; color: #fff; font-family: 'Cairo', sans-serif; overflow-x: hidden; }
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رادار مِسبار | AI RADAR</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* الأساسيات */
+        body { margin: 0; background-color: #000; color: #fff; font-family: 'Cairo', sans-serif; overflow-x: hidden; }
+        
+        /* الهيدر */
+        .apple-nav { position: sticky; top: 0; backdrop-filter: blur(20px); background: rgba(0,0,0,0.7); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; z-index: 1000; border-bottom: 0.5px solid #333; height: 60px; }
+        .logo { font-size: 1.5rem; font-weight: 900; background: linear-gradient(to right, #00d1ff, #007aff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .search-bar { background: rgba(44, 44, 46, 0.8); border: 1px solid #333; padding: 10px 15px; border-radius: 12px; color: #fff; outline: none; width: 300px; }
 
-/* الهيدر وقائمة اللغات */
-.apple-nav { position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(20px); background: rgba(0,0,0,0.7); display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; height: 60px; border-bottom: 0.5px solid #333; }
-.lang-dropdown { position: relative; cursor: pointer; margin-left: 15px; }
-.lang-menu { display: none; position: absolute; top: 100%; right: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); border: 1px solid #333; border-radius: 8px; min-width: 120px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-.lang-menu a { display: block; color: white; padding: 8px 15px; text-decoration: none; font-size: 0.85rem; transition: 0.3s; }
-.lang-menu a:hover { background: #007aff; }
-.lang-dropdown:hover .lang-menu { display: block; }
+        /* قسم الفيتشر كاردز (6 كروت) */
+        .featured-slider { display: flex; padding: 20px 5%; gap: 15px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .featured-slider::-webkit-scrollbar { display: none; }
+        .hero-card { min-width: 300px; height: 200px; border-radius: 25px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px; border: 1px solid #333; scroll-snap-align: start; flex-shrink: 0; }
 
-/* الفيتشر كاردز (الكروت الستة) */
-.featured-slider { display: flex; padding: 25px 5%; gap: 15px; overflow-x: auto; scrollbar-width: none; }
-.hero-card { min-width: 280px; height: 180px; border-radius: 20px; border: 1px solid #333; padding: 20px; display: flex; flex-direction: column; justify-content: flex-end; flex-shrink: 0; transition: 0.4s; }
-.hero-card:hover { transform: scale(1.02); border-color: #007aff; }
+        /* أزرار الفلترة */
+        .filter-tags { display: flex; gap: 10px; padding: 10px 5%; overflow-x: auto; scrollbar-width: none; }
+        .tag-btn { background: rgba(255, 255, 255, 0.08); color: #eee; border: 1px solid rgba(255, 255, 255, 0.1); padding: 6px 15px; border-radius: 20px; cursor: pointer; white-space: nowrap; transition: 0.3s; }
+        .tag-btn.active { background: #007aff; border-color: #007aff; }
 
-/* الفلترة ومنع التداخل */
-.filter-container { padding: 20px 5%; margin-bottom: 20px; border-bottom: 1px solid #111; }
-.filter-tags { display: flex; align-items: center; gap: 12px; overflow-x: auto; scrollbar-width: none; }
-.free-toggle-wrapper { display: flex; align-items: center; gap: 10px; border-left: 1px solid #333; padding-left: 15px; margin-left: 5px; font-size: 0.85rem; color: #34c759; font-weight: bold; }
+        /* شبكة البطاقات (60 بطاقة) */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 20px; padding: 20px 5%; }
+        .card { background: rgba(28, 28, 30, 0.6); border-radius: 20px; padding: 15px; text-align: center; border: 1px solid #333; transition: 0.3s; backdrop-filter: blur(10px); position: relative; }
+        .card:hover { transform: translateY(-5px); border-color: #007aff; }
+        .tool-logo { width: 50px; height: 50px; border-radius: 12px; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; color: #fff; }
+        .badge { position: absolute; top: 10px; left: 10px; font-size: 9px; padding: 2px 8px; border-radius: 8px; }
+        .free { background: rgba(52, 199, 89, 0.2); color: #34c759; }
+        .paid { background: rgba(255, 59, 48, 0.2); color: #ff3b30; }
+        .btn-try { background: #007aff; color: white; text-decoration: none; display: block; padding: 7px; border-radius: 10px; margin-top: 10px; font-size: 0.8rem; }
 
-/* البطاقات (زيادة الطول للوصف) */
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 25px; padding: 0 5% 50px; }
-.card { 
-    background: rgba(28, 28, 30, 0.5); border: 1px solid #222; border-radius: 22px; 
-    padding: 30px 15px; text-align: center; min-height: 290px; /* طول إضافي */
-    display: flex; flex-direction: column; justify-content: space-between; transition: 0.3s;
-}
-.card:hover { border-color: #007aff; transform: translateY(-5px); }
+        /* نظام الترقيم (Pagination) */
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 10px; padding: 40px 0; }
+        .page-link { width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 50%; border: 1px solid #333; cursor: pointer; transition: 0.3s; color: #ccc; text-decoration: none; }
+        .page-link.active, .page-link:hover { background: #007aff; color: white; border-color: #007aff; }
 
-/* الترقيم */
-.pagination { display: flex; justify-content: center; gap: 10px; padding: 40px 0; }
-.page-link { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; border: 1px solid #333; border-radius: 10px; color: #fff; text-decoration: none; }
-.page-link.active { background: #007aff; border-color: #007aff; }
+        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+    </style>
+</head>
+<body>
 
-/* الفوتر والمساحة الإضافية */
-.footer-extra-space { height: 120px; background: linear-gradient(to bottom, transparent, #080808); }
-.main-footer { background: #080808; padding: 40px 5% 80px; text-align: center; border-top: 1px solid #1a1a1a; }
+    <div id="particles-js"></div>
+
+    <nav class="apple-nav">
+        <div class="logo">رادار مِسبار</div>
+        <input type="text" id="smartSearch" class="search-bar" placeholder="ابحث في 30,000 أداة...">
+        <div style="display: flex; gap: 10px;">
+            <span style="color: #007aff; cursor: pointer;">تسجيل</span>
+        </div>
+    </nav>
+
+    <div class="featured-slider" id="featuredZone"></div>
+
+    <div class="filter-tags" id="categoryFilters">
+        <button class="tag-btn active" data-category="All">الكل</button>
+        <button class="tag-btn" data-category="Writing">Writing</button>
+        <button class="tag-btn" data-category="Image">Image</button>
+        <button class="tag-btn" data-category="Video">Video</button>
+        <button class="tag-btn" data-category="Coding">Coding</button>
+        <button class="tag-btn" data-category="Design">Design</button>
+    </div>
+
+    <div class="grid" id="mainGrid"></div>
+
+    <div class="pagination">
+        <a href="#" class="page-link">«</a>
+        <a href="#" class="page-link active">1</a>
+        <a href="#" class="page-link">2</a>
+        <a href="#" class="page-link">3</a>
+        <a href="#" class="page-link">4</a>
+        <a href="#" class="page-link">»</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script>
+        // 1. الخلفية
+        particlesJS('particles-js', { "particles": { "number": { "value": 60 }, "color": { "value": "#ffffff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.3 }, "size": { "value": 2 }, "line_linked": { "enable": false }, "move": { "enable": true, "speed": 0.4 } } });
+
+        // 2. إنشاء 6 كروت فيتشر
+        const heroData = [
+            { title: "Sora Video", desc: "تحويل النص إلى فيديو واقعي", img: "101" },
+            { title: "GPT-5 Turbo", desc: "الجيل القادم من الذكاء", img: "102" },
+            { title: "Midjourney v7", desc: "فن رقمي لا حدود له", img: "103" },
+            { title: "Claude 3.5", desc: "تحليل بيانات فائق السرعة", img: "104" },
+            { title: "Luma Dream", desc: "تحريك الصور بلمسة واحدة", img: "105" },
+            { title: "Gemini Pro", desc: "دمج متكامل مع جوجل", img: "106" }
+        ];
+
+        document.getElementById('featuredZone').innerHTML = heroData.map(h => `
+            <div class="hero-card" style="background: linear-gradient(transparent, rgba(0,0,0,0.9)), url('https://picsum.photos/400/300?sig=${h.img}') center/cover;">
+                <h3 style="margin:0; font-size:1.2rem;">${h.title}</h3>
+                <p style="margin:5px 0 0; font-size:0.8rem; color:#ccc;">${h.desc}</p>
+            </div>
+        `).join('');
+
+        // 3. إنشاء 60 بطاقة أدوات
+        const cats = ['Writing', 'Image', 'Video', 'Coding', 'Design'];
+        const mockData = Array.from({length: 60}, (_, i) => ({
+            name: ['Tool', 'AI', 'Smart', 'Probe'][i % 4] + " " + (i + 1),
+            price: i % 2 === 0 ? 'free' : 'paid',
+            category: cats[i % cats.length],
+            color: `hsl(${i * 6}, 70%, 50%)`
+        }));
+
+        function render(data) {
+            document.getElementById('mainGrid').innerHTML = data.map(item => `
+                <div class="card">
+                    <span class="badge ${item.price}">${item.price === 'free' ? 'مجاني' : 'مدفوع'}</span>
+                    <div class="tool-logo" style="background:${item.color}">${item.name[0]}</div>
+                    <div style="font-weight:bold; font-size:0.9rem;">${item.name}</div>
+                    <div style="color:#8e8e93; font-size:0.7rem; margin-top:4px;">${item.category}</div>
+                    <a href="#" class="btn-try">جرب الآن</a>
+                </div>
+            `).join('');
+        }
+
+        // الفلترة والبحث
+        document.querySelectorAll('.tag-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelector('.tag-btn.active').classList.remove('active');
+                this.classList.add('active');
+                const c = this.dataset.category;
+                render(c === 'All' ? mockData : mockData.filter(x => x.category === c));
+            });
+        });
+
+        document.getElementById('smartSearch').oninput = (e) => {
+            const v = e.target.value.toLowerCase();
+            render(mockData.filter(x => x.name.toLowerCase().includes(v)));
+        };
+
+        render(mockData);
+    </script>
+</body>
+</html>
+
