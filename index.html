@@ -6,18 +6,40 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="particles-js"></div> <div class="top-bar">
+    <div id="particles-js"></div> 
+
+    <div class="top-bar">
         <a class="auth-btn">تسجيل الدخول</a>
         <a class="auth-btn signup-now">اشترك الآن</a>
     </div>
 
-    <div class="filter-row" id="filters">
-        </div>
-
     <nav class="main-nav">
         <div class="logo">MISBAR | مِسبار</div>
-        <input type="text" class="search-in" placeholder="ابحث في 30,000 أداة...">
+        <div class="search-container">
+            <input type="text" class="search-in" placeholder="ابحث في 30,000 أداة...">
+        </div>
     </nav>
+
+    <div class="special-section">
+        <h2 class="section-title">Today's Pick ✨</h2>
+        <div class="featured-card">
+            <div class="featured-content">
+                <span class="badge">مميز اليوم</span>
+                <h3>مساعد مِسبار التوليدي</h3>
+                <p>اكتشف عالم الصور بالذكاء الاصطناعي بضغطة واحدة.</p>
+                <button class="featured-btn">استكشف الأداة</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="filter-row" id="filters">
+        <div class="chip active">الكل</div>
+        <div class="chip">صور</div>
+        <div class="chip">برمجة</div>
+        <div class="chip">فيديو</div>
+        <div class="chip">كتابة</div>
+        <div class="chip">تحليل</div>
+    </div>
 
     <div class="grid" id="toolsGrid"></div>
 
