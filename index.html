@@ -5,59 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Misbar AI | رادار مِسبار</title>
     
-    <meta name="description" content="رادار مسبار - الدليل الأكبر لأدوات الذكاء الاصطناعي، أكثر من 30 ألف أداة ذكية في مكان واحد.">
-    <meta name="keywords" content="ذكاء اصطناعي, AI tools, رادار مسبار, مسبار AI">
-    
+    <meta name="description" content="رادار مسبار - الدليل الأكبر لأدوات الذكاء الاصطناعي">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
     <style>
-        /* الأساسيات */
+        /* التنسيقات الأساسية المستوحاة من صورتك */
         body { margin: 0; background-color: #000; color: #fff; font-family: 'Cairo', sans-serif; overflow-x: hidden; }
         
-        /* الهيدر */
         .apple-nav { position: sticky; top: 0; backdrop-filter: blur(20px); background: rgba(0,0,0,0.8); display: flex; justify-content: space-between; align-items: center; padding: 0 5%; z-index: 1000; border-bottom: 0.5px solid #333; height: 75px; }
-        .logo { font-size: 1.7rem; font-weight: 900; background: linear-gradient(to right, #00d1ff, #007aff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .logo { font-size: 1.7rem; font-weight: 900; color: #00d1ff; }
         
         .nav-center { display: flex; align-items: center; gap: 20px; flex-grow: 1; justify-content: center; }
-        .search-wrapper { display: flex; background: rgba(44, 44, 46, 0.8); border: 1px solid #333; border-radius: 14px; overflow: hidden; width: 380px; }
-        .search-input { background: transparent; border: none; padding: 12px; color: #fff; flex-grow: 1; outline: none; font-family: 'Cairo'; }
-        .search-btn-black { background: #111; color: #fff; border: none; padding: 0 20px; cursor: pointer; font-weight: bold; border-right: 1px solid #333; }
+        .search-wrapper { display: flex; background: rgba(44, 44, 46, 0.8); border: 1px solid #333; border-radius: 14px; width: 350px; }
+        .search-input { background: transparent; border: none; padding: 10px; color: #fff; flex-grow: 1; outline: none; font-family: 'Cairo'; }
+        .search-btn { background: #111; color: #fff; border: none; padding: 0 15px; cursor: pointer; border-right: 1px solid #333; }
 
-        .switch-container { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; color: #8e8e93; }
-        .switch { position: relative; width: 44px; height: 24px; }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 34px; }
-        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-        input:checked + .slider { background-color: #34c759; }
-        input:checked + .slider:before { transform: translateX(20px); }
+        /* قسم الهيرو (كما في الصورة) */
+        .featured-slider { display: flex; justify-content: center; gap: 20px; padding: 40px 5%; overflow-x: auto; scrollbar-width: none; }
+        .hero-card { min-width: 380px; height: 250px; border-radius: 30px; position: relative; overflow: hidden; border: 1px solid #333; flex-shrink: 0; }
+        .hero-info { position: absolute; bottom: 20px; right: 20px; text-align: right; z-index: 2; }
 
-        /* الفيتشر كاردز */
-        .featured-slider { display: flex; padding: 25px 5%; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
-        .hero-card { min-width: 320px; height: 220px; border-radius: 28px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 25px; border: 1px solid #333; flex-shrink: 0; scroll-snap-align: start; }
-
-        /* التصنيفات */
-        .filter-tags { display: flex; justify-content: center; gap: 10px; padding: 20px 5%; overflow-x: auto; scrollbar-width: none; white-space: nowrap; }
-        .tag-btn { background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2); padding: 8px 18px; border-radius: 20px; cursor: pointer; font-size: 0.85rem; transition: 0.3s; backdrop-filter: blur(5px); }
+        /* التصنيفات (شريط التصنيفات) */
+        .filter-tags { display: flex; justify-content: center; gap: 10px; padding: 20px; flex-wrap: wrap; }
+        .tag-btn { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid #333; padding: 8px 20px; border-radius: 20px; cursor: pointer; transition: 0.3s; }
         .tag-btn.active { background: #007aff; border-color: #007aff; }
 
-        /* الشبكة والبطاقات */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 25px; padding: 30px 5%; }
-        .card { background: rgba(28, 28, 30, 0.6); border-radius: 26px; padding: 25px 20px; text-align: center; border: 1px solid rgba(255,255,255,0.08); position: relative; backdrop-filter: blur(20px); transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1); display: flex; flex-direction: column; min-height: 320px; }
-        .card:hover { border-color: #007aff; transform: translateY(-10px); background: rgba(38, 38, 40, 0.8); }
+        /* شبكة الأدوات */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 25px; padding: 30px 5%; }
+        .card { background: rgba(28,28,30,0.6); border-radius: 25px; padding: 20px; text-align: center; border: 1px solid #222; backdrop-filter: blur(10px); transition: 0.4s; position: relative; }
+        .card:hover { transform: translateY(-10px); border-color: #007aff; }
         
-        .tool-logo { width: 70px; height: 70px; border-radius: 20px; margin: 5px auto 15px; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: bold; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        .tool-name { font-weight: 900; font-size: 1.1rem; color: #fff; margin-bottom: 8px; }
-        .tool-desc { color: #8e8e93; font-size: 0.85rem; line-height: 1.5; margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; flex-grow: 1; }
-
-        .badge { position: absolute; top: 15px; right: 15px; font-size: 10px; padding: 4px 12px; border-radius: 20px; font-weight: bold; }
-        .free { background: rgba(52, 199, 89, 0.2); color: #34c759; border: 1px solid rgba(52, 199, 89, 0.3); }
-        .paid { background: rgba(255, 59, 48, 0.2); color: #ff3b30; border: 1px solid rgba(255, 59, 48, 0.3); }
-        
-        .btn-try { background: #007aff; color: white; text-decoration: none; display: block; padding: 12px; border-radius: 16px; font-size: 0.9rem; font-weight: bold; transition: 0.3s; }
-        .btn-try:hover { background: #0056b3; box-shadow: 0 5px 15px rgba(0,122,255,0.4); }
+        .tool-img { width: 60px; height: 60px; border-radius: 15px; margin-bottom: 15px; object-fit: cover; }
+        .btn-try { background: #007aff; color: white; text-decoration: none; display: block; padding: 10px; border-radius: 12px; font-weight: bold; margin-top: 15px; }
 
         #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
     </style>
@@ -67,28 +49,30 @@
     <div id="particles-js"></div>
 
     <nav class="apple-nav">
-        <div class="nav-right" style="display:flex; align-items:center; gap:15px;">
-            <div class="logo">Misbar AI</div>
-        </div>
-
+        <div class="logo">Misbar AI</div>
         <div class="nav-center">
-            <div class="switch-container">
-                <span>مجاني فقط</span>
-                <label class="switch">
-                    <input type="checkbox" id="freeOnlySwitch">
-                    <span class="slider"></span>
-                </label>
-            </div>
             <div class="search-wrapper">
-                <input type="text" id="smartSearch" class="search-input" placeholder="ابحث في 30,000 أداة ذكية...">
-                <button class="search-btn-black">بحث</button>
+                <input type="text" id="smartSearch" class="search-input" placeholder="ابحث في 30,000 أداة...">
+                <button class="search-btn">بحث</button>
             </div>
         </div>
-
-        <div><button style="background:transparent; border:1.5px solid #007aff; color:#007aff; padding:8px 20px; border-radius:12px; font-weight:bold; cursor:pointer;">دخول</button></div>
+        <button style="background:transparent; border:1px solid #007aff; color:#007aff; padding:8px 20px; border-radius:10px; cursor:pointer;">دخول</button>
     </nav>
 
-    <div class="featured-slider" id="featuredZone"></div>
+    <div class="featured-slider">
+        <div class="hero-card" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8)), url('https://picsum.photos/400/300?sig=23') center/cover;">
+            <div class="hero-info">
+                <h3 style="margin:0">Midjourney v7</h3>
+                <p style="font-size:0.8rem; color:#ccc">توليد صور بجودة سينمائية مذهلة.</p>
+            </div>
+        </div>
+        <div class="hero-card" style="background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.8)), url('https://picsum.photos/400/300?sig=21') center/cover;">
+            <div class="hero-info">
+                <h3 style="margin:0">Sora Video</h3>
+                <p style="font-size:0.8rem; color:#ccc">تحويل النصوص لفيديوهات واقعية.</p>
+            </div>
+        </div>
+    </div>
 
     <div class="filter-tags">
         <button class="tag-btn active">الكل</button>
@@ -101,97 +85,47 @@
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
-        // 1. تهيئة Firebase (ضع إعداداتك هنا)
+        // 1. إعداد Firebase (تأكد من استخدام بياناتك الحقيقية)
         const firebaseConfig = {
-            apiKey: "YOUR_API_KEY",
-            authDomain: "YOUR_PROJECT.firebaseapp.com",
-            projectId: "YOUR_PROJECT_ID",
-            storageBucket: "YOUR_PROJECT.appspot.com",
-            messagingSenderId: "YOUR_ID",
-            appId: "YOUR_APP_ID"
+            projectId: "misbar-2026",
+            // أضف الـ ApiKey والـ AppId الخاصين بك هنا
         };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // 2. نظام الـ Particles خلفية
-        particlesJS('particles-js', { "particles": { "number": { "value": 40 }, "opacity": { "value": 0.2 }, "move": { "speed": 0.4 } } });
+        // 2. تفعيل الخلفية
+        particlesJS('particles-js', { "particles": { "number": { "value": 40 }, "opacity": { "value": 0.2 }, "move": { "speed": 0.5 } } });
 
-        // 3. الأدوات المميزة (Featured)
-        const heroes = [
-            {n: "Sora Video", d: "تحويل النصوص لفيديوهات واقعية.", img: "21"},
-            {n: "Midjourney v7", d: "توليد صور بجودة سينمائية مذهلة.", img: "23"}
-        ];
-        document.getElementById('featuredZone').innerHTML = heroes.map(h => `
-            <div class="hero-card" style="background: linear-gradient(transparent, rgba(0,0,0,0.9)), url('https://picsum.photos/400/300?sig=${h.img}') center/cover;">
-                <h3 style="margin:0; font-size:1.3rem;">${h.n}</h3>
-                <p style="margin:8px 0 0; font-size:0.8rem; color:#ccc;">${h.d}</p>
-            </div>
-        `).join('');
-
-        // 4. حقن الـ 30,000 أداة من Firebase
-        async function injectMassiveTools() {
+        // 3. جلب الـ 30,000 أداة (بشكل جزئي للسرعة)
+        async function loadTools() {
             const mainGrid = document.getElementById('mainGrid');
-            mainGrid.innerHTML = '<p style="text-align:center; grid-column: 1/-1;">جاري فحص 30,000 أداة ذكية...</p>';
+            mainGrid.innerHTML = '<p style="grid-column: 1/-1; text-align:center;">جاري تحميل أدوات مِسبار...</p>';
 
             try {
-                const snapshot = await db.collection('tools')
-                                         .orderBy('created_at', 'desc')
-                                         .limit(30000) 
-                                         .get();
-
-                const tools = snapshot.docs.map(doc => {
-                    const data = doc.data();
-                    return {
-                        name: data.title || "أداة غير معنونة",
-                        desc: data.description || "لا يوجد وصف متاح لهذه الأداة حالياً.",
-                        price: data.price === 'Free' || data.category === 'مجاني' ? 'free' : 'paid',
-                        link: data.original_link || "#",
-                        color: `hsl(${Math.floor(Math.random() * 360)}, 70%, 30%)`
-                    };
-                });
-
-                renderTools(tools);
-            } catch (error) {
-                console.error("خطأ:", error);
-                mainGrid.innerHTML = '<p style="text-align:center; grid-column: 1/-1;">يرجى التحقق من اتصال Firebase والبيانات.</p>';
+                const snapshot = await db.collection('tools').limit(100).get();
+                const tools = snapshot.docs.map(doc => doc.data());
+                
+                mainGrid.innerHTML = tools.map(tool => `
+                    <div class="card">
+                        <img src="${tool.image || 'https://logo.clearbit.com/openai.com'}" class="tool-img" onerror="this.src='https://ui-avatars.com/api/?name=${tool.title}'">
+                        <div style="font-weight:900; margin-bottom:10px;">${tool.title}</div>
+                        <div style="font-size:0.8rem; color:#8e8e93; height:45px; overflow:hidden;">${tool.description}</div>
+                        <a href="${tool.original_link}" target="_blank" class="btn-try">جرب الآن</a>
+                    </div>
+                `).join('');
+            } catch (e) {
+                mainGrid.innerHTML = '<p style="grid-column: 1/-1; text-align:center; color:red;">حدث خطأ في جلب البيانات.</p>';
             }
         }
 
-        function renderTools(tools) {
-            const mainGrid = document.getElementById('mainGrid');
-            mainGrid.innerHTML = tools.map(item => `
-                <div class="card">
-                    <span class="badge ${item.price}">${item.price === 'free' ? 'مجاني' : 'مدفوع'}</span>
-                    <div class="tool-logo" style="background:${item.color}">${item.name[0]}</div>
-                    <div class="tool-name">${item.name}</div>
-                    <div class="tool-desc">${item.desc}</div>
-                    <a href="${item.link}" target="_blank" class="btn-try">جرب الآن</a>
-                </div>
-            `).join('');
-        }
-
-        // 5. محرك البحث الفوري (Instant Filter)
-        document.getElementById('smartSearch').addEventListener('input', function(e) {
-            const term = e.target.value.toLowerCase();
+        // 4. البحث الفوري
+        document.getElementById('smartSearch').oninput = (e) => {
+            const val = e.target.value.toLowerCase();
             const cards = document.querySelectorAll('.card');
-
-            cards.forEach(card => {
-                const name = card.querySelector('.tool-name').innerText.toLowerCase();
-                const desc = card.querySelector('.tool-desc').innerText.toLowerCase();
-                card.style.display = (name.includes(term) || desc.includes(term)) ? 'flex' : 'none';
-            });
-        });
-
-        // تشغيل الحقن
-        injectMassiveTools();
-
-        // تسييل مالي (getSmartLink)
-        console.log("Auto-Monetization Activated: getSmartLink is live.");
-
-        document.getElementById('freeOnlySwitch').onchange = function() {
-            alert("هذه الميزة متاحة للمسجلين فقط.");
-            this.checked = false;
+            cards.forEach(c => c.style.display = c.innerText.toLowerCase().includes(val) ? 'block' : 'none');
         };
+
+        loadTools();
     </script>
 </body>
 </html>
