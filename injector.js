@@ -1,47 +1,45 @@
-// injector.js - محرك الحقن لـ 30,000 أداة
+// injector.js - محرك رادار مِسبار المحدث
 (function() {
     const firebaseConfig = {
+        apiKey: "AIzaSyBzG7ZeOr6uoKbCPoodlJiw2ZmiiVwTDxY",
+        authDomain: "misbar-2026.firebaseapp.com",
+        databaseURL: "https://misbar-2026-default-rtdb.firebaseio.com",
         projectId: "misbar-2026",
-        // ضع هنا مفاتيح Firebase الخاصة بك
+        storageBucket: "misbar-2026.firebasestorage.app",
+        messagingSenderId: "299387766091",
+        appId: "1:299387766091:web:f65b37196cb126612214ce",
+        measurementId: "G-69P9GZFN1D"
     };
 
-    // 1. الاتصال بـ Firebase
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-    }
+    // الاتصال بـ Firebase (نسخة التوافق)
+    firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // 2. دالة الحقن (تستهدف mainGrid في تصميمك الأصلي)
     async function injectBigData() {
-        const grid = document.getElementById('mainGrid');
+        const grid = document.getElementById('mainGrid'); // استهداف الشبكة في تصميمك
         if (!grid) return;
 
         try {
-            // جلب البيانات من كولكشن tools
-            const snapshot = await db.collection('tools').limit(1000).get(); 
+            const snapshot = await db.collection('tools').limit(100).get(); 
             const tools = snapshot.docs.map(doc => doc.data());
 
-            // الحقن داخل التصميم الجميل الخاص بك
+            // الحقن مع الحفاظ على تنسيقات الـ CSS الأصلية
             grid.innerHTML = tools.map(item => `
                 <div class="card">
                     <span class="badge ${item.category === 'Free' ? 'free' : 'paid'}">
-                        ${item.category || 'AI Tool'}
+                        ${item.category === 'Free' ? 'مجاني' : 'مدفوع'}
                     </span>
                     <div class="tool-logo" style="background: linear-gradient(135deg, #007aff, #1c1c1e)">
                         ${item.title ? item.title[0] : 'M'}
                     </div>
-                    <div class="tool-name">${item.title}</div>
-                    <div class="tool-desc">${item.description || 'أداة ذكية من رادار مسبار'}</div>
-                    <a href="${item.original_link || '#'}" target="_blank" class="btn-try">جرب الآن</a>
+                    <div class="tool-name" style="font-weight:900; margin-top:10px;">${item.title}</div>
+                    <div class="tool-desc" style="font-size:0.8rem; color:#8e8e93;">${item.description || ''}</div>
+                    <a href="${item.link || '#'}" target="_blank" class="btn-try">جرب الآن</a>
                 </div>
             `).join('');
-
-            console.log("تم حقن البيانات بنجاح في رادار مِسبار");
-        } catch (error) {
-            console.error("فشل الحقن:", error);
-        }
+            console.log("تم الاتصال وحقن البيانات بنجاح!");
+        } catch (e) { console.error("خطأ في الحقن:", e); }
     }
 
-    // تشغيل الحقن بعد تحميل الصفحة
     window.addEventListener('load', injectBigData);
 })();
