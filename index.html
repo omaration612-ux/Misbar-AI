@@ -4,48 +4,68 @@
     <meta charset="UTF-8">
     <title>رادار مِسبار | AI RADAR</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div id="particles-js"></div> 
 
-    <div class="top-bar">
-        <a class="auth-btn">تسجيل الدخول</a>
-        <a class="auth-btn signup-now">اشترك الآن</a>
-    </div>
-
-    <nav class="main-nav">
-        <div class="logo">MISBAR | مِسبار</div>
-        <div class="search-container">
-            <input type="text" class="search-in" placeholder="ابحث في 30,000 أداة...">
-        </div>
-    </nav>
-
-    <div class="special-section">
-        <h2 class="section-title">Today's Pick ✨</h2>
-        <div class="featured-card">
-            <div class="featured-content">
-                <span class="badge">مميز اليوم</span>
-                <h3>مساعد مِسبار التوليدي</h3>
-                <p>اكتشف عالم الصور بالذكاء الاصطناعي بضغطة واحدة.</p>
-                <button class="featured-btn">استكشف الأداة</button>
+    <header class="apple-header">
+        <div class="header-left">
+            <div class="lang-dropdown">
+                <i class="fas fa-globe"></i> <span>العربية</span>
+                <div class="dropdown-content">
+                    <a>English</a><a>中文</a><a>Français</a><a>Español</a>
+                </div>
+            </div>
+            <div class="toggle-container">
+                <span>مجاني</span>
+                <label class="switch">
+                    <input type="checkbox" id="pricingToggle">
+                    <span class="slider round"></span>
+                </label>
+                <span>مدفوع</span>
             </div>
         </div>
+        <div class="header-right">
+            <a href="#">Sign In</a>
+            <a href="#" class="signup-btn">Sign Up</a>
+        </div>
+    </header>
+
+    <section class="hero-brand">
+        <h1>M I S B A R</h1>
+        <p class="tagline">مِسبار يرقب أدوات الذكاء الاصطناعي في مكان واحد...</p>
+    </section>
+
+    <section class="featured-slider">
+        <h2 class="section-title">✨ Today's Pick</h2>
+        <div class="slider-wrapper">
+            <div class="f-card sora"><h3>SORA</h3><p>Video Generation</p></div>
+            <div class="f-card gpt"><h3>GPT-4o</h3><p>Smart Assistant</p></div>
+            <div class="f-card mid"><h3>Midjourney</h3><p>Art Design</p></div>
+            <div class="f-card claude"><h3>Claude 3</h3><p>Coding Pro</p></div>
+        </div>
+    </section>
+
+    <section class="search-area">
+        <div class="search-box">
+            <input type="text" placeholder="ابحث بين 30,000 أداة ذكاء اصطناعي...">
+        </div>
+        <div class="filter-chips" id="filterContainer">
+            </div>
+    </section>
+
+    <main class="grid-container" id="toolsGrid"></main>
+
+    <div class="pagination-google">
+        <div class="page-dots" id="pageDots"></div>
+        <button class="more-btn">سهم مزيد <i class="fas fa-arrow-left"></i></button>
     </div>
 
-    <div class="filter-row" id="filters">
-        <div class="chip active">الكل</div>
-        <div class="chip">صور</div>
-        <div class="chip">برمجة</div>
-        <div class="chip">فيديو</div>
-        <div class="chip">كتابة</div>
-        <div class="chip">تحليل</div>
-    </div>
+    <div class="ad-space-bottom">مساحة إعلانية - AdSense Slot</div>
 
-    <div class="grid" id="toolsGrid"></div>
-
-    <div class="pagination" id="pageNums"></div>
-
-    <footer>
+    <footer class="pro-footer">
+        <div class="footer-line"></div>
         <p>© 2026 رادار مِسبار. جميع الحقوق محفوظة.</p>
     </footer>
 
