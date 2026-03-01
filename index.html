@@ -11,13 +11,15 @@
 
     <header class="apple-header">
         <div class="header-left">
-            <div class="lang-dropdown">
-                <i class="fas fa-globe"></i> <span>العربية</span>
-                <div class="dropdown-content">
-                    <a>English</a><a>中文</a><a>Français</a><a>Español</a>
-                </div>
+            <div class="lang-selector">
+                <i class="fas fa-globe"></i>
+                <select id="langSelect">
+                    <option>العربية</option>
+                    <option>English</option>
+                    <option>中文</option>
+                </select>
             </div>
-            <div class="toggle-container">
+            <div class="toggle-group">
                 <span>مجاني</span>
                 <label class="switch">
                     <input type="checkbox" id="pricingToggle">
@@ -27,44 +29,50 @@
             </div>
         </div>
         <div class="header-right">
-            <a href="#">Sign In</a>
+            <a href="#" class="auth-link">Sign In</a>
             <a href="#" class="signup-btn">Sign Up</a>
         </div>
     </header>
 
-    <section class="hero-brand">
-        <h1>M I S B A R</h1>
-        <p class="tagline">مِسبار يرقب أدوات الذكاء الاصطناعي في مكان واحد...</p>
-    </section>
-
-    <section class="featured-slider">
-        <h2 class="section-title">✨ Today's Pick</h2>
-        <div class="slider-wrapper">
-            <div class="f-card sora"><h3>SORA</h3><p>Video Generation</p></div>
-            <div class="f-card gpt"><h3>GPT-4o</h3><p>Smart Assistant</p></div>
-            <div class="f-card mid"><h3>Midjourney</h3><p>Art Design</p></div>
-            <div class="f-card claude"><h3>Claude 3</h3><p>Coding Pro</p></div>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>M I S B A R</h1>
+            <p class="typewriter">مِسبار يرقب أدوات الذكاء الاصطناعي في مكان واحد...</p>
         </div>
     </section>
 
-    <section class="search-area">
-        <div class="search-box">
+    <section class="featured">
+        <h2 class="section-title">Today's Pick ✨</h2>
+        <div class="featured-slider">
+            <div class="f-card"><h3>SORA</h3><p>Video Generation</p></div>
+            <div class="f-card"><h3>GPT-4o</h3><p>Smart Assistant</p></div>
+            <div class="f-card"><h3>Midjourney</h3><p>Art Design</p></div>
+            <div class="f-card"><h3>Claude 3</h3><p>Coding Pro</p></div>
+        </div>
+    </section>
+
+    <section class="search-section">
+        <div class="search-wrapper">
             <input type="text" placeholder="ابحث بين 30,000 أداة ذكاء اصطناعي...">
         </div>
-        <div class="filter-chips" id="filterContainer">
-            </div>
+        <div class="filter-bar" id="filterBar">
+            <span class="chip active">الكل</span>
+            <span class="chip">صور</span>
+            <span class="chip">برمجة</span>
+            <span class="chip">فيديو</span>
+        </div>
     </section>
 
-    <main class="grid-container" id="toolsGrid"></main>
+    <main class="main-grid" id="toolsGrid"></main>
 
-    <div class="pagination-google">
-        <div class="page-dots" id="pageDots"></div>
-        <button class="more-btn">سهم مزيد <i class="fas fa-arrow-left"></i></button>
+    <div class="google-nav">
+        <div class="dots" id="pageDots"></div>
+        <button class="next-btn">المزيد <i class="fas fa-chevron-left"></i></button>
     </div>
 
-    <div class="ad-space-bottom">مساحة إعلانية - AdSense Slot</div>
+    <div class="ad-banner">مساحة إعلانية لقوقل</div>
 
-    <footer class="pro-footer">
+    <footer class="main-footer">
         <div class="footer-line"></div>
         <p>© 2026 رادار مِسبار. جميع الحقوق محفوظة.</p>
     </footer>
