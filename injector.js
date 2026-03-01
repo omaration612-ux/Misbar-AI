@@ -1,4 +1,4 @@
-// injector.js - الإصدار النهائي لـ "رادار مِسبار"
+// injector.js - الإصدار النهائي والمطور لـ "رادار مِسبار" 2026
 (function() {
     const firebaseConfig = {
         apiKey: "AIzaSyBzG7ZeOr6uoKbCPoodlJiw2ZmiiVwTDxY",
@@ -11,20 +11,20 @@
         measurementId: "G-69P9GZFN1D"
     };
 
-    // 1. تشغيل Firebase
+    // 1. تفعيل Firebase
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
     const db = firebase.firestore();
-    let allTools = []; // مخزن للأدوات للبحث السريع
+    let allTools = []; // مخزن محلي لتمكين البحث الفوري فائق السرعة
 
-    // 2. دالة عرض الأدوات في الشبكة
+    // 2. دالة عرض الأدوات (تحديث الشبكة)
     function displayTools(tools) {
         const grid = document.getElementById('mainGrid');
         if (!grid) return;
 
         if (tools.length === 0) {
-            grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #8e8e93;">لم يتم العثور على نتائج...</p>`;
+            grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #8e8e93; padding: 50px;">لم يتم العثور على أدوات تطابق بحثك...</p>`;
             return;
         }
 
@@ -37,34 +37,28 @@
                     ${item.title ? item.title[0] : 'M'}
                 </div>
                 <div style="font-weight:900; margin-top:10px;">${item.title}</div>
-                <div style="font-size:0.8rem; color:#8e8e93; height: 40px; overflow: hidden;">${item.description || ''}</div>
+                <div style="font-size:0.8rem; color:#8e8e93; height: 40px; overflow: hidden; margin-top:5px;">${item.description || 'أداة ذكاء اصطناعي من رادار مسبار'}</div>
                 <a href="${item.link || '#'}" target="_blank" class="btn-try">جرب الآن</a>
             </div>
         `).join('');
     }
 
-    // 3. سحب البيانات من Firestore
+    // 3. دالة جلب البيانات الكبيرة (المهمة 1 في الجدول)
     async function loadData() {
+        const grid = document.getElementById('mainGrid');
         try {
-            const snapshot = await db.collection('tools').limit(500).get();
-            allTools = snapshot.docs.map(doc => doc.data());
+            // جلب حتى 1000 أداة في الدفعة الأولى مرتبة أبجدياً
+            const snapshot = await db.collection('tools').orderBy('title').limit(1000).get();
+            
+            allTools = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+
             displayTools(allTools);
-            console.log("تم تحميل البيانات من رادار مِسبار!");
+            console.log(`[رادار مِسبار] تم حقن ${allTools.length} أداة بنجاح.`);
+            
         } catch (error) {
             console.error("خطأ في جلب البيانات:", error);
-        }
-    }
-
-    // 4. تفعيل البحث الفوري (المهمة 2 في الجدول)
-    document.getElementById('smartSearch')?.addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase();
-        const filtered = allTools.filter(t => 
-            t.title?.toLowerCase().includes(term) || 
-            t.description?.toLowerCase().includes(term)
-        );
-        displayTools(filtered);
-    });
-
-    // تشغيل عند تحميل الصفحة
-    window.addEventListener('load', loadData);
-})();
+            if (grid) {
+                grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color:
