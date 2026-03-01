@@ -1,57 +1,95 @@
-/* الأساسيات */
-body { 
-    margin: 0; 
-    background-color: #000; 
-    color: #fff; 
-    font-family: 'Cairo', sans-serif; 
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* لضمان بقاء الفوتر في الأسفل */
-}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misbar AI | رادار مِسبار</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="particles-js"></div>
 
-/* الهيدر */
-.apple-nav { 
-    position: sticky; top: 0; z-index: 1000;
-    backdrop-filter: blur(20px); background: rgba(0,0,0,0.7); 
-    display: flex; justify-content: space-between; align-items: center; 
-    padding: 10px 5%; border-bottom: 0.5px solid #333; height: 60px; 
-}
+    <nav class="apple-nav">
+        <div class="nav-right">
+            <div class="lang-dropdown">
+                <span class="lang-trigger">🌐</span>
+                <div class="lang-menu">
+                    <a href="#">العربية</a><a href="#">English</a><a href="#">Français</a>
+                    <a href="#">Español</a><a href="#">Deutsch</a><a href="#">日本語</a>
+                    <a href="#">中文</a><a href="#">Русский</a><a href="#">Italiano</a><a href="#">Português</a>
+                </div>
+            </div>
+            <div class="logo">Misbar AI</div>
+        </div>
 
-/* شريط الفلاتر - إضافة مسافة سفلية منعاً للتداخل */
-.filter-tags { 
-    display: flex; justify-content: center; gap: 10px; 
-    padding: 20px 5%; margin-bottom: 25px; /* مساحة أمان */
-    overflow-x: auto; scrollbar-width: none; 
-}
-.tag-btn { 
-    background: rgba(255, 255, 255, 0.1); color: #fff; 
-    border: 1px solid rgba(255, 255, 255, 0.2); 
-    padding: 8px 18px; border-radius: 20px; cursor: pointer; transition: 0.3s; 
-}
-.tag-btn.active { background: #007aff; border-color: #007aff; }
+        <div class="nav-center">
+            <div class="search-wrapper">
+                <input type="text" id="smartSearch" class="search-input" placeholder="ابحث في الأدوات...">
+                <button class="search-btn">بحث</button>
+            </div>
+        </div>
 
-/* البطاقات - زيادة الطول بنسبة 20% */
-.grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
-    gap: 25px; padding: 0 5% 40px; 
-    flex: 1; /* تأخذ المساحة المتبقية ليدفع الفوتر للأسفل */
-}
-.card { 
-    background: rgba(28, 28, 30, 0.6); border-radius: 20px; 
-    padding: 25px 15px; text-align: center; border: 1px solid #333; 
-    transition: 0.3s; backdrop-filter: blur(10px); position: relative;
-    min-height: 280px; /* الطول الجديد الكافي للوصف */
-    display: flex; flex-direction: column; justify-content: space-between;
-}
+        <div class="nav-left">
+            <button class="btn-auth">دخول</button>
+        </div>
+    </nav>
 
-.tool-logo { width: 60px; height: 60px; border-radius: 15px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; }
-.tool-desc { color: #8e8e93; font-size: 0.75rem; margin: 10px 0; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    <div class="featured-slider" id="featuredZone"></div>
 
-/* الفوتر (Sticks to bottom) */
-.main-footer {
-    background: #111;
-    border-top: 1px solid #333;
-    padding: 40px 5%;
-    margin-top: auto; /* يلتصق بالأسفل */
-}
+    <div class="filter-container">
+        <div class="filter-tags">
+            <div class="free-toggle-wrapper">
+                <span>مجاني فقط</span>
+                <label class="switch">
+                    <input type="checkbox" id="freeOnlySwitch">
+                    <span class="slider"></span>
+                </label>
+            </div>
+            
+            <button class="tag-btn active" data-category="All">الكل</button>
+            <button class="tag-btn" data-category="Writing">Writing</button>
+            <button class="tag-btn" data-category="Image">Image</button>
+            <button class="tag-btn" data-category="Video">Video</button>
+            
+            <div class="more-dropdown">
+                <button class="tag-btn">المزيد ▼</button>
+                <div class="more-content" id="extraFilters">
+                    <button data-category="Coding">Coding</button>
+                    <button data-category="SEO">SEO</button>
+                    <button data-category="Audio">Audio</button>
+                    <button data-category="Design">Design</button>
+                    <button data-category="Security">Security</button>
+                    <button data-category="Data">Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid" id="mainGrid"></div>
+
+    <div class="pagination" id="pagination">
+        <a href="#" class="page-link active">1</a>
+        <a href="#" class="page-link">2</a>
+        <a href="#" class="page-link">3</a>
+        <a href="#" class="page-link">4</a>
+        <a href="#" class="page-link">5</a>
+    </div>
+
+    <footer class="main-footer">
+        <div class="footer-extra-space"></div> <div class="footer-content">
+            <div class="footer-section">
+                <h3>Misbar AI</h3>
+                <p>الرادار الأول لأدوات الذكاء الاصطناعي عالمياً.</p>
+            </div>
+            <div class="footer-section">
+                <h3>روابط سريعة</h3>
+                <a href="#">أضف أداة</a><a href="#">سياسة الخصوصية</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
