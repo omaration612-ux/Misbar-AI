@@ -1,5 +1,6 @@
-// injector.js - محرك رادار مِسبار المحدث
+// injector.js
 (function() {
+    // 1. إعدادات Firebase الخاصة بك
     const firebaseConfig = {
         apiKey: "AIzaSyBzG7ZeOr6uoKbCPoodlJiw2ZmiiVwTDxY",
         authDomain: "misbar-2026.firebaseapp.com",
@@ -11,19 +12,24 @@
         measurementId: "G-69P9GZFN1D"
     };
 
-    // الاتصال بـ Firebase (نسخة التوافق)
+    // 2. تفعيل الاتصال
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    async function injectBigData() {
-        const grid = document.getElementById('mainGrid'); // استهداف الشبكة في تصميمك
-        if (!grid) return;
-
+    // 3. دالة سحب وحقن البيانات
+    async function fetchTools() {
+        const grid = document.getElementById('mainGrid');
         try {
-            const snapshot = await db.collection('tools').limit(100).get(); 
+            // سحب البيانات من كولكشن tools
+            const snapshot = await db.collection('tools').limit(100).get();
             const tools = snapshot.docs.map(doc => doc.data());
 
-            // الحقن مع الحفاظ على تنسيقات الـ CSS الأصلية
+            if (tools.length === 0) {
+                grid.innerHTML = "<p style='text-align:center;'>بانتظار رفع الأدوات لقاعدة البيانات...</p>";
+                return;
+            }
+
+            // حقن الأدوات في التصميم
             grid.innerHTML = tools.map(item => `
                 <div class="card">
                     <span class="badge ${item.category === 'Free' ? 'free' : 'paid'}">
@@ -32,14 +38,15 @@
                     <div class="tool-logo" style="background: linear-gradient(135deg, #007aff, #1c1c1e)">
                         ${item.title ? item.title[0] : 'M'}
                     </div>
-                    <div class="tool-name" style="font-weight:900; margin-top:10px;">${item.title}</div>
-                    <div class="tool-desc" style="font-size:0.8rem; color:#8e8e93;">${item.description || ''}</div>
+                    <div style="font-weight:900; margin-top:10px;">${item.title}</div>
+                    <div style="font-size:0.8rem; color:#8e8e93;">${item.description || ''}</div>
                     <a href="${item.link || '#'}" target="_blank" class="btn-try">جرب الآن</a>
                 </div>
             `).join('');
-            console.log("تم الاتصال وحقن البيانات بنجاح!");
-        } catch (e) { console.error("خطأ في الحقن:", e); }
+        } catch (error) {
+            console.error("خطأ في الاتصال:", error);
+        }
     }
 
-    window.addEventListener('load', injectBigData);
+    window.onload = fetchTools;
 })();
