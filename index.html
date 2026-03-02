@@ -4,72 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MISBAR AI | رادار مِسبار - أكبر دليل لأدوات الذكاء الاصطناعي</title>
-    <meta name="description" content="اكتشف أكثر من 30,000 أداة ذكاء اصطناعي عبر MISBAR AI. رادارك الخاص للبحث الفوري عن أفضل الحلول التقنية المحدثة لحظياً.">
-    <meta name="keywords" content="MISBAR AI, رادار مسبار, أدوات الذكاء الاصطناعي, AI Tools Directory, بحث ذكاء اصطناعي">
-    
-    <link rel="alternate" hreflang="ar" href="https://misbar-ai.web.app/ar">
-    <link rel="alternate" hreflang="en" href="https://misbar-ai.web.app/en">
-    <link rel="alternate" hreflang="ja" href="https://misbar-ai.web.app/jp">
-    <link rel="stylesheet" href="style.css">
+    <meta name="description" content="اكتشف أكثر من 30,000 أداة ذكاء اصطناعي عبر MISBAR AI. رادارك الخاص للبحث الفوري.">
+    <meta property="og:title" content="MISBAR AI - رادار مِسبار العالمي">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body oncontextmenu="return false;"> <nav class="apple-nav">
-        <div class="logo-group">
+<body oncontextmenu="return false;">
+
+    <nav class="apple-nav">
+        <div class="nav-right">
             <a href="#" class="logo">Misbar AI</a>
             <div class="lang-dropdown">
-                <span class="globe-icon">🌐</span>
-                <div class="lang-content">
-                    <a href="#">العربية</a><a href="#">English</a><a href="#">日本語</a>
-                    <a href="#">Français</a><a href="#">Deutsch</a><a href="#">Español</a>
-                    <a href="#">Русский</a><a href="#">한국어</a><a href="#">Türkçe</a><a href="#">中文</a>
+                <span class="lang-icon">A文</span>
+                <div class="lang-menu">
+                    <a href="#">العربية</a><a href="#">English</a><a href="#">Français</a>
+                    <a href="#">Español</a><a href="#">Deutsch</a><a href="#">日本語</a>
+                    <a href="#">中文</a><a href="#">Türkçe</a><a href="#">Русский</a><a href="#">한국어</a>
                 </div>
             </div>
         </div>
-        
-        <div class="search-box">
-            <input type="text" id="smartSearch" placeholder="ابحث في 30,000 أداة ذكية...">
-            <button class="search-btn">بحث</button>
+
+        <div class="search-wrapper">
+            <input type="text" id="smartSearch" class="search-input" placeholder="ابحث في 30,000 أداة...">
+            <button class="search-btn-black">بحث</button>
         </div>
 
-        <div class="auth-group">
-            <button class="btn-text">دخول</button>
-            <button class="btn-text">تسجيل</button>
+        <div class="auth-section">
+            <a href="#" class="auth-btn">تسجيل</a>
+            <span class="sep">|</span>
+            <a href="#" class="auth-btn">دخول</a>
         </div>
     </nav>
 
-    <section class="rolling-featured" id="featuredSection">
-        </section>
+    <section class="featured-section">
+        <div class="featured-slider">
+            <div class="f-card"><h3>ChatGPT 1</h3><p>مختارات اليوم</p></div>
+            <div class="f-card"><h3>Midjourney 2</h3><p>مختارات اليوم</p></div>
+            <div class="f-card"><h3>DeepSeek 3</h3><p>مختارات اليوم</p></div>
+            <div class="f-card"><h3>Claude 4</h3><p>مختارات اليوم</p></div>
+            <div class="f-card"><h3>Gemini 5</h3><p>مختارات اليوم</p></div>
+            <div class="f-card"><h3>Luma 6</h3><p>مختارات اليوم</p></div>
+        </div>
+    </section>
 
-    <div class="filter-bar">
-        <div class="tags">
-            <button class="tag active">الكل</button>
-            <button class="tag">محادثة</button>
-            <button class="tag">صور</button>
-            <div class="more-dropdown">
-                <button class="tag">المزيد ▾</button>
-                <div class="more-content">
-                    <a>برمجة</a><a>فيديو</a><a>صوت</a><a>تصميم</a><a>تسويق</a>
-                    <a>كتابة</a><a>بيانات</a><a>طب</a><a>هندسة</a><a>تعليم</a>
+    <div class="filter-container">
+        <div class="filter-bar">
+            <button class="tag-btn active">الكل</button>
+            <button class="tag-btn">محادثة</button>
+            <button class="tag-btn">صور</button>
+            <button class="tag-btn">فيديو</button>
+            <div class="more-filters">
+                <button class="tag-btn">المزيد ▼</button>
+                <div class="more-menu">
+                    <a href="#">برمجة</a><a href="#">صوتيات</a><a href="#">تسويق</a>
+                    <a href="#">تصميم</a><a href="#">تعليم</a><a href="#">بيانات</a>
+                    <a href="#">طب</a><a href="#">قانون</a><a href="#">تجارة</a><a href="#">أمن</a>
                 </div>
             </div>
         </div>
-        <div class="toggle-area">
+
+        <div class="free-only-wrapper">
             <span>مجاني فقط</span>
-            <label class="switch"><input type="checkbox" id="freeOnly"><span class="slider"></span></label>
+            <label class="switch">
+                <input type="checkbox" id="freeOnly">
+                <span class="slider round"></span>
+            </label>
         </div>
     </div>
 
-    <main class="main-grid" id="toolGrid"></main>
+    <main class="grid" id="mainGrid"></main>
 
-    <div class="glass-pagination" id="rollingPage">
+    <div class="pagination-area">
+        <div class="glass-counter">30,016 أداة</div>
+        <div class="pagination">
+            <button class="page-link active">1</button>
+            <button class="page-link">2</button>
+            <button class="page-link">3</button>
+            <span class="dots">...</span>
+            <button class="page-link">150</button>
         </div>
+    </div>
 
     <footer>
-        <p>مِسبار AI - أكبر رادار عالمي يحتوي على <strong id="toolsCounter">30,016</strong> أداة</p>
+        <p>© 2026 رادار مِسبار - جميع الحقوق محفوظة</p>
     </footer>
 
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script src="engine.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBzG7ZeOr6uoKbCPoodlJiw2ZmiiVwTDxY",
+            authDomain: "misbar-2026.firebaseapp.com",
+            projectId: "misbar-2026",
+            storageBucket: "misbar-2026.firebasestorage.app",
+            messagingSenderId: "299387766091",
+            appId: "1:299387766091:web:cd36930b732b85d82214ce"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="script.js"></script>
 </body>
 </html>
