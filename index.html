@@ -3,63 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MISBAR AI | رادار مِسبار - دليل أدوات الذكاء الاصطناعي</title>
+    <title>MISBAR AI | رادار مِسبار</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </head>
 <body oncontextmenu="return false;">
-
-    <nav class="navbar">
-        <div class="nav-right">
-            <span class="logo">Misbar AI</span>
-            <div class="lang-selector">
-                🌐
-                <div class="lang-menu">
-                    <a href="#" onclick="changeLanguage('ar')">العربية</a>
-                    <a href="#" onclick="changeLanguage('en')">English</a>
-                    <a href="#" onclick="changeLanguage('ja')">日本語</a>
-                    </div>
-            </div>
-        </div>
-        <div class="search-container">
+    <div id="particles-js"></div> <nav class="navbar">
+        <div class="logo">Misbar AI</div>
+        <div class="search-bar">
             <input type="text" id="smartSearch" placeholder="ابحث في 30,000 أداة...">
-            <button onclick="injectTools()">بحث</button>
         </div>
-        <div class="nav-left">
+        <div class="nav-links">
             <a href="#">Sign in</a>
             <a href="#" class="btn-signup">Sign up</a>
         </div>
     </nav>
 
-    <section class="featured-rolling" id="featuredArea">
-        <div class="hero-card">
-            <span class="label">مختارات اليوم</span>
-            <h2>ChatGPT 1</h2>
-            <p>اكتشف القوة الحقيقية للذكاء الاصطناعي مع مسبار.</p>
-        </div>
-        <div class="hero-card gold">
-            <span class="label">مختارات اليوم</span>
-            <h2>Midjourney 2</h2>
-            <p>اكتشف القوة الحقيقية للذكاء الاصطناعي مع مسبار.</p>
-        </div>
-    </section>
-
-    <div class="filter-bar">
-        <div class="tags">
+    <div class="filter-scroll">
+        <div class="tags" id="tagsContainer">
             <button class="tag active">All</button>
             <button class="tag">Writing</button>
             <button class="tag">Image</button>
-            <button class="tag">More ▾</button>
-        </div>
-        <div class="monetization-gate">
-            <span>مجاني فقط</span>
-            <label class="switch"><input type="checkbox" id="freeOnly"><span class="slider"></span></label>
+            <button class="tag">Video</button>
+            <button class="tag">Coding</button>
+            <button class="tag">Audio</button>
+            <button class="tag">Marketing</button>
         </div>
     </div>
 
     <main class="tools-grid" id="mainGrid"></main>
 
-    <div class="glass-pagination" id="pageScroll">
-        </div>
+    <div class="rolling-pagination-container">
+        <div class="glass-pagination" id="rollingPage">
+            </div>
+    </div>
 
     <footer class="footer">
         رادار مسبار - يحتوي حالياً على <span id="toolsCounter">30,016</span> أداة
