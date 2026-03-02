@@ -1,80 +1,29 @@
-// 1. إعدادات Firebase (استبدل بمفاتيحك الحقيقية)
-const firebaseConfig = {
-    apiKey: "AIzaSyBzG7ZeOr6uoKbCPoodlJiw2ZmiiVwTDxY",
-    authDomain: "misbar-2026.firebaseapp.com",
-    projectId: "misbar-2026",
-    storageBucket: "misbar-2026.firebasestorage.app",
-    messagingSenderId: "299387766091",
-    appId: "1:299387766091:web:cd36930b732b85d82214ce"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+:root { --main-bg: #000; --card-bg: #0d0d0d; --accent: #00b4d8; }
+body { background: var(--main-bg); color: #fff; font-family: 'Cairo'; margin: 0; }
 
-// 2. تحديث عداد الأدوات الحي
-async function updateToolsCount() {
-    db.collection('stats').doc('global').onSnapshot(doc => {
-        const count = doc.data()?.total || 30016;
-        document.getElementById('toolsCounter').innerText = count.toLocaleString();
-    });
+/* الكروت الكبيرة الهيرو */
+.hero-slider { display: flex; gap: 20px; padding: 20px 5%; overflow-x: auto; scrollbar-width: none; }
+.featured-card { 
+    min-width: 45%; height: 250px; border-radius: 30px; padding: 40px;
+    background: linear-gradient(to bottom right, #1a1a1a, #000);
+    border: 1px solid #333; flex-shrink: 0; position: relative;
+}
+.featured-card.second { background: linear-gradient(to bottom right, #2c2418, #000); }
+.featured-card h2 { font-size: 2.5rem; margin: 10px 0; }
+.featured-card .badge { color: var(--accent); font-weight: bold; }
+
+/* شبكة الـ 6x10 */
+.tools-grid { 
+    display: grid; grid-template-columns: repeat(6, 1fr); 
+    gap: 15px; padding: 20px 5%; 
+}
+.tool-card { 
+    background: var(--card-bg); border-radius: 20px; padding: 20px; 
+    text-align: center; border: 1px solid #1a1a1a; 
 }
 
-// 3. حقن الشبكة (6x10)
-async function injectTools() {
-    const grid = document.getElementById('toolGrid');
-    if(!grid) return;
-    grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center;">جاري البحث في الرادار...</div>';
-    
-    try {
-        const snapshot = await db.collection('tools').orderBy('createdAt', 'desc').limit(60).get();
-        grid.innerHTML = snapshot.docs.map(doc => {
-            const item = doc.data();
-            return `
-                <div class="tool-card">
-                    <h4 style="margin:10px 0">${item.name}</h4>
-                    <p style="font-size:0.8rem; color:#555">${item.category}</p>
-                    <a href="https://misbar-ai.web.app/go?url=${encodeURIComponent(item.link)}" target="_blank" 
-                       style="color:var(--accent); text-decoration:none; font-size:0.8rem;">استكشف الأداة</a>
-                </div>`;
-        }).join('');
-    } catch (e) { console.error(e); }
-}
-
-// 4. حماية السويتش (Monetization Gate)
-const freeOnly = document.getElementById('freeOnly');
-if(freeOnly) {
-    freeOnly.addEventListener('change', function() {
-        if(this.checked) {
-            alert("🔒 ميزة حصرية: يرجى تسجيل الدخول أولاً لتفعيل فلتر المجاني.");
-            this.checked = false;
-        }
-    });
-}
-
-// 5. الترقيم الانزلاقي (Rolling Pagination)
-const pgBar = document.getElementById('rollingPage');
-if(pgBar) {
-    let isDown = false; let startX; let scrollLeft;
-    pgBar.addEventListener('mousedown', (e) => {
-        isDown = true; startX = e.pageX - pgBar.offsetLeft; scrollLeft = pgBar.scrollLeft;
-    });
-    pgBar.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - pgBar.offsetLeft;
-        const walk = (x - startX) * 2; 
-        pgBar.scrollLeft = scrollLeft - walk;
-    });
-    ['mouseup', 'mouseleave'].forEach(evt => window.addEventListener(evt, () => isDown = false));
-}
-
-// 6. تشغيل النظام عند النشر
-window.onload = () => {
-    updateToolsCount();
-    injectTools();
-    console.log("MISBAR AI v2.0: Active and Protected.");
-};
-
-function changeLanguage(lang) {
-    document.documentElement.lang = lang;
-    alert("سيتم تحويل الأرشفة والمحتوى للغة: " + lang);
+/* الترقيم الانزلاقي */
+.pagination-rolling { 
+    display: flex; gap: 10px; padding: 20px; overflow-x: auto; 
+    justify-content: center; cursor: grab; 
 }
