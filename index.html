@@ -3,72 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Misbar AI | مِسبار - رادارك الشامل لـ 30,000 أداة ذكاء اصطناعي</title>
-    <meta name="description" content="اكتشف أكثر من 30,000 أداة ذكاء اصطناعي عبر MISBAR AI. رادارك الخاص للبحث الفوري عن أفضل الحلول التقنية المحدثة لحظياً.">
+    <title>MISBAR AI | رادار مِسبار - أكبر دليل لأدوات الذكاء الاصطناعي</title>
+    <meta name="description" content="دليلك الشامل لـ 30,000 أداة ذكاء اصطناعي عبر MISBAR AI.">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body oncontextmenu="return false;">
+    <div id="particles-js"></div>
 
     <nav class="apple-nav">
-        <a href="#" class="logo">Misbar AI</a>
-        <div class="search-wrapper">
-            <button class="search-btn">🔍</button>
-            <input type="text" id="smartSearch" class="search-input" placeholder="ابحث في 30,000 أداة ذكية...">
+        <div class="nav-right">
+            <a href="#" class="logo">Misbar AI</a>
+            <span class="lang-switch">🌐 日本語 / EN / AR</span>
         </div>
-        <button class="btn-auth">دخول / تسجيل</button>
+        
+        <div class="search-container">
+            <input type="text" id="smartSearch" class="search-input" placeholder="ابحث في 30,000 أداة ذكية...">
+            <button class="search-btn-new">بحث</button>
+        </div>
+
+        <div class="nav-auth">
+            <button class="text-link">تسجيل</button>
+            <span class="divider">|</span>
+            <button class="text-link">دخول</button>
+        </div>
     </nav>
 
-    <div class="featured-slider">
-        <div class="hero-card">
-            <div class="badge-new">أداة اليوم</div>
-            <h2 style="margin:10px 0;">DeepSeek V3</h2>
-            <p style="color:#8e8e93; font-size:0.9rem;">أقوى نموذج لغوي في العالم بين يديك الآن.</p>
-            <a href="#" class="btn-hero-action">استكشف الآن</a>
+    <div class="sub-header">
+        <div class="filter-bar">
+            <button class="tag-btn active">الكل</button>
+            <button class="tag-btn">محادثة</button>
+            <button class="tag-btn">صور</button>
+            <div class="dropdown">
+                <button class="tag-btn more-btn">المزيد ▾</button>
+                <div class="dropdown-content">
+                    <a>برمجة</a><a>فيديو</a><a>صوت</a><a>تصميم</a><a>تسويق</a>
+                    <a>كتابة</a><a>بيانات</a><a>طب</a><a>هندسة</a><a>تعليم</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="free-toggle">
+            <span>مجاني فقط</span>
+            <label class="switch">
+                <input type="checkbox" id="freeOnly">
+                <span class="slider round"></span>
+            </label>
         </div>
     </div>
 
-    <div class="filter-bar">
-        <button class="tag-btn active" data-category="all">الكل</button>
-        <button class="tag-btn" data-category="chat">محادثة</button>
-        <button class="tag-btn" data-category="image">صور</button>
-        <button class="tag-btn" data-category="video">فيديو</button>
-        <button class="tag-btn" data-category="code">برمجة</button>
+    <div class="featured-grid">
+        <div class="hero-card main"><h2>DeepSeek V3</h2><p>الأقوى برمجياً في العالم</p></div>
+        <div class="hero-card"><h4>ChatGPT</h4></div>
+        <div class="hero-card"><h4>Midjourney</h4></div>
+        <div class="hero-card"><h4>Claude 3</h4></div>
+        <div class="hero-card"><h4>Runway Gen-3</h4></div>
+        <div class="hero-card"><h4>Sora AI</h4></div>
     </div>
 
-    <main class="grid" id="mainGrid">
-        </main>
+    <main class="grid" id="mainGrid"></main>
 
-    <div class="pagination">
-        <button class="page-link active">1</button>
-        <button class="page-link">2</button>
-        <button class="page-link">3</button>
-        <span style="color:#333; align-self:center;">...</span>
-        <button class="page-link">150</button>
+    <div class="glass-pagination">
+        <button class="pg-btn">150</button>
+        <span class="pg-dots">...</span>
+        <button class="pg-btn">3</button>
+        <button class="pg-btn">2</button>
+        <button class="pg-btn active">1</button>
     </div>
 
     <footer>
         <div class="footer-grid">
             <div class="footer-column">
-                <h3 style="color:#007aff; font-weight:900;">مِسبار AI</h3>
-                <p style="color:#ccc; font-size:0.9rem; line-height:1.8;">
-                    مسبار يضع لك جميع أدوات الذكاء الاصطناعي في مكان واحد. 
-                    اكتشف أكثر من <strong id="toolsCount" style="color:#00d1ff;">30,016</strong> أداة ذكية محدثة لحظياً.
-                </p>
+                <h3 style="color:#007aff;">مِسبار AI</h3>
+                <p>اكتشف أكثر من <strong id="toolsCount">30,016</strong> أداة ذكية محدثة لحظياً.</p>
             </div>
             <div class="footer-column">
                 <h4>استكشف</h4>
-                <a href="#" class="footer-link">أفضل الأدوات</a>
-                <a href="#" class="footer-link">أضف أداتك</a>
+                <a>أفضل الأدوات</a>
+                <a>أضف أداتك</a>
             </div>
-            <div class="footer-column">
-                <h4>قانوني</h4>
-                <a href="#" class="footer-link">سياسة الخصوصية</a>
-                <a href="#" class="footer-link">اتصل بنا</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2026 جميع الحقوق محفوظة لـ مِسبار AI - رادار البحث الفوري
         </div>
     </footer>
 
