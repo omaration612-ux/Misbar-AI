@@ -1,42 +1,190 @@
-body { margin: 0; background-color: #000; color: #fff; font-family: 'Cairo', sans-serif; overflow-x: hidden; }
-#particles-js { position: fixed; top: 0; width: 100%; height: 100%; z-index: -1; }
+/* الأساسيات */
+body { 
+    margin: 0; 
+    background-color: #000; 
+    color: #fff; 
+    font-family: 'Cairo', sans-serif; 
+    overflow-x: hidden; 
+    -webkit-tap-highlight-color: transparent;
+    user-select: none; /* درع حماية: منع تظليل النصوص للنسخ */
+}
 
-/* Navigation */
-.apple-nav { position: sticky; top: 0; backdrop-filter: blur(20px); background: rgba(0,0,0,0.7); display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 75px; border-bottom: 0.5px solid #333; z-index: 1000; }
-.logo { font-size: 1.7rem; font-weight: 900; background: linear-gradient(to right, #00d1ff, #007aff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.search-wrapper { display: flex; background: #1c1c1e; border-radius: 14px; border: 1px solid #333; width: 400px; overflow: hidden; }
-.search-input { background: transparent; border: none; padding: 12px; color: #fff; flex: 1; outline: none; font-family: 'Cairo'; }
-.search-btn { background: #333; border: none; color: #fff; padding: 0 20px; cursor: pointer; }
-.btn-auth { background: #007aff; color: #fff; border: none; padding: 8px 25px; border-radius: 12px; font-weight: bold; cursor: pointer; }
+#particles-js { 
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: -1; 
+}
 
-/* Featured Cards */
-.featured-slider { display: flex; padding: 30px 5%; gap: 20px; overflow-x: auto; scrollbar-width: none; }
-.hero-card { min-width: 320px; height: 200px; border-radius: 28px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 25px; border: 1px solid #333; flex-shrink: 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+/* الهيدر الزجاجي (Apple Style) */
+.apple-nav { 
+    position: sticky; 
+    top: 0; 
+    backdrop-filter: blur(25px); 
+    -webkit-backdrop-filter: blur(25px);
+    background: rgba(0,0,0,0.8); 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0 5%; 
+    height: 80px; 
+    border-bottom: 0.5px solid #222; 
+    z-index: 1000; 
+}
 
-/* Filter Bar */
-.filter-bar { display: flex; align-items: center; justify-content: center; gap: 40px; padding: 20px 5%; border-top: 1px solid #1c1c1e; flex-wrap: wrap; }
-.tag-btn { background: #1c1c1e; color: #fff; border: 1px solid #333; padding: 10px 25px; border-radius: 30px; cursor: pointer; transition: 0.3s; }
-.tag-btn.active { background: #fff; color: #000; border-color: #fff; }
+.logo { 
+    font-size: 1.8rem; 
+    font-weight: 900; 
+    background: linear-gradient(135deg, #00d1ff, #007aff); 
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent; 
+    text-decoration: none;
+}
 
-/* Grid & Cards */
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 30px; padding: 20px 5%; }
-.card { background: rgba(28,28,30,0.6); border: 1px solid #222; border-radius: 30px; padding: 30px 20px; text-align: center; height: 340px; display: flex; flex-direction: column; justify-content: space-between; position: relative; transition: 0.4s; }
-.card:hover { border-color: #007aff; transform: translateY(-10px); background: rgba(35,35,38,0.8); }
-.tool-logo { width: 75px; height: 75px; border-radius: 20px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: bold; }
-.badge { position: absolute; top: 20px; left: 20px; font-size: 11px; padding: 4px 12px; border-radius: 20px; }
-.free { background: #34c759; color: #fff; }
-.paid { background: #5856d6; color: #fff; }
-.btn-try { background: #fff; color: #000; text-decoration: none; padding: 12px; border-radius: 15px; font-weight: 900; font-size: 0.85rem; }
+.search-wrapper { 
+    display: flex; 
+    background: #1c1c1e; 
+    border-radius: 16px; 
+    border: 1px solid #333; 
+    width: 450px; 
+    overflow: hidden; 
+    transition: 0.3s;
+}
 
-/* Pagination */
-.pagination { display: flex; justify-content: center; gap: 10px; padding: 40px; }
-.page-link { padding: 10px 20px; border: 1px solid #333; border-radius: 10px; cursor: pointer; }
-.page-link.active { background: #007aff; border-color: #007aff; }
+.search-wrapper:focus-within {
+    border-color: #007aff;
+    box-shadow: 0 0 15px rgba(0, 122, 255, 0.2);
+}
 
-/* Switch */
-.switch { position: relative; width: 44px; height: 24px; }
-.switch input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 34px; }
-.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-input:checked + .slider { background-color: #34c759; }
-input:checked + .slider:before { transform: translateX(20px); }
+.search-input { 
+    background: transparent; 
+    border: none; 
+    padding: 14px 20px; 
+    color: #fff; 
+    flex: 1; 
+    outline: none; 
+    font-family: 'Cairo'; 
+    font-size: 0.95rem;
+}
+
+.btn-auth { 
+    background: #007aff; 
+    color: #fff; 
+    border: none; 
+    padding: 10px 25px; 
+    border-radius: 14px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: 0.3s;
+}
+
+.btn-auth:hover { transform: scale(1.05); background: #0062cc; }
+
+/* الفلتر الذكي */
+.filter-bar { 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 15px; 
+    padding: 30px 5%; 
+    flex-wrap: wrap; 
+}
+
+.tag-btn { 
+    background: #1c1c1e; 
+    color: #8e8e93; 
+    border: 1px solid #333; 
+    padding: 8px 22px; 
+    border-radius: 30px; 
+    cursor: pointer; 
+    transition: 0.3s; 
+    font-size: 0.9rem;
+}
+
+.tag-btn.active, .tag-btn:hover { 
+    background: #fff; 
+    color: #000; 
+    border-color: #fff; 
+}
+
+/* شبكة الأدوات الـ 30,000 */
+.grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+    gap: 25px; 
+    padding: 20px 5%; 
+}
+
+.card { 
+    background: rgba(28,28,30,0.5); 
+    backdrop-filter: blur(10px);
+    border: 1px solid #222; 
+    border-radius: 28px; 
+    padding: 25px; 
+    text-align: center; 
+    transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card:hover { 
+    border-color: #007aff; 
+    transform: translateY(-8px); 
+    background: rgba(35,35,38,0.8); 
+}
+
+.btn-try { 
+    background: #fff; 
+    color: #000; 
+    text-decoration: none; 
+    padding: 12px; 
+    border-radius: 16px; 
+    font-weight: 900; 
+    font-size: 0.9rem; 
+    display: block;
+    margin-top: 15px;
+}
+
+/* تنسيق الفوتر الجديد (مِسبار) */
+footer { 
+    background: #080808; 
+    padding: 60px 5% 20px; 
+    border-top: 1px solid #1a1a1a; 
+    margin-top: 80px; 
+}
+
+.footer-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 40px; 
+}
+
+.footer-column h4 { 
+    margin-bottom: 20px; 
+    border-right: 3px solid #007aff; 
+    padding-right: 12px; 
+    font-size: 1.1rem;
+}
+
+.footer-link { 
+    color: #8e8e93; 
+    text-decoration: none; 
+    display: block; 
+    margin-bottom: 12px; 
+    transition: 0.3s; 
+}
+
+.footer-link:hover { color: #007aff; padding-right: 5px; }
+
+/* التجاوب مع الجوال (Responsive) */
+@media (max-width: 768px) {
+    .apple-nav { height: auto; padding: 15px 5%; flex-direction: column; gap: 15px; }
+    .search-wrapper { width: 100%; }
+    .grid { grid-template-columns: 1fr; }
+    .footer-grid { text-align: center; }
+    .footer-column h4 { border-right: none; border-bottom: 2px solid #007aff; display: inline-block; padding: 0 10px 5px; }
+}
+
+/* حماية إضافية: منع الطباعة */
+@media print { body { display: none; } }
