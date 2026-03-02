@@ -156,6 +156,11 @@
                 <p style="margin:8px 0 0; font-size:0.8rem; color:#ccc;">${h.d}</p>
             </div>
         `).join('');
+
+        // تشغيل المحرك فور التحميل
+        window.onload = () => {
+            if(typeof startMisbarEngine === 'function') startMisbarEngine();
+        };
     </script>
 </body>
 </html>
