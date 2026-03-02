@@ -2,87 +2,57 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MISBAR AI | رادار مِسبار - أكبر دليل لأدوات الذكاء الاصطناعي</title>
-    <meta name="description" content="دليلك الشامل لـ 30,000 أداة ذكاء اصطناعي عبر MISBAR AI.">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>MISBAR AI | رادار مِسبار</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
-<body oncontextmenu="return false;">
-    <div id="particles-js"></div>
+<body>
 
     <nav class="apple-nav">
-        <div class="nav-right">
-            <a href="#" class="logo">Misbar AI</a>
-            <span class="lang-switch">🌐 日本語 / EN / AR</span>
-        </div>
-        
+        <a href="#" style="color:var(--accent); font-weight:900; text-decoration:none; font-size:1.5rem;">Misbar AI</a>
         <div class="search-container">
-            <input type="text" id="smartSearch" class="search-input" placeholder="ابحث في 30,000 أداة ذكية...">
+            <input type="text" class="search-input" placeholder="ابحث في 30,000 أداة ذكية...">
             <button class="search-btn-new">بحث</button>
         </div>
-
-        <div class="nav-auth">
-            <button class="text-link">تسجيل</button>
-            <span class="divider">|</span>
-            <button class="text-link">دخول</button>
+        <div class="auth-btns">
+            <button class="tag-btn" style="border:none; color:#fff;">دخول</button>
         </div>
     </nav>
 
-    <div class="sub-header">
-        <div class="filter-bar">
+    <div class="rolling-featured">
+        <div class="rolling-card"><h4>DeepSeek V3</h4><p style="font-size:0.7rem; color:#555;">أقوى نموذج برمجياً</p></div>
+        <div class="rolling-card"><h4>ChatGPT 5</h4><p style="font-size:0.7rem; color:#555;">الجيل القادم</p></div>
+        <div class="rolling-card"><h4>Midjourney 7</h4><p style="font-size:0.7rem; color:#555;">فن واقعي</p></div>
+        <div class="rolling-card"><h4>Claude 3.5</h4><p style="font-size:0.7rem; color:#555;">تفكير منطقي</p></div>
+        <div class="rolling-card"><h4>Sora AI</h4><p style="font-size:0.7rem; color:#555;">فيديو ثوري</p></div>
+        <div class="rolling-card"><h4>Runway G3</h4><p style="font-size:0.7rem; color:#555;">إخراج احترافي</p></div>
+    </div>
+
+    <div class="filter-bar">
+        <div style="display:flex; gap:8px;">
             <button class="tag-btn active">الكل</button>
             <button class="tag-btn">محادثة</button>
             <button class="tag-btn">صور</button>
-            <div class="dropdown">
-                <button class="tag-btn more-btn">المزيد ▾</button>
-                <div class="dropdown-content">
-                    <a>برمجة</a><a>فيديو</a><a>صوت</a><a>تصميم</a><a>تسويق</a>
-                    <a>كتابة</a><a>بيانات</a><a>طب</a><a>هندسة</a><a>تعليم</a>
-                </div>
-            </div>
+            <button class="tag-btn">المزيد ▾</button>
         </div>
-        
-        <div class="free-toggle">
-            <span>مجاني فقط</span>
-            <label class="switch">
-                <input type="checkbox" id="freeOnly">
-                <span class="slider round"></span>
-            </label>
+        <div style="color:#444; font-size:0.8rem;">
+            مجاني <input type="checkbox" id="freeOnly">
         </div>
     </div>
 
-    <div class="featured-grid">
-        <div class="hero-card main"><h2>DeepSeek V3</h2><p>الأقوى برمجياً في العالم</p></div>
-        <div class="hero-card"><h4>ChatGPT</h4></div>
-        <div class="hero-card"><h4>Midjourney</h4></div>
-        <div class="hero-card"><h4>Claude 3</h4></div>
-        <div class="hero-card"><h4>Runway Gen-3</h4></div>
-        <div class="hero-card"><h4>Sora AI</h4></div>
-    </div>
-
-    <main class="grid" id="mainGrid"></main>
+    <main class="main-grid" id="mainGrid">
+        </main>
 
     <div class="glass-pagination">
-        <button class="pg-btn">150</button>
-        <span class="pg-dots">...</span>
-        <button class="pg-btn">3</button>
-        <button class="pg-btn">2</button>
         <button class="pg-btn active">1</button>
+        <button class="pg-btn">2</button>
+        <button class="pg-btn">3</button>
+        <button class="pg-btn">...</button>
+        <button class="pg-btn">150</button>
     </div>
 
     <footer>
-        <div class="footer-grid">
-            <div class="footer-column">
-                <h3 style="color:#007aff;">مِسبار AI</h3>
-                <p>اكتشف أكثر من <strong id="toolsCount">30,016</strong> أداة ذكية محدثة لحظياً.</p>
-            </div>
-            <div class="footer-column">
-                <h4>استكشف</h4>
-                <a>أفضل الأدوات</a>
-                <a>أضف أداتك</a>
-            </div>
-        </div>
+        مِسبار AI - رادارك لـ <strong id="toolsCount">30,016</strong> أداة محدثة
     </footer>
 
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
@@ -100,6 +70,5 @@
         const db = firebase.firestore();
     </script>
     <script src="script.js"></script>
-    <script src="engine.js"></script>
 </body>
 </html>
