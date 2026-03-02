@@ -1,31 +1,57 @@
-body { margin: 0; background-color: #000; color: #fff; font-family: 'Cairo', sans-serif; overflow-x: hidden; user-select: none; }
-#particles-js { position: fixed; top: 0; width: 100%; height: 100%; z-index: -1; }
+/* الحاوية الخارجية للبحث - Apple Style Search Bar */
+.search-wrapper {
+    display: flex;
+    align-items: center;
+    background: #1c1c1e; /* لون رمادي غامق فخم */
+    border-radius: 12px;
+    border: 1px solid #333;
+    width: 100%;
+    max-width: 480px; /* عرض متناسق */
+    height: 44px;
+    padding: 0 15px;
+    transition: all 0.3s ease;
+    margin: 0 auto; /* للتوسط */
+}
 
-/* الهيدر */
-.apple-nav { position: sticky; top: 0; backdrop-filter: blur(20px); background: rgba(0,0,0,0.8); display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 80px; border-bottom: 0.5px solid #333; z-index: 1000; }
-.logo { font-size: 1.8rem; font-weight: 900; background: linear-gradient(to right, #00d1ff, #007aff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-decoration: none; }
+/* تأثير عند الضغط على البحث */
+.search-wrapper:focus-within {
+    border-color: #007aff;
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+    background: #2c2c2e;
+}
 
-/* البحث (نص أبيض واضح) */
-.search-wrapper { display: flex; background: #1c1c1e; border-radius: 14px; border: 1px solid #333; width: 450px; overflow: hidden; }
-.search-input { background: transparent; border: none; padding: 12px 20px; color: #fff !important; flex: 1; outline: none; font-family: 'Cairo'; font-size: 1rem; }
-.search-btn { background: #2c2c2e; border: none; color: #fff; padding: 0 15px; cursor: pointer; }
+/* خانة الكتابة - نص أبيض واضح 100% */
+.search-input {
+    background: transparent;
+    border: none;
+    padding: 10px;
+    color: #ffffff !important; /* إجبار اللون الأبيض */
+    font-size: 0.95rem;
+    outline: none;
+    flex: 1;
+    font-family: 'Cairo', sans-serif;
+}
 
-/* الفيتشر كاردز (Hero) */
-.featured-slider { display: flex; padding: 30px 5%; gap: 20px; overflow-x: auto; scrollbar-width: none; }
-.hero-card { min-width: 380px; height: 200px; border-radius: 28px; padding: 30px; border: 1px solid #333; background: linear-gradient(135deg, #1c1c1e, #050505); display: flex; flex-direction: column; justify-content: flex-end; transition: 0.4s; }
+/* أيقونة العدسة - إصلاح الحجم واللون */
+.search-btn {
+    background: transparent;
+    border: none;
+    color: #8e8e93; /* لون أيقونة هادئ */
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: color 0.2s ease;
+}
 
-/* البطاقات والشبكة */
-.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 30px; padding: 20px 5%; }
-.card { background: rgba(28,28,30,0.6); border: 1px solid #222; border-radius: 30px; padding: 30px 20px; text-align: center; transition: 0.4s; position: relative; }
-.card:hover { border-color: #007aff; transform: translateY(-10px); }
+.search-btn:hover {
+    color: #ffffff;
+}
 
-/* الفلتر والصفحات */
-.filter-bar { display: flex; justify-content: center; gap: 15px; padding: 20px; flex-wrap: wrap; }
-.tag-btn { background: #1c1c1e; color: #8e8e93; border: 1px solid #333; padding: 8px 20px; border-radius: 30px; cursor: pointer; }
-.tag-btn.active { background: #fff; color: #000; }
-.pagination { display: flex; justify-content: center; gap: 10px; padding: 40px; }
-.page-link { padding: 10px 20px; border: 1px solid #333; border-radius: 10px; cursor: pointer; background: #1c1c1e; color: #fff; }
-.page-link.active { background: #007aff; border-color: #007aff; }
-
-/* الفوتر */
-footer { background: #080808; padding: 60px 5%; border-top: 1px solid #1a1a1a; margin-top: 50px; }
+/* Placeholder - لون النص المساعد */
+.search-input::placeholder {
+    color: #636366;
+    opacity: 1;
+}
