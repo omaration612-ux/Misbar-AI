@@ -4,104 +4,78 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MISBAR AI | رادار مِسبار - أكبر دليل لأدوات الذكاء الاصطناعي</title>
-    <meta name="description" content="اكتشف أكثر من 30,000 أداة ذكاء اصطناعي عبر MISBAR AI. رادارك الخاص للبحث الفوري.">
-    <meta property="og:title" content="MISBAR AI - رادار مِسبار العالمي">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <meta name="description" content="اكتشف أكثر من 30,000 أداة ذكاء اصطناعي عبر MISBAR AI. رادارك الخاص للبحث الفوري عن أفضل الحلول التقنية المحدثة لحظياً.">
+    
+    <link rel="alternate" hreflang="ar" href="https://misbar-ai.web.app/ar">
+    <link rel="alternate" hreflang="en" href="https://misbar-ai.web.app/en">
+    <link rel="alternate" hreflang="ja" href="https://misbar-ai.web.app/jp">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
-<body oncontextmenu="return false;">
-
-    <nav class="apple-nav">
-        <div class="nav-right">
+<body oncontextmenu="return false;"> <nav class="apple-nav">
+        <div class="logo-group">
             <a href="#" class="logo">Misbar AI</a>
             <div class="lang-dropdown">
-                <span class="lang-icon">A文</span>
-                <div class="lang-menu">
-                    <a href="#">العربية</a><a href="#">English</a><a href="#">Français</a>
-                    <a href="#">Español</a><a href="#">Deutsch</a><a href="#">日本語</a>
-                    <a href="#">中文</a><a href="#">Türkçe</a><a href="#">Русский</a><a href="#">한국어</a>
+                <span class="globe-icon">🌐</span>
+                <div class="lang-content">
+                    <a href="javascript:void(0)" onclick="changeLanguage('ar')">العربية</a>
+                    <a href="javascript:void(0)" onclick="changeLanguage('en')">English</a>
+                    <a href="javascript:void(0)" onclick="changeLanguage('ja')">日本語</a>
+                    <a href="javascript:void(0)" onclick="changeLanguage('fr')">Français</a>
+                    <a href="javascript:void(0)" onclick="changeLanguage('de')">Deutsch</a>
                 </div>
             </div>
         </div>
-
-        <div class="search-wrapper">
-            <input type="text" id="smartSearch" class="search-input" placeholder="ابحث في 30,000 أداة...">
-            <button class="search-btn-black">بحث</button>
+        
+        <div class="search-box">
+            <input type="text" id="smartSearch" placeholder="ابحث في 30,000 أداة ذكية...">
+            <button class="search-btn" onclick="injectTools()">بحث</button>
         </div>
 
-        <div class="auth-section">
-            <a href="#" class="auth-btn">تسجيل</a>
-            <span class="sep">|</span>
-            <a href="#" class="auth-btn">دخول</a>
+        <div class="auth-group">
+            <button class="btn-text">دخول</button>
+            <button class="btn-text">تسجيل</button>
         </div>
     </nav>
 
-    <section class="featured-section">
-        <div class="featured-slider">
-            <div class="f-card"><h3>ChatGPT 1</h3><p>مختارات اليوم</p></div>
-            <div class="f-card"><h3>Midjourney 2</h3><p>مختارات اليوم</p></div>
-            <div class="f-card"><h3>DeepSeek 3</h3><p>مختارات اليوم</p></div>
-            <div class="f-card"><h3>Claude 4</h3><p>مختارات اليوم</p></div>
-            <div class="f-card"><h3>Gemini 5</h3><p>مختارات اليوم</p></div>
-            <div class="f-card"><h3>Luma 6</h3><p>مختارات اليوم</p></div>
-        </div>
+    <section class="rolling-featured" id="featuredSection">
+        <div class="featured-card"><h3>DeepSeek V3</h3><p>الأقوى برمجياً</p></div>
+        <div class="featured-card"><h3>ChatGPT 5</h3><p>ثورة الذكاء</p></div>
+        <div class="featured-card"><h3>Midjourney 7</h3><p>فن خيالي</p></div>
+        <div class="featured-card"><h3>Claude 3.5</h3><p>ذكاء بشري</p></div>
+        <div class="featured-card"><h3>Runway Gen-3</h3><p>فيديو سينمائي</p></div>
+        <div class="featured-card"><h3>Sora AI</h3><p>واقع افتراضي</p></div>
     </section>
 
-    <div class="filter-container">
-        <div class="filter-bar">
-            <button class="tag-btn active">الكل</button>
-            <button class="tag-btn">محادثة</button>
-            <button class="tag-btn">صور</button>
-            <button class="tag-btn">فيديو</button>
-            <div class="more-filters">
-                <button class="tag-btn">المزيد ▼</button>
-                <div class="more-menu">
-                    <a href="#">برمجة</a><a href="#">صوتيات</a><a href="#">تسويق</a>
-                    <a href="#">تصميم</a><a href="#">تعليم</a><a href="#">بيانات</a>
-                    <a href="#">طب</a><a href="#">قانون</a><a href="#">تجارة</a><a href="#">أمن</a>
-                </div>
-            </div>
+    <div class="filter-bar">
+        <div class="tags">
+            <button class="tag active">الكل</button>
+            <button class="tag">محادثة</button>
+            <button class="tag">صور</button>
+            <button class="tag">المزيد ▾</button>
         </div>
-
-        <div class="free-only-wrapper">
+        <div class="toggle-area">
             <span>مجاني فقط</span>
-            <label class="switch">
-                <input type="checkbox" id="freeOnly">
-                <span class="slider round"></span>
-            </label>
+            <label class="switch"><input type="checkbox" id="freeOnly"><span class="slider"></span></label>
         </div>
     </div>
 
-    <main class="grid" id="mainGrid"></main>
+    <main class="main-grid" id="toolGrid"></main>
 
-    <div class="pagination-area">
-        <div class="glass-counter">30,016 أداة</div>
-        <div class="pagination">
-            <button class="page-link active">1</button>
-            <button class="page-link">2</button>
-            <button class="page-link">3</button>
-            <span class="dots">...</span>
-            <button class="page-link">150</button>
-        </div>
+    <div class="glass-pagination" id="rollingPage">
+        <div class="pg-num active">1</div>
+        <div class="pg-num">2</div>
+        <div class="pg-num">3</div>
+        <div class="pg-num">...</div>
+        <div class="pg-num">150</div>
     </div>
 
     <footer>
-        <p>© 2026 رادار مِسبار - جميع الحقوق محفوظة</p>
+        <p>مِسبار AI - رادارك لـ <strong id="toolsCounter">30,016</strong> أداة ذكية</p>
     </footer>
 
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyBzG7ZeOr6uoKbCPoodlJiw2ZmiiVwTDxY",
-            authDomain: "misbar-2026.firebaseapp.com",
-            projectId: "misbar-2026",
-            storageBucket: "misbar-2026.firebasestorage.app",
-            messagingSenderId: "299387766091",
-            appId: "1:299387766091:web:cd36930b732b85d82214ce"
-        };
-        firebase.initializeApp(firebaseConfig);
-    </script>
     <script src="script.js"></script>
 </body>
 </html>
