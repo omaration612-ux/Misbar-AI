@@ -1,90 +1,50 @@
-:root { 
-    --accent: #007aff; 
-    --glass: rgba(255, 255, 255, 0.03); 
-    --border: rgba(255, 255, 255, 0.08); 
-}
+:root { --accent: #007aff; --border: rgba(255, 255, 255, 0.1); }
+body { background: #000; color: #fff; font-family: 'Cairo', sans-serif; margin: 0; direction: rtl; }
 
-body { 
-    background: #000; color: #fff; font-family: 'Cairo', sans-serif; 
-    margin: 0; overflow-x: hidden; user-select: none; 
-}
-
-/* هيدر أبل الفخم */
+/* هيدر أبل الملكي */
 .apple-nav { 
     display: flex; justify-content: space-between; align-items: center; 
-    padding: 10px 5%; background: rgba(0,0,0,0.8); backdrop-filter: blur(30px); 
-    position: sticky; top: 0; z-index: 2000; border-bottom: 1px solid #1a1a1a; 
+    padding: 10px 5%; background: rgba(0,0,0,0.8); backdrop-filter: blur(20px); 
+    position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #1a1a1a; 
 }
-
-.logo-area { display: flex; align-items: center; gap: 15px; }
-.logo { font-size: 1.6rem; font-weight: 900; color: var(--accent); text-decoration: none; }
-
-/* شريط البحث بدون العدسة القديمة */
 .search-container { 
-    display: flex; background: #121212; border: 1px solid #222; 
-    border-radius: 14px; width: 40%; padding: 3px; transition: 0.3s;
+    display: flex; background: #111; border: 1px solid #222; 
+    border-radius: 12px; width: 45%; padding: 2px;
 }
-.search-container:focus-within { border-color: var(--accent); background: #1a1a1a; }
-.search-input { 
-    background: transparent; border: none; color: #fff !important; 
-    flex: 1; padding: 10px 15px; outline: none; font-size: 0.9rem;
-}
-.search-btn-new { 
-    background: #000; color: #fff; border: 1px solid #333; 
-    padding: 0 25px; border-radius: 11px; cursor: pointer; font-weight: bold; 
-}
+.search-input { background: transparent; border: none; color: #fff; flex: 1; padding: 10px; outline: none; }
+.search-btn-new { background: #000; color: #fff; border: 1px solid #333; padding: 0 20px; border-radius: 10px; cursor: pointer; }
 
-/* الفيتشر كاردز (6 كروت رشيقة) */
-.featured-slider { 
-    display: flex; gap: 15px; padding: 25px 5%; 
+/* 1. الـ 6 كروت المميزة (Rolling) - مباشرة تحت البحث */
+.rolling-featured { 
+    display: flex; gap: 15px; padding: 20px 5%; 
     overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; 
 }
-.hero-card { 
-    min-width: 280px; height: 130px; background: linear-gradient(145deg, #0f0f0f, #181818); 
-    border: 1px solid var(--border); border-radius: 22px; padding: 20px; 
-    scroll-snap-align: start; flex-shrink: 0; transition: 0.3s;
+.rolling-card { 
+    min-width: 220px; height: 110px; background: #0a0a0a; 
+    border: 1px solid var(--border); border-radius: 18px; padding: 15px; 
+    flex-shrink: 0; transition: 0.3s; scroll-snap-align: start;
 }
-.hero-card:hover { border-color: var(--accent); transform: translateY(-5px); }
+.rolling-card:hover { border-color: var(--accent); }
 
-/* الفلاتر وزر المزيد */
-.filter-section { 
-    padding: 15px 5%; display: flex; justify-content: space-between; 
-    align-items: center; background: #000;
-}
-.tag-btn { 
-    background: #121212; color: #777; border: 1px solid #222; 
-    padding: 8px 20px; border-radius: 25px; cursor: pointer; font-size: 0.85rem; 
-}
-.tag-btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+/* 2. الفلاتر والمزيد */
+.filter-bar { padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; }
+.tag-btn { background: #121212; color: #777; border: 1px solid #222; padding: 7px 18px; border-radius: 20px; cursor: pointer; }
+.tag-btn.active { background: var(--accent); color: #fff; }
 
-/* قائمة المزيد المنسدلة */
-.dropdown { position: relative; }
-.dropdown-content { 
-    display: none; position: absolute; background: #111; border: 1px solid #222; 
-    border-radius: 15px; min-width: 200px; z-index: 100; top: 45px; left: 0;
-}
-.dropdown-content a { color: #888; padding: 12px 20px; text-decoration: none; display: block; font-size: 0.8rem; border-bottom: 1px solid #1a1a1a; }
-.dropdown:hover .dropdown-content { display: grid; grid-template-columns: 1fr 1fr; } /* توزيع 10 خيارات بشكل مرتب */
-
-/* الشبكة الأساسية (6 أعمدة × 10 صفوف) */
-.grid { 
+/* 3. الشبكة (6 أعمدة × 10 صفوف) */
+.main-grid { 
     display: grid; grid-template-columns: repeat(6, 1fr); 
     gap: 15px; padding: 20px 5%; 
 }
-.card { 
-    background: #0a0a0a; border: 1px solid var(--border); 
-    border-radius: 20px; padding: 25px; text-align: center; transition: 0.3s;
-}
+.tool-card { background: #0d0d0d; border: 1px solid var(--border); border-radius: 15px; padding: 20px; text-align: center; }
 
-/* العداد الزجاجي القابل للسحب */
-.glass-pagination { 
-    display: flex; gap: 12px; padding: 40px 5%; overflow-x: auto; 
-    scrollbar-width: none; justify-content: center;
-}
-.pg-btn { 
-    min-width: 50px; height: 50px; background: var(--glass); 
-    border: 1px solid #222; color: #fff; border-radius: 15px; 
-    display: flex; align-items: center; justify-content: center; 
-    cursor: pointer; backdrop-filter: blur(15px);
-}
-.pg-btn.active { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 15px rgba(0,12
+/* 4. العداد والفوتر */
+.glass-pagination { display: flex; gap: 10px; padding: 30px 5%; overflow-x: auto; scrollbar-width: none; justify-content: center; }
+.pg-btn { min-width: 45px; height: 45px; background: rgba(255,255,255,0.03); border: 1px solid #222; color: #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.pg-btn.active { background: var(--accent); }
+
+footer { text-align: center; padding: 40px; border-top: 1px solid #111; color: #444; }
+
+/* Responsive */
+@media (max-width: 1000px) { .main-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 600px) { .main-grid { grid-template-columns: repeat(2, 1fr); } }
