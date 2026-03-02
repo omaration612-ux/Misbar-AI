@@ -1,44 +1,47 @@
 :root { --accent: #007aff; --glass: rgba(255, 255, 255, 0.05); }
-body { background: #000; color: #fff; font-family: 'Cairo'; margin: 0; overflow-x: hidden; user-select: none; }
-#particles-js { position: fixed; top: 0; width: 100%; height: 100%; z-index: -1; }
+body { background: #000; color: #fff; font-family: 'Cairo'; margin: 0; overflow-x: hidden; }
 
-/* الهيدر والبحث */
+/* الهيدر والبحث الملكي */
 .apple-nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(0,0,0,0.85); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #222; }
-.logo { font-size: 1.8rem; font-weight: 900; color: var(--accent); text-decoration: none; }
-.lang-switch { font-size: 0.85rem; color: #888; cursor: pointer; }
-
 .search-container { display: flex; background: #111; border: 1px solid #333; border-radius: 12px; width: 45%; padding: 3px; }
 .search-input { background: transparent; border: none; color: #fff !important; flex: 1; padding: 10px; outline: none; }
-.search-btn-new { background: #000; color: #fff; border: 1px solid #444; padding: 0 25px; border-radius: 10px; cursor: pointer; font-weight: bold; }
-.search-btn-new:hover { background: #fff; color: #000; }
+.search-btn-new { background: #000; color: #fff; border: 1px solid #444; padding: 0 20px; border-radius: 10px; cursor: pointer; font-weight: bold; }
 
-.text-link { background: transparent; border: none; color: #fff; cursor: pointer; font-weight: bold; }
-.divider { color: #333; margin: 0 10px; }
+/* 1. الفيتشر كاردز (6 كروت تنزلق) */
+.featured-slider { 
+    display: flex; gap: 20px; padding: 30px 5%; 
+    overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; 
+}
+.hero-card { 
+    min-width: 300px; height: 180px; background: var(--glass); 
+    border: 1px solid #333; border-radius: 24px; padding: 25px; 
+    scroll-snap-align: start; flex-shrink: 0; transition: 0.3s;
+}
 
-/* الفيتشر كاردز (الستة) */
-.featured-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 15px; padding: 20px 5% 40px; }
-.hero-card { background: var(--glass); border: 1px solid #222; border-radius: 20px; padding: 25px; transition: 0.3s; backdrop-filter: blur(5px); }
-.hero-card.main { grid-row: span 2; background: linear-gradient(45deg, #000, #007aff22); }
-
-/* الترقيم الزجاجي */
-.glass-pagination { display: flex; justify-content: center; gap: 12px; padding: 40px; }
-.pg-btn { background: var(--glass); border: 1px solid #333; color: #fff; padding: 12px 20px; border-radius: 14px; cursor: pointer; }
-.pg-btn.active { background: var(--accent); border-color: var(--accent); }
-
-/* السويتش والفلاتر */
-.sub-header { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; }
-.tag-btn { background: #1c1c1e; color: #888; border: 1px solid #333; padding: 8px 20px; border-radius: 30px; cursor: pointer; margin-left: 8px; }
+/* 2. أزرار الفلترة (تحت الكروت) */
+.sub-header { padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #111; }
+.tag-btn { background: #1c1c1e; color: #888; border: 1px solid #333; padding: 8px 22px; border-radius: 30px; cursor: pointer; margin-left: 10px; }
 .tag-btn.active { background: #fff; color: #000; }
 
-.switch { position: relative; display: inline-block; width: 40px; height: 22px; }
-.switch input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; border-radius: 34px; transition: .4s; }
-.slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 3px; bottom: 3px; background-color: white; border-radius: 50%; transition: .4s; }
-input:checked + .slider { background-color: var(--accent); }
-input:checked + .slider:before { transform: translateX(18px); }
+/* 3. الشبكة (6 أعمدة × 10 صفوف) */
+.grid { 
+    display: grid; 
+    grid-template-columns: repeat(6, 1fr); /* 6 أعمدة */
+    grid-template-rows: repeat(10, auto); /* 10 صفوف */
+    gap: 20px; padding: 40px 5%; 
+}
 
-/* المنسدلة */
-.dropdown { position: relative; display: inline-block; }
-.dropdown-content { display: none; position: absolute; background: #000; border: 1px solid #333; border-radius: 12px; min-width: 150px; z-index: 100; top: 45px; }
-.dropdown-content a { color: #888; padding: 12px; display: block; text-decoration: none; }
-.dropdown:hover .dropdown-content { display: block; }
+/* 4. العداد الزجاجي (سحب بالإصبع) */
+.glass-pagination { 
+    display: flex; gap: 12px; padding: 40px 5%; overflow-x: auto; 
+    justify-content: flex-start; scrollbar-width: none; 
+}
+.pg-btn { 
+    min-width: 50px; height: 50px; background: var(--glass); 
+    border: 1px solid #333; color: #fff; border-radius: 15px; 
+    display: flex; align-items: center; justify-content: center; cursor: pointer; 
+}
+.pg-btn.active { background: var(--accent); border-color: var(--accent); }
+
+/* responsive للموبايل */
+@media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
