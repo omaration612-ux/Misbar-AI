@@ -1,27 +1,80 @@
-:root { --accent: #007aff; --glass: rgba(255, 255, 255, 0.05); }
-body { background: #000; color: #fff; font-family: 'Cairo'; margin: 0; overflow-x: hidden; }
+// 1. إعدادات Firebase (استبدل بمفاتيحك الحقيقية)
+const firebaseConfig = {
+    apiKey: "AIzaSyBzG7ZeOr6uoKbCPoodlJiw2ZmiiVwTDxY",
+    authDomain: "misbar-2026.firebaseapp.com",
+    projectId: "misbar-2026",
+    storageBucket: "misbar-2026.firebasestorage.app",
+    messagingSenderId: "299387766091",
+    appId: "1:299387766091:web:cd36930b732b85d82214ce"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
 
-/* الهيدر واللغات العشر */
-.apple-nav { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: rgba(0,0,0,0.8); backdrop-filter: blur(20px); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #1a1a1a; }
-.lang-dropdown { position: relative; cursor: pointer; margin-right: 10px; }
-.lang-content { display: none; position: absolute; background: #111; border: 1px solid #222; border-radius: 10px; width: 120px; z-index: 100; }
-.lang-dropdown:hover .lang-content { display: block; }
-.lang-content a { color: #fff; padding: 8px; display: block; text-decoration: none; font-size: 0.8rem; }
+// 2. تحديث عداد الأدوات الحي
+async function updateToolsCount() {
+    db.collection('stats').doc('global').onSnapshot(doc => {
+        const count = doc.data()?.total || 30016;
+        document.getElementById('toolsCounter').innerText = count.toLocaleString();
+    });
+}
 
-/* شريط البحث الأسود الملكي */
-.search-box { background: #111; border: 1px solid #333; border-radius: 12px; width: 40%; display: flex; padding: 2px; }
-.search-input { background: transparent; border: none; color: #fff; flex: 1; padding: 10px; outline: none; }
-.search-btn { background: #000; color: #fff; border: 1px solid #444; padding: 0 20px; border-radius: 10px; cursor: pointer; }
+// 3. حقن الشبكة (6x10)
+async function injectTools() {
+    const grid = document.getElementById('toolGrid');
+    if(!grid) return;
+    grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center;">جاري البحث في الرادار...</div>';
+    
+    try {
+        const snapshot = await db.collection('tools').orderBy('createdAt', 'desc').limit(60).get();
+        grid.innerHTML = snapshot.docs.map(doc => {
+            const item = doc.data();
+            return `
+                <div class="tool-card">
+                    <h4 style="margin:10px 0">${item.name}</h4>
+                    <p style="font-size:0.8rem; color:#555">${item.category}</p>
+                    <a href="https://misbar-ai.web.app/go?url=${encodeURIComponent(item.link)}" target="_blank" 
+                       style="color:var(--accent); text-decoration:none; font-size:0.8rem;">استكشف الأداة</a>
+                </div>`;
+        }).join('');
+    } catch (e) { console.error(e); }
+}
 
-/* 1. الكروت المميزة (أكبر من العادية ورشيقة) */
-.rolling-featured { display: flex; gap: 20px; padding: 20px 5%; overflow-x: auto; scrollbar-width: none; }
-.featured-card { min-width: 280px; height: 140px; background: linear-gradient(135deg, #111, #1a1a1a); border: 1px solid #222; border-radius: 20px; padding: 20px; flex-shrink: 0; transition: 0.3s; }
-.featured-card:hover { border-color: var(--accent); transform: scale(1.02); }
+// 4. حماية السويتش (Monetization Gate)
+const freeOnly = document.getElementById('freeOnly');
+if(freeOnly) {
+    freeOnly.addEventListener('change', function() {
+        if(this.checked) {
+            alert("🔒 ميزة حصرية: يرجى تسجيل الدخول أولاً لتفعيل فلتر المجاني.");
+            this.checked = false;
+        }
+    });
+}
 
-/* 3. الشبكة (6x10) */
-.main-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; padding: 20px 5%; }
-.tool-card { background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 15px; padding: 20px; text-align: center; }
+// 5. الترقيم الانزلاقي (Rolling Pagination)
+const pgBar = document.getElementById('rollingPage');
+if(pgBar) {
+    let isDown = false; let startX; let scrollLeft;
+    pgBar.addEventListener('mousedown', (e) => {
+        isDown = true; startX = e.pageX - pgBar.offsetLeft; scrollLeft = pgBar.scrollLeft;
+    });
+    pgBar.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - pgBar.offsetLeft;
+        const walk = (x - startX) * 2; 
+        pgBar.scrollLeft = scrollLeft - walk;
+    });
+    ['mouseup', 'mouseleave'].forEach(evt => window.addEventListener(evt, () => isDown = false));
+}
 
-/* 4. الترقيم الزجاجي الانزلاقي */
-.glass-pagination { display: flex; gap: 10px; padding: 30px 5%; overflow-x: auto; scrollbar-width: none; cursor: grab; }
-.pg-num { min-width: 45px; height: 45px; background: var(--glass); border: 1px solid #333; border-radius: 12px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+// 6. تشغيل النظام عند النشر
+window.onload = () => {
+    updateToolsCount();
+    injectTools();
+    console.log("MISBAR AI v2.0: Active and Protected.");
+};
+
+function changeLanguage(lang) {
+    document.documentElement.lang = lang;
+    alert("سيتم تحويل الأرشفة والمحتوى للغة: " + lang);
+}
