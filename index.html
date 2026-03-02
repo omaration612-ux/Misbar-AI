@@ -131,7 +131,12 @@
     
     <script>
       const firebaseConfig = {
-        // ضعه هنا يا قائد لربط الـ 30,000 أداة الحقيقية
+        apiKey: "YOUR_KEY",
+        authDomain: "misbar-ai.firebaseapp.com",
+        projectId: "misbar-ai",
+        storageBucket: "misbar-ai.appspot.com",
+        messagingSenderId: "...",
+        appId: "..."
       };
       firebase.initializeApp(firebaseConfig);
     </script>
@@ -140,6 +145,7 @@
     <script src="engine.js"></script>
 
     <script>
+        // تفعيل منطقة المميز (Featured Zone)
         const heroes = [
             {n: "Sora Video", d: "تحويل النصوص لفيديوهات واقعية.", img: "21"},
             {n: "Claude 3.5", d: "المساعد الأذكى لتحليل البيانات.", img: "24"}
