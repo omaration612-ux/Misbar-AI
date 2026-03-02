@@ -1,21 +1,78 @@
-:root { --bg: #000; --card: #0d0d0d; --accent: #00b4d8; --text: #fff; }
-body { background: var(--bg); color: var(--text); font-family: 'Cairo', sans-serif; margin: 0; overflow-x: hidden; }
+// 1. تهيئة Firebase
+const db = firebase.firestore();
 
-/* الهيدر */
-.navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; border-bottom: 1px solid #1a1a1a; position: sticky; top: 0; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); z-index: 100; }
-.logo { color: var(--accent); font-weight: 900; font-size: 1.5rem; }
+// 2. الرصد التلقائي للغة الزائر (الذكاء اللغوي)
+function autoDetectLanguage() {
+    const userLang = navigator.language || navigator.userLanguage; 
+    const shortLang = userLang.slice(0, 2); 
+    const supportedLangs = ['ar', 'en', 'ja', 'fr', 'de', 'es', 'ru', 'ko', 'tr', 'zh'];
+    
+    if (supportedLangs.includes(shortLang)) {
+        applyLanguageSettings(shortLang);
+    } else {
+        applyLanguageSettings('en');
+    }
+}
 
-/* الكروت الكبيرة (المختارات) */
-.featured-rolling { display: flex; gap: 20px; padding: 30px 5%; overflow-x: auto; scrollbar-width: none; }
-.hero-card { min-width: 400px; height: 200px; background: linear-gradient(135deg, #1a1a1a, #000); border-radius: 25px; padding: 30px; border: 1px solid #333; flex-shrink: 0; transition: 0.4s; }
-.hero-card.gold { background: linear-gradient(135deg, #2c2418, #000); }
-.hero-card h2 { font-size: 2rem; margin: 10px 0; }
-.hero-card .label { color: var(--accent); font-size: 0.8rem; }
+// 3. تطبيق إعدادات اللغة والأرشفة (SEO Armor)
+function applyLanguageSettings(lang) {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+        metaDesc.content = (lang === 'ar') 
+            ? "رادارك الخاص للبحث الفوري عن أفضل حلول الذكاء الاصطناعي." 
+            : "Your private radar for instant search of the best AI solutions.";
+    }
+    console.log("MISBAR AI: تفعيل اللغة والأرشفة لـ: " + lang);
+}
 
-/* شبكة الـ 6x10 */
-.tools-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 15px; padding: 20px 5%; }
-.tool-card { background: var(--card); border-radius: 20px; padding: 20px; text-align: center; border: 1px solid #1a1a1a; transition: 0.3s; }
-.tool-card:hover { border-color: var(--accent); transform: scale(1.03); }
+// 4. العداد الحي في الفوتر
+async function updateCounter() {
+    db.collection('stats').doc('global').onSnapshot(doc => {
+        const countElement = document.getElementById('toolsCounter');
+        if (countElement) {
+            countElement.innerText = (doc.data()?.total || 30016).toLocaleString();
+        }
+    });
+}
 
-/* الترقيم الزجاجي */
-.glass-pagination { display: flex; gap: 10px; padding: 20px; overflow-x: auto; justify-content: center; background: rgba(255,255,255,0.02); }
+// 5. حقن الأدوات (6 أعمدة × 10 صفوف)
+async function injectTools() {
+    const grid = document.getElementById('mainGrid');
+    if (!grid) return;
+    grid.innerHTML = '<div style="grid-column: 1/-1; text-align:center;">جاري رصد الأدوات...</div>';
+    
+    try {
+        const snapshot = await db.collection('tools').orderBy('createdAt', 'desc').limit(60).get();
+        grid.innerHTML = snapshot.docs.map(doc => {
+            const item = doc.data();
+            return `
+                <div class="tool-card">
+                    <div style="background:${item.color || '#333'}; width:50px; height:50px; border-radius:12px; margin:0 auto"></div>
+                    <h4>${item.name}</h4>
+                    <p style="font-size:0.7rem; color:#666">${item.category}</p>
+                </div>`;
+        }).join('');
+    } catch (error) {
+        console.error("خطأ في الحقن:", error);
+    }
+}
+
+// 6. حماية سويتش المجاني
+const freeOnlySwitch = document.getElementById('freeOnly');
+if (freeOnlySwitch) {
+    freeOnlySwitch.addEventListener('change', function() {
+        if(this.checked) {
+            alert("🔒 ميزة حصرية: يرجى تسجيل الدخول أولاً.");
+            this.checked = false;
+        }
+    });
+}
+
+// 7. تشغيل المحرك (التشغيل الموحد)
+window.onload = () => {
+    autoDetectLanguage(); // الرصد والذكاء اللغوي أولاً
+    updateCounter();      // تحديث العداد الحي
+    injectTools();        // حقن الـ 60 بطاقة
+};
