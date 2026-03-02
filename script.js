@@ -1,14 +1,14 @@
-// 1. مصفوفة البيانات التجريبية
+// مصفوفة تجريبية لمحاكاة البيانات الحقيقية (حتى يتم جلبها من Firestore)
 const mockTools = Array.from({ length: 24 }, (_, i) => ({
     id: i,
     name: ["Jasper", "Midjourney", "Claude", "Sora", "Luma", "GPT-5"][i % 6] + " AI",
-    desc: "أداة احترافية تستخدم تقنيات الذكاء الاصطناعي المتطورة لتوليد المحتوى وتحسين جودة العمل بكفاءة عالية.",
+    desc: "أداة احترافية تستخدم تقنيات الذكاء الاصطناعي المتطورة لتوليد المحتوى وتحسين جودة العمل.",
     category: ["Writing", "Image Generation", "Video Editing", "Coding AI"][i % 4],
     price: i % 3 === 0 ? 'free' : 'paid',
     color: `hsl(${i * 50}, 70%, 50%)`
 }));
 
-// 2. دالة عرض البطاقات
+// دالة عرض البطاقات في الشبكة (Grid)
 function renderGrid(data) {
     const grid = document.getElementById('mainGrid');
     if (!grid) return;
@@ -32,10 +32,12 @@ function renderGrid(data) {
     `).join('');
 }
 
-// 3. المحرك الرئيسي للفلترة والبحث
+// تشغيل المحرك الرئيسي
 function startMisbarEngine() {
+    // 1. عرض البيانات الأولية
     renderGrid(mockTools);
 
+    // 2. تفعيل البحث الذكي
     const searchInput = document.getElementById('smartSearch');
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -48,25 +50,39 @@ function startMisbarEngine() {
         });
     }
 
+    // 3. تفعيل الفلترة بالتصنيفات
     document.querySelectorAll('.tag-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             document.querySelectorAll('.tag-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
+            
             const category = this.innerText;
-            renderGrid(category === 'الكل' ? mockTools : mockTools.filter(t => t.category === category));
+            if (category === 'الكل') {
+                renderGrid(mockTools);
+            } else {
+                const filtered = mockTools.filter(t => t.category === category);
+                renderGrid(filtered);
+            }
         });
     });
 
+    // 4. تفعيل سويتش "مجاني فقط" مع التنبيه للمسجلين
     const freeSwitch = document.getElementById('freeOnlySwitch');
     if (freeSwitch) {
         freeSwitch.addEventListener('change', function() {
             if (this.checked) {
+                // محاكاة تنبيه عدم التسجيل
                 alert("عذراً! ميزة الفلترة المتقدمة (مجاني فقط) متاحة للأعضاء المسجلين. يرجى تسجيل الدخول.");
                 this.checked = false;
             }
         });
     }
-}
 
-// 4. تشغيل كل شيء فور تحميل الصفحة
-document.addEventListener('DOMContentLoaded', startMisbarEngine);
+    // 5. تفعيل قائمة اللغات
+    document.querySelectorAll('.lang-menu a').forEach(link => {
+        link.onclick = (e) => {
+            e.preventDefault();
+            alert("سيتم توفير نسخة " + link.innerText + " قريباً في تحديث الرادار القادم.");
+        };
+    });
+}
