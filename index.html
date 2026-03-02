@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Misbar AI | رادار مِسبار</title>
+    <title>Misbar AI | رادار مِسبار - أكبر دليل لأدوات الذكاء الاصطناعي</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         /* الأساسيات */
@@ -34,7 +34,7 @@
         input:checked + .slider { background-color: #34c759; }
         input:checked + .slider:before { transform: translateX(20px); }
 
-        /* الفيتشر كاردز (6 كروت) */
+        /* الفيتشر كاردز */
         .featured-slider { display: flex; padding: 25px 5%; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
         .hero-card { min-width: 320px; height: 220px; border-radius: 28px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 25px; border: 1px solid #333; flex-shrink: 0; scroll-snap-align: start; }
 
@@ -43,12 +43,6 @@
         .filter-tags::-webkit-scrollbar { display: none; }
         .tag-btn { background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2); padding: 8px 18px; border-radius: 20px; cursor: pointer; font-size: 0.85rem; transition: 0.3s; backdrop-filter: blur(5px); }
         .tag-btn:hover, .tag-btn.active { background: #007aff; border-color: #007aff; }
-
-        /* قائمة المزيد */
-        .more-dropdown { position: relative; margin-right: 5px; }
-        .more-content { display: none; position: absolute; top: 110%; right: 0; background: rgba(0,0,0,0.95); border: 1px solid #333; border-radius: 15px; padding: 12px; min-width: 200px; z-index: 100; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .more-content button { background: #1a1a1a; border: 1px solid #333; color: white; padding: 8px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; }
-        .more-dropdown:hover .more-content { display: grid; }
 
         /* الشبكة والبطاقات */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 25px; padding: 30px 5%; min-height: 960px; }
@@ -60,18 +54,18 @@
         .paid { background: rgba(255, 59, 48, 0.15); color: #ff3b30; }
         .btn-try { background: #007aff; color: white; text-decoration: none; display: block; padding: 10px; border-radius: 14px; margin-top: 15px; font-size: 0.85rem; font-weight: bold; }
 
+        /* الترقيم */
         .pagination { display: flex; justify-content: center; align-items: center; gap: 12px; padding: 60px 0; }
         .page-link { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 1px solid #333; cursor: pointer; color: #fff; background: rgba(255,255,255,0.05); text-decoration: none; }
         .page-link.active { background: #007aff; border-color: #007aff; font-weight: bold; }
 
+        /* Footer */
         footer { background: #080808; padding: 80px 5% 40px; border-top: 1px solid #1a1a1a; margin-top: 50px; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 50px; }
         .footer-logo { font-size: 1.8rem; font-weight: 900; margin-bottom: 20px; color: #fff; }
         .footer-links h4 { color: #007aff; margin-bottom: 25px; font-size: 1.1rem; }
         .footer-links a { display: block; color: #8e8e93; text-decoration: none; margin-bottom: 12px; font-size: 0.9rem; }
-        .contact-box input { width: 100%; background: #151515; border: 1px solid #333; padding: 12px; border-radius: 10px; color: #fff; margin-bottom: 15px; outline: none; }
-        .btn-footer { width: 100%; background: #007aff; border: none; padding: 12px; border-radius: 10px; color: #fff; font-weight: bold; cursor: pointer; }
-
+        
         #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
     </style>
 </head>
@@ -84,8 +78,7 @@
             <div class="lang-dropdown">
                 <span style="font-size: 1.4rem;">🌐</span>
                 <div class="lang-menu">
-                    <a href="#">العربية</a><a href="#">English</a><a href="#">Français</a>
-                    <a href="#">Español</a><a href="#">Deutsch</a><a href="#">日本語</a>
+                    <a href="#">العربية</a><a href="#">English</a>
                 </div>
             </div>
             <div class="logo">Misbar AI</div>
@@ -108,7 +101,8 @@
         <div><button style="background:transparent; border:1.5px solid #007aff; color:#007aff; padding:8px 20px; border-radius:12px; font-weight:bold; cursor:pointer;">دخول</button></div>
     </nav>
 
-    <div class="featured-slider" id="featuredZone"></div>
+    <div class="featured-slider" id="featuredZone">
+        </div>
 
     <div class="filter-tags">
         <button class="tag-btn active">الكل</button>
@@ -116,20 +110,11 @@
         <button class="tag-btn">Image Generation</button>
         <button class="tag-btn">Video Editing</button>
         <button class="tag-btn">Coding AI</button>
-        <div class="more-dropdown">
-            <button class="tag-btn">المزيد ▼</button>
-            <div class="more-content">
-                <button>SEO Tools</button><button>Email AI</button><button>Security</button>
-                <button>3D Design</button><button>Data Science</button><button>Audio AI</button>
-            </div>
-        </div>
     </div>
 
-    <div class="grid" id="mainGrid">
-        </div>
+    <div class="grid" id="mainGrid"></div>
 
     <div class="pagination">
-        <a href="#" class="page-link">«</a>
         <a href="#" class="page-link active">1</a>
         <a href="#" class="page-link">2</a>
         <a href="#" class="page-link">»</a>
@@ -145,25 +130,32 @@
                 <h4>اكتشف</h4>
                 <a href="#">أفضل الأدوات</a><a href="#">أدوات مجانية</a>
             </div>
-            <div class="contact-box">
-                <h4>اشترك معنا</h4>
-                <input type="email" placeholder="بريدك الإلكتروني">
-                <button class="btn-footer">إرسال</button>
+            <div class="footer-links">
+                <h4>الدعم</h4>
+                <a href="#">أضف أداة</a><a href="#">الخصوصية</a>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    
     <script>
-        particlesJS('particles-js', { "particles": { "number": { "value": 40 }, "opacity": { "value": 0.2 }, "move": { "speed": 0.4 } } });
+      const firebaseConfig = {
+        // ضعه هنا يا قائد لربط الـ 30,000 أداة الحقيقية
+      };
+      firebase.initializeApp(firebaseConfig);
+    </script>
 
+    <script src="script.js"></script>
+
+    <script src="engine.js"></script>
+
+    <script>
+        // كود سريع لتشغيل الـ Featured Zone داخل الصفحة
         const heroes = [
             {n: "Sora Video", d: "تحويل النصوص لفيديوهات واقعية.", img: "21"},
-            {n: "GPT-5 Turbo", d: "الجيل القادم من الذكاء الاصطناعي.", img: "22"},
-            {n: "Midjourney v7", d: "توليد صور بجودة سينمائية.", img: "23"},
-            {n: "Claude 3.5", d: "المساعد الأذكى للبيانات.", img: "24"},
-            {n: "Luma Dream", d: "تحريك الصور بذكاء فائق.", img: "25"},
-            {n: "Gemini Ultra", d: "قوة جوجل الكاملة.", img: "26"}
+            {n: "Claude 3.5", d: "المساعد الأذكى لتحليل البيانات.", img: "24"}
         ];
         document.getElementById('featuredZone').innerHTML = heroes.map(h => `
             <div class="hero-card" style="background: linear-gradient(transparent, rgba(0,0,0,0.9)), url('https://picsum.photos/400/300?sig=${h.img}') center/cover;">
@@ -172,10 +164,5 @@
             </div>
         `).join('');
     </script>
-
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-    <script src="injector.js"></script>
-
 </body>
 </html>
