@@ -3,75 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MISBAR AI | رادار مِسبار - أكبر دليل لأدوات الذكاء الاصطناعي</title>
-    <meta name="description" content="اكتشف أكثر من 30,000 أداة ذكاء اصطناعي عبر MISBAR AI. رادارك الخاص للبحث الفوري عن أفضل الحلول التقنية المحدثة لحظياً.">
-    
-    <link rel="alternate" hreflang="ar" href="https://misbar-ai.web.app/ar">
-    <link rel="alternate" hreflang="en" href="https://misbar-ai.web.app/en">
-    <link rel="alternate" hreflang="ja" href="https://misbar-ai.web.app/jp">
+    <title>Misbar AI | رادار مسبار</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
-<body oncontextmenu="return false;"> <nav class="apple-nav">
-        <div class="logo-group">
-            <a href="#" class="logo">Misbar AI</a>
-            <div class="lang-dropdown">
-                <span class="globe-icon">🌐</span>
-                <div class="lang-content">
-                    <a href="javascript:void(0)" onclick="changeLanguage('ar')">العربية</a>
-                    <a href="javascript:void(0)" onclick="changeLanguage('en')">English</a>
-                    <a href="javascript:void(0)" onclick="changeLanguage('ja')">日本語</a>
-                    <a href="javascript:void(0)" onclick="changeLanguage('fr')">Français</a>
-                    <a href="javascript:void(0)" onclick="changeLanguage('de')">Deutsch</a>
+<body>
+    <nav class="navbar">
+        <div class="logo-area">
+            <span class="logo">Misbar AI</span>
+            <div class="lang-selector">
+                🌐
+                <div class="lang-menu">
+                    <a href="#">العربية</a><a href="#">English</a><a href="#">日本語</a>
+                    <a href="#">Français</a><a href="#">Español</a><a href="#">Deutsch</a>
+                    <a href="#">中文</a><a href="#">Türkçe</a><a href="#">Русский</a><a href="#">한국어</a>
                 </div>
             </div>
         </div>
-        
-        <div class="search-box">
-            <input type="text" id="smartSearch" placeholder="ابحث في 30,000 أداة ذكية...">
-            <button class="search-btn" onclick="injectTools()">بحث</button>
+        <div class="search-bar">
+            <input type="text" id="mainSearch" placeholder="ابحث في 30,000 أداة...">
+            <button onclick="searchTools()">بحث</button>
         </div>
-
-        <div class="auth-group">
-            <button class="btn-text">دخول</button>
-            <button class="btn-text">تسجيل</button>
+        <div class="auth-links">
+            <a href="#">تسجيل</a> | <a href="#">دخول</a>
         </div>
     </nav>
 
-    <section class="rolling-featured" id="featuredSection">
-        <div class="featured-card"><h3>DeepSeek V3</h3><p>الأقوى برمجياً</p></div>
-        <div class="featured-card"><h3>ChatGPT 5</h3><p>ثورة الذكاء</p></div>
-        <div class="featured-card"><h3>Midjourney 7</h3><p>فن خيالي</p></div>
-        <div class="featured-card"><h3>Claude 3.5</h3><p>ذكاء بشري</p></div>
-        <div class="featured-card"><h3>Runway Gen-3</h3><p>فيديو سينمائي</p></div>
-        <div class="featured-card"><h3>Sora AI</h3><p>واقع افتراضي</p></div>
-    </section>
-
-    <div class="filter-bar">
-        <div class="tags">
-            <button class="tag active">الكل</button>
-            <button class="tag">محادثة</button>
-            <button class="tag">صور</button>
-            <button class="tag">المزيد ▾</button>
+    <section class="hero-slider" id="featuredSlider">
+        <div class="featured-card">
+            <span class="badge">مختارات اليوم</span>
+            <h2>ChatGPT 1</h2>
+            <p>اكتشف القوة الحقيقية للذكاء الاصطناعي مع مسبار.</p>
         </div>
-        <div class="toggle-area">
+        <div class="featured-card second">
+            <span class="badge">مختارات اليوم</span>
+            <h2>Midjourney 2</h2>
+            <p>اكتشف القوة الحقيقية للذكاء الاصطناعي مع مسبار.</p>
+        </div>
+        </section>
+
+    <div class="filter-strip">
+        <div class="categories">
+            <button class="cat-btn active">All</button>
+            <button class="cat-btn">Writing</button>
+            <button class="cat-btn">Image</button>
+            <button class="more-btn">المزيد ▾</button>
+        </div>
+        <div class="free-toggle">
             <span>مجاني فقط</span>
             <label class="switch"><input type="checkbox" id="freeOnly"><span class="slider"></span></label>
         </div>
     </div>
 
-    <main class="main-grid" id="toolGrid"></main>
+    <main class="tools-grid" id="toolsGrid"></main>
 
-    <div class="glass-pagination" id="rollingPage">
-        <div class="pg-num active">1</div>
-        <div class="pg-num">2</div>
-        <div class="pg-num">3</div>
-        <div class="pg-num">...</div>
-        <div class="pg-num">150</div>
-    </div>
+    <div class="pagination-rolling" id="pageRolling">
+        </div>
 
-    <footer>
-        <p>مِسبار AI - رادارك لـ <strong id="toolsCounter">30,016</strong> أداة ذكية</p>
+    <footer class="footer">
+        رادار مسبار - يحتوي حالياً على <span id="toolsCount">30,016</span> أداة
     </footer>
 
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
