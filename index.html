@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misbar AI | مِسبار - رادارك الشامل لـ 30,000 أداة ذكاء اصطناعي</title>
+    <meta name="description" content="مسبار يضع لك جميع أدوات الذكاء الاصطناعي في مكان واحد. اكتشف أكثر من 30,000 أداة ذكية محدثة لحظياً.">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body oncontextmenu="return false;">
+
+    <div id="particles-js"></div>
+
+    <nav class="apple-nav">
+        <a href="#" class="logo">Misbar AI</a>
+        <div class="search-wrapper">
+            <input type="text" id="smartSearch" class="search-input" placeholder="ابحث في 30,000 أداة ذكية...">
+            <button class="search-btn">🔍</button>
+        </div>
+        <button class="btn-auth">دخول / تسجيل</button>
+    </nav>
+
+    <div class="filter-bar">
+        <button class="tag-btn active" data-category="all">الكل</button>
+        <button class="tag-btn" data-category="chat">محادثة</button>
+        <button class="tag-btn" data-category="image">صور</button>
+        <button class="tag-btn" data-category="video">فيديو</button>
+        <button class="tag-btn" data-category="code">برمجة</button>
+    </div>
+
+    <main class="grid" id="mainGrid">
+        </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3 style="color:#007aff; font-weight:900; margin-bottom:15px;">مِسبار AI</h3>
+                <p style="color:#ccc; font-size:0.95rem; line-height:1.8;">
+                    مسبار يضع لك جميع أدوات الذكاء الاصطناعي في مكان واحد. 
+                    اكتشف أكثر من <strong id="toolsCount" style="color:#00d1ff;">30,000</strong> أداة ذكية محدثة لحظياً لتطوير أعمالك وحياتك اليومية. نحن نوفر لك الجهد في البحث عن أفضل الحلول التقنية العالمية.
+                </p>
+            </div>
+            
+            <div class="footer-column">
+                <h4>استكشف</h4>
+                <a href="#" class="footer-link">أفضل الأدوات</a>
+                <a href="#" class="footer-link">أدوات مجانية</a>
+                <a href="#" class="footer-link">أضف أداتك</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>قانوني</h4>
+                <a href="#" class="footer-link">سياسة الخصوصية</a>
+                <a href="#" class="footer-link">شروط الاستخدام</a>
+                <a href="#" class="footer-link">اتصل بنا</a>
+            </div>
+        </div>
+        
+        <div style="text-align:center; margin-top:50px; color:#444; font-size:0.8rem; border-top:1px solid #222; padding-top:20px;">
+            &copy; 2026 جميع الحقوق محفوظة لـ مِسبار AI - رادارك الذكي للبحث الفوري
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics-compat.js"></script>
+    
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBzG7ZeOr6uoKbCPoodlJiw2ZmiiVwTDxY",
+            authDomain: "misbar-2026.firebaseapp.com",
+            databaseURL: "https://misbar-2026-default-rtdb.firebaseio.com",
+            projectId: "misbar-2026",
+            storageBucket: "misbar-2026.firebasestorage.app",
+            messagingSenderId: "299387766091",
+            appId: "1:299387766091:web:cd36930b732b85d82214ce",
+            measurementId: "G-14VWCKVZYC"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+        firebase.analytics();
+    </script>
+
+    <script src="script.js"></script>
+    <script src="engine.js"></script>
+</body>
+</html>
