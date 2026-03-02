@@ -2,73 +2,74 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>MISBAR AI | رادار مِسبار</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MISBAR AI | رادار مِسبار - أكبر دليل لأدوات الذكاء الاصطناعي</title>
+    <meta name="description" content="اكتشف أكثر من 30,000 أداة ذكاء اصطناعي عبر MISBAR AI. رادارك الخاص للبحث الفوري عن أفضل الحلول التقنية المحدثة لحظياً.">
+    <meta name="keywords" content="MISBAR AI, رادار مسبار, أدوات الذكاء الاصطناعي, AI Tools Directory, بحث ذكاء اصطناعي">
+    
+    <link rel="alternate" hreflang="ar" href="https://misbar-ai.web.app/ar">
+    <link rel="alternate" hreflang="en" href="https://misbar-ai.web.app/en">
+    <link rel="alternate" hreflang="ja" href="https://misbar-ai.web.app/jp">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
-<body>
-
-    <nav class="apple-nav">
-        <a href="#" style="color:var(--accent); font-weight:900; text-decoration:none; font-size:1.5rem;">Misbar AI</a>
-        <div class="search-container">
-            <input type="text" class="search-input" placeholder="ابحث في 30,000 أداة ذكية...">
-            <button class="search-btn-new">بحث</button>
+<body oncontextmenu="return false;"> <nav class="apple-nav">
+        <div class="logo-group">
+            <a href="#" class="logo">Misbar AI</a>
+            <div class="lang-dropdown">
+                <span class="globe-icon">🌐</span>
+                <div class="lang-content">
+                    <a href="#">العربية</a><a href="#">English</a><a href="#">日本語</a>
+                    <a href="#">Français</a><a href="#">Deutsch</a><a href="#">Español</a>
+                    <a href="#">Русский</a><a href="#">한국어</a><a href="#">Türkçe</a><a href="#">中文</a>
+                </div>
+            </div>
         </div>
-        <div class="auth-btns">
-            <button class="tag-btn" style="border:none; color:#fff;">دخول</button>
+        
+        <div class="search-box">
+            <input type="text" id="smartSearch" placeholder="ابحث في 30,000 أداة ذكية...">
+            <button class="search-btn">بحث</button>
+        </div>
+
+        <div class="auth-group">
+            <button class="btn-text">دخول</button>
+            <button class="btn-text">تسجيل</button>
         </div>
     </nav>
 
-    <div class="rolling-featured">
-        <div class="rolling-card"><h4>DeepSeek V3</h4><p style="font-size:0.7rem; color:#555;">أقوى نموذج برمجياً</p></div>
-        <div class="rolling-card"><h4>ChatGPT 5</h4><p style="font-size:0.7rem; color:#555;">الجيل القادم</p></div>
-        <div class="rolling-card"><h4>Midjourney 7</h4><p style="font-size:0.7rem; color:#555;">فن واقعي</p></div>
-        <div class="rolling-card"><h4>Claude 3.5</h4><p style="font-size:0.7rem; color:#555;">تفكير منطقي</p></div>
-        <div class="rolling-card"><h4>Sora AI</h4><p style="font-size:0.7rem; color:#555;">فيديو ثوري</p></div>
-        <div class="rolling-card"><h4>Runway G3</h4><p style="font-size:0.7rem; color:#555;">إخراج احترافي</p></div>
-    </div>
+    <section class="rolling-featured" id="featuredSection">
+        </section>
 
     <div class="filter-bar">
-        <div style="display:flex; gap:8px;">
-            <button class="tag-btn active">الكل</button>
-            <button class="tag-btn">محادثة</button>
-            <button class="tag-btn">صور</button>
-            <button class="tag-btn">المزيد ▾</button>
+        <div class="tags">
+            <button class="tag active">الكل</button>
+            <button class="tag">محادثة</button>
+            <button class="tag">صور</button>
+            <div class="more-dropdown">
+                <button class="tag">المزيد ▾</button>
+                <div class="more-content">
+                    <a>برمجة</a><a>فيديو</a><a>صوت</a><a>تصميم</a><a>تسويق</a>
+                    <a>كتابة</a><a>بيانات</a><a>طب</a><a>هندسة</a><a>تعليم</a>
+                </div>
+            </div>
         </div>
-        <div style="color:#444; font-size:0.8rem;">
-            مجاني <input type="checkbox" id="freeOnly">
+        <div class="toggle-area">
+            <span>مجاني فقط</span>
+            <label class="switch"><input type="checkbox" id="freeOnly"><span class="slider"></span></label>
         </div>
     </div>
 
-    <main class="main-grid" id="mainGrid">
-        </main>
+    <main class="main-grid" id="toolGrid"></main>
 
-    <div class="glass-pagination">
-        <button class="pg-btn active">1</button>
-        <button class="pg-btn">2</button>
-        <button class="pg-btn">3</button>
-        <button class="pg-btn">...</button>
-        <button class="pg-btn">150</button>
-    </div>
+    <div class="glass-pagination" id="rollingPage">
+        </div>
 
     <footer>
-        مِسبار AI - رادارك لـ <strong id="toolsCount">30,016</strong> أداة محدثة
+        <p>مِسبار AI - أكبر رادار عالمي يحتوي على <strong id="toolsCounter">30,016</strong> أداة</p>
     </footer>
 
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyBzG7ZeOr6uoKbCPoodlJiw2ZmiiVwTDxY",
-            authDomain: "misbar-2026.firebaseapp.com",
-            projectId: "misbar-2026",
-            storageBucket: "misbar-2026.firebasestorage.app",
-            messagingSenderId: "299387766091",
-            appId: "1:299387766091:web:cd36930b732b85d82214ce"
-        };
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
-    </script>
-    <script src="script.js"></script>
+    <script src="engine.js"></script>
 </body>
 </html>
