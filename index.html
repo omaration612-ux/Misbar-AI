@@ -3,65 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Misbar AI | رادار مسبار</title>
+    <title>MISBAR AI | رادار مِسبار - دليل أدوات الذكاء الاصطناعي</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
-<body>
+<body oncontextmenu="return false;">
+
     <nav class="navbar">
-        <div class="logo-area">
+        <div class="nav-right">
             <span class="logo">Misbar AI</span>
             <div class="lang-selector">
                 🌐
                 <div class="lang-menu">
-                    <a href="#">العربية</a><a href="#">English</a><a href="#">日本語</a>
-                    <a href="#">Français</a><a href="#">Español</a><a href="#">Deutsch</a>
-                    <a href="#">中文</a><a href="#">Türkçe</a><a href="#">Русский</a><a href="#">한국어</a>
-                </div>
+                    <a href="#" onclick="changeLanguage('ar')">العربية</a>
+                    <a href="#" onclick="changeLanguage('en')">English</a>
+                    <a href="#" onclick="changeLanguage('ja')">日本語</a>
+                    </div>
             </div>
         </div>
-        <div class="search-bar">
-            <input type="text" id="mainSearch" placeholder="ابحث في 30,000 أداة...">
-            <button onclick="searchTools()">بحث</button>
+        <div class="search-container">
+            <input type="text" id="smartSearch" placeholder="ابحث في 30,000 أداة...">
+            <button onclick="injectTools()">بحث</button>
         </div>
-        <div class="auth-links">
-            <a href="#">تسجيل</a> | <a href="#">دخول</a>
+        <div class="nav-left">
+            <a href="#">Sign in</a>
+            <a href="#" class="btn-signup">Sign up</a>
         </div>
     </nav>
 
-    <section class="hero-slider" id="featuredSlider">
-        <div class="featured-card">
-            <span class="badge">مختارات اليوم</span>
+    <section class="featured-rolling" id="featuredArea">
+        <div class="hero-card">
+            <span class="label">مختارات اليوم</span>
             <h2>ChatGPT 1</h2>
             <p>اكتشف القوة الحقيقية للذكاء الاصطناعي مع مسبار.</p>
         </div>
-        <div class="featured-card second">
-            <span class="badge">مختارات اليوم</span>
+        <div class="hero-card gold">
+            <span class="label">مختارات اليوم</span>
             <h2>Midjourney 2</h2>
             <p>اكتشف القوة الحقيقية للذكاء الاصطناعي مع مسبار.</p>
         </div>
-        </section>
+    </section>
 
-    <div class="filter-strip">
-        <div class="categories">
-            <button class="cat-btn active">All</button>
-            <button class="cat-btn">Writing</button>
-            <button class="cat-btn">Image</button>
-            <button class="more-btn">المزيد ▾</button>
+    <div class="filter-bar">
+        <div class="tags">
+            <button class="tag active">All</button>
+            <button class="tag">Writing</button>
+            <button class="tag">Image</button>
+            <button class="tag">More ▾</button>
         </div>
-        <div class="free-toggle">
+        <div class="monetization-gate">
             <span>مجاني فقط</span>
             <label class="switch"><input type="checkbox" id="freeOnly"><span class="slider"></span></label>
         </div>
     </div>
 
-    <main class="tools-grid" id="toolsGrid"></main>
+    <main class="tools-grid" id="mainGrid"></main>
 
-    <div class="pagination-rolling" id="pageRolling">
+    <div class="glass-pagination" id="pageScroll">
         </div>
 
     <footer class="footer">
-        رادار مسبار - يحتوي حالياً على <span id="toolsCount">30,016</span> أداة
+        رادار مسبار - يحتوي حالياً على <span id="toolsCounter">30,016</span> أداة
     </footer>
 
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
