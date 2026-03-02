@@ -3,8 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Misbar AI | رادار مِسبار - أكبر دليل لأدوات الذكاء الاصطناعي</title>
+    <meta name="description" content="اكتشف أكثر من 30,000 أداة ذكاء اصطناعي عبر MISBAR AI. رادارك الخاص للبحث الفوري عن أفضل الحلول التقنية المحدثة لحظياً.">
+    <meta name="keywords" content="MISBAR AI, رادار مسبار, أدوات الذكاء الاصطناعي, AI Tools Directory, بحث ذكاء اصطناعي">
+    
+    <meta property="og:title" content="MISBAR AI - رادار مِسبار العالمي">
+    <meta property="og:description" content="دليلك الشامل لـ 30,000 أداة ذكاء اصطناعي">
+    <meta property="og:url" content="https://misbar-ai.web.app">
+
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    
     <style>
         /* الأساسيات */
         body { margin: 0; background-color: #000; color: #fff; font-family: 'Cairo', sans-serif; overflow-x: hidden; }
@@ -38,33 +48,13 @@
         .featured-slider { display: flex; padding: 25px 5%; gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
         .hero-card { min-width: 320px; height: 220px; border-radius: 28px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; padding: 25px; border: 1px solid #333; flex-shrink: 0; scroll-snap-align: start; }
 
-        /* التصنيفات */
-        .filter-tags { display: flex; justify-content: center; gap: 10px; padding: 20px 5%; overflow-x: auto; scrollbar-width: none; white-space: nowrap; }
-        .filter-tags::-webkit-scrollbar { display: none; }
-        .tag-btn { background: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2); padding: 8px 18px; border-radius: 20px; cursor: pointer; font-size: 0.85rem; transition: 0.3s; backdrop-filter: blur(5px); }
-        .tag-btn:hover, .tag-btn.active { background: #007aff; border-color: #007aff; }
-
         /* الشبكة والبطاقات */
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 25px; padding: 30px 5%; min-height: 960px; }
-        .card { background: rgba(28, 28, 30, 0.5); border-radius: 24px; padding: 40px 20px; text-align: center; border: 1px solid #222; position: relative; backdrop-filter: blur(15px); transition: 0.4s; display: flex; flex-direction: column; justify-content: space-between; min-height: 300px; }
-        .card:hover { border-color: #007aff; transform: translateY(-10px); }
-        .tool-logo { width: 65px; height: 65px; border-radius: 18px; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; font-size: 28px; font-weight: bold; }
-        .badge { position: absolute; top: 15px; left: 15px; font-size: 10px; padding: 4px 10px; border-radius: 10px; }
-        .free { background: rgba(52, 199, 89, 0.15); color: #34c759; }
-        .paid { background: rgba(255, 59, 48, 0.15); color: #ff3b30; }
-        .btn-try { background: #007aff; color: white; text-decoration: none; display: block; padding: 10px; border-radius: 14px; margin-top: 15px; font-size: 0.85rem; font-weight: bold; }
-
-        /* الترقيم */
-        .pagination { display: flex; justify-content: center; align-items: center; gap: 12px; padding: 60px 0; }
-        .page-link { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 1px solid #333; cursor: pointer; color: #fff; background: rgba(255,255,255,0.05); text-decoration: none; }
-        .page-link.active { background: #007aff; border-color: #007aff; font-weight: bold; }
-
+        
         /* Footer */
         footer { background: #080808; padding: 80px 5% 40px; border-top: 1px solid #1a1a1a; margin-top: 50px; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 50px; }
         .footer-logo { font-size: 1.8rem; font-weight: 900; margin-bottom: 20px; color: #fff; }
-        .footer-links h4 { color: #007aff; margin-bottom: 25px; font-size: 1.1rem; }
-        .footer-links a { display: block; color: #8e8e93; text-decoration: none; margin-bottom: 12px; font-size: 0.9rem; }
         
         #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
     </style>
@@ -101,8 +91,7 @@
         <div><button style="background:transparent; border:1.5px solid #007aff; color:#007aff; padding:8px 20px; border-radius:12px; font-weight:bold; cursor:pointer;">دخول</button></div>
     </nav>
 
-    <div class="featured-slider" id="featuredZone">
-        </div>
+    <div class="featured-slider" id="featuredZone"></div>
 
     <div class="filter-tags">
         <button class="tag-btn active">الكل</button>
@@ -148,11 +137,9 @@
     </script>
 
     <script src="script.js"></script>
-
     <script src="engine.js"></script>
 
     <script>
-        // كود سريع لتشغيل الـ Featured Zone داخل الصفحة
         const heroes = [
             {n: "Sora Video", d: "تحويل النصوص لفيديوهات واقعية.", img: "21"},
             {n: "Claude 3.5", d: "المساعد الأذكى لتحليل البيانات.", img: "24"}
