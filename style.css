@@ -1,96 +1,27 @@
-/* 1. إعدادات الألوان والفخامة */
-:root { 
-    --bg: #000; 
-    --card: rgba(13, 13, 13, 0.7); /* جعل الكروت شبه شفافة لرؤية الفضاء خلفها */
-    --accent: #00b4d8; 
-    --text: #fff; 
-}
+:root { --bg: #000; --accent: #00b4d8; --card: rgba(15, 15, 15, 0.8); }
 
-body { 
-    background: var(--bg); 
-    color: var(--text); 
-    font-family: 'Cairo', sans-serif; 
-    margin: 0; 
-    overflow-x: hidden; 
-}
+body { background: var(--bg); color: #fff; font-family: 'Cairo', sans-serif; margin: 0; overflow-x: hidden; }
 
-/* 2. طبقة الفضاء (Particles) - تظهر خلف كل شيء */
-#particles-js {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background-color: #000;
-    z-index: -1; /* تجعلها خلف الكروت */
-    top: 0;
-    left: 0;
-}
+/* الفضاء */
+#particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; top: 0; }
 
-/* 3. الهيدر الزجاجي */
-.navbar { 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 15px 5%; 
-    border-bottom: 1px solid rgba(26, 26, 26, 0.5); 
-    position: sticky; 
-    top: 0; 
-    background: rgba(0,0,0,0.8); 
-    backdrop-filter: blur(15px); 
-    z-index: 100; 
-}
+/* الهيدر */
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); sticky; top: 0; z-index: 1000; }
+.logo { color: var(--accent); font-weight: 900; font-size: 1.6rem; }
 
-.logo { color: var(--accent); font-weight: 900; font-size: 1.5rem; }
+/* أزرار التصنيفات (نفس صورتك) */
+.filter-scroll { padding: 20px 5%; overflow-x: auto; scrollbar-width: none; }
+.tags { display: flex; gap: 10px; }
+.tag { background: #1a1a1a; color: #888; border: none; padding: 8px 22px; border-radius: 50px; cursor: pointer; white-space: nowrap; transition: 0.3s; }
+.tag.active { background: #007bff; color: #fff; box-shadow: 0 0 15px rgba(0, 123, 255, 0.4); }
 
-/* 4. كروت "مختارات اليوم" (المنزلقة) */
-.featured-rolling { 
-    display: flex; 
-    gap: 20px; 
-    padding: 30px 5%; 
-    overflow-x: auto; 
-    scrollbar-width: none; 
-}
+/* الشبكة والبطاقات */
+.tools-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; padding: 20px 5%; }
+.tool-card { background: var(--card); border: 1px solid #222; border-radius: 18px; padding: 20px; text-align: center; backdrop-filter: blur(10px); transition: 0.3s; }
+.tool-card:hover { border-color: var(--accent); transform: translateY(-5px); }
 
-.hero-card { 
-    min-width: 400px; 
-    height: 200px; 
-    background: linear-gradient(135deg, rgba(26, 26, 26, 0.8), #000); 
-    border-radius: 25px; 
-    padding: 30px; 
-    border: 1px solid rgba(51, 51, 51, 0.5); 
-    flex-shrink: 0; 
-    transition: 0.4s; 
-    backdrop-filter: blur(5px);
-}
-
-.hero-card.gold { background: linear-gradient(135deg, rgba(44, 36, 24, 0.8), #000); }
-.hero-card h2 { font-size: 2rem; margin: 10px 0; }
-.hero-card .label { color: var(--accent); font-size: 0.8rem; }
-
-/* 5. شبكة الـ 6x10 الاحترافية */
-.main-grid { 
-    display: grid; 
-    grid-template-columns: repeat(6, 1fr); 
-    gap: 15px; 
-    padding: 20px 5%; 
-}
-
-.tool-card { 
-    background: var(--card); 
-    border-radius: 20px; 
-    padding: 20px; 
-    text-align: center; 
-    border: 1px solid rgba(26, 26, 26, 0.8); 
-    transition: 0.3s; 
-    backdrop-filter: blur(10px);
-}
-
-.tool-card:hover { 
-    border-color: var(--accent); 
-    transform: translateY(-5px); 
-    box-shadow: 0 0 20px rgba(0, 180, 216, 0.2);
-}
-
-/* 6. الترقيم الزجاجي الصافي */
-.glass-pagination { 
-    display: flex; 
-    gap: 10px;
+/* الترقيم الرولنق الأنيق */
+.rolling-pagination-container { padding: 40px 0; display: flex; justify-content: center; }
+.glass-pagination { display: flex; gap: 10px; overflow-x: auto; padding: 15px 30px; background: rgba(255,255,255,0.03); border-radius: 50px; backdrop-filter: blur(15px); scrollbar-width: none; max-width: 80%; }
+.page-btn { min-width: 40px; height: 40px; border-radius: 50%; border: 1px solid #333; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; }
+.page-btn.active { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 15px var(--accent); }
