@@ -11,42 +11,49 @@
             <button class="btn-outline">Sign In</button>
             <button class="btn-white">Sign Up</button>
         </div>
-        <div class="dropdown">
-            <button class="dropbtn">🌐 Languages 10 ▼</button>
-            <div class="dropdown-content">
-                <a href="#">العربية</a><a href="#">English</a><a href="#">Français</a><a href="#">Español</a>
+        <div class="dropdown logo-area">
+            <div class="dropbtn logo-text">MISBAR AI ▼</div>
+            <div class="dropdown-content white-elegant">
+                <a href="#">العربية</a><a href="#">English</a><a href="#">Français</a>
+                <a href="#">Español</a><a href="#">Deutsch</a><a href="#">Italiano</a>
+                <a href="#">Türkçe</a><a href="#">日本語</a><a href="#">한국어</a><a href="#">中文</a>
             </div>
         </div>
     </header>
 
-    <section class="hero-section">
-        <div class="feature-grid">
-            <div class="f-card gold"><h3>Midjourney 2</h3><p>اكتشف القوة الحقيقية</p></div>
-            <div class="f-card"><h3>ChatGPT 1</h3><p>اكتشف القوة الحقيقية</p></div>
-        </div>
-    </section>
-
     <section class="filter-panel">
         <div class="search-bar">
-            <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+            <div class="free-switch">
+                <span>مجاني فقط</span>
+                <label class="switch"><input type="checkbox" id="freeOnly"><span class="slider"></span></label>
+            </div>
             <input type="text" id="smartSearch" placeholder="Search 30,000 tools...">
         </div>
-        <div class="tags">
-            <button class="tag active">All</button><button class="tag">Writing</button>
-            <button class="tag">Image</button><button class="tag">Video</button>
+        <div class="tags-container">
+            <button class="tag active">الكل</button><button class="tag">كتابة</button>
+            <button class="tag">صور</button><button class="tag">فيديو</button>
+            <button class="tag">صوت</button><button class="tag">برمجة</button>
+            <button class="tag">تصميم</button><button class="tag">بيانات</button>
+            <div class="dropdown">
+                <button class="tag dropbtn">المزيد ▼</button>
+                <div class="dropdown-content white-elegant">
+                    <a href="#">تسويق</a><a href="#">تعليم</a><a href="#">أعمال</a><a href="#">طب</a>
+                    <a href="#">هندسة</a><a href="#">قانون</a><a href="#">ترجمة</a><a href="#">موسيقى</a>
+                    <a href="#">أمن</a><a href="#">ألعاب</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <main id="mainGrid"></main>
 
-    <nav class="pagination">
-        <span class="p-btn active">1</span><span class="p-btn">2</span><span class="p-btn">3</span>
-    </nav>
-
-    <footer class="site-footer">
-        <p>© 2026 مِسبار AI - جميع الحقوق محفوظة</p>
+    <footer class="pro-footer">
+        <div class="footer-logo">MISBAR AI</div>
+        <div class="footer-links">
+            <a href="#">عن المشروع</a><a href="#">الخصوصية</a><a href="#">اتصل بنا</a>
+        </div>
+        <p>© 2026 رادار مِسبار - الواقع أمام الأمنيات</p>
     </footer>
-
     <script src="engine.js" type="module"></script>
 </body>
 </html>
