@@ -2,14 +2,56 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>MISBAR AI | رادار مِسبار - بحث فوري</title>
-    <meta name="description" content="ابحث في 30,000 أداة ذكاء اصطناعي عبر رادار مسبار.">
+    <title>MISBAR AI | رادار مِسبار العالمي</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <input type="text" id="smartSearch" placeholder="ابحث في 30,000 أداة...">
+    <header class="top-nav">
+        <div class="auth-group">
+            <button class="btn-outline">Sign In</button>
+            <button class="btn-white">Sign Up</button>
+        </div>
+        <div class="lang-selector">🌐 10 Languages</div>
+    </header>
+
+    <section class="control-panel">
+        <div class="search-row">
+            <input type="text" id="smartSearch" placeholder="ابحث في 30,000 أداة ذكاء اصطناعي...">
+            <div class="switch-box">
+                <span class="label">مجاني</span>
+                <label class="switch"><input type="checkbox" id="freeSwitch"><span class="slider"></span></label>
+            </div>
+        </div>
+        
+        <div class="filter-wrapper">
+            <div class="filter-bar">
+                <button class="active">الكل</button>
+                <button>فيديو</button>
+                <button>برمجة</button>
+                <button>تصميم</button>
+                <button>كتابة</button>
+                <div class="more-dropdown">
+                    <button class="more-btn">المزيد ▼</button>
+                    <div class="dropdown-items">
+                        <a href="#">صوتيات</a><a href="#">تسويق</a><a href="#">تعليم</a>
+                        <a href="#">أعمال</a><a href="#">تحليل</a><a href="#">طب</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <main id="mainGrid"></main>
-    <div id="paginationContainer"></div>
+
+    <nav class="pagination touch-scroll">
+        <span class="page-num active">1</span><span class="page-num">2</span><span class="page-num">3</span>
+    </nav>
+
+    <footer class="footer-main">
+        <p>© 2026 مِسبار AI - جميع الحقوق محفوظة</p>
+    </footer>
+
     <script src="engine.js" type="module"></script>
+    <script src="security.js"></script>
 </body>
 </html>
