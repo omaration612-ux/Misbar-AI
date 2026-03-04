@@ -1,27 +1,34 @@
 
-:root { --main-cyan: #00f2ff; }
-body { background: #000; color: #fff; margin: 0; font-family: 'Inter', sans-serif; direction: rtl; overflow-x: hidden; }
+:root { --ai-color: #00f2ff; --bg-dark: #000; }
+body { background: var(--bg-dark); color: #fff; margin: 0; font-family: 'Inter', sans-serif; direction: rtl; overflow-x: hidden; }
 #particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; }
 
-/* الهيدر والشعار */
-.main-header { display: flex; justify-content: space-between; padding: 15px 5%; align-items: center; background: rgba(0,0,0,0.9); border-bottom: 1px solid #111; }
-.logo-text { font-size: 26px; font-weight: 900; color: #fff; }
-.ai-glow { color: var(--main-cyan); text-shadow: 0 0 10px var(--main-cyan); }
-.signup-link { color: #007bff; background: none; border: none; font-weight: bold; cursor: pointer; margin-left: 15px; }
-.signin-btn { background: #fff; color: #000; border: none; padding: 8px 20px; border-radius: 20px; font-weight: bold; cursor: pointer; }
+/* شعار Ai الموحد بنفس لون وخط الصفحة */
+.main-logo { font-size: 28px; font-weight: 900; color: #fff; }
+.ai-glow { color: var(--ai-color); text-shadow: 0 0 15px var(--ai-color); }
 
-/* الفيتشرز والترقيم الرونق */
+/* أزرار Sign in/up الاحترافية */
+.signup-link { color: #007bff; background: none; border: none; font-weight: bold; cursor: pointer; margin-left: 15px; }
+.signin-btn { background: #fff; color: #000; border: none; padding: 8px 25px; border-radius: 20px; font-weight: bold; cursor: pointer; }
+
+/* الفيتشرز الستة رولنق */
 .rolling-features { overflow-x: auto; padding: 30px 5%; scrollbar-width: none; }
 .feat-track { display: flex; gap: 20px; width: max-content; }
-.f-card { width: 450px; height: 230px; border-radius: 35px; padding: 25px; border: 1px solid #222; flex-shrink: 0; }
-.gold { background: linear-gradient(135deg, #1a150a, #000); border-color: #3d3116; }
-.glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(15px); }
+.f-card { width: 480px; height: 240px; border-radius: 35px; padding: 30px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; }
+.gold-style { background: linear-gradient(135deg, #1d160a, #000); border-color: #3d3116; }
+.blue-style { background: linear-gradient(135deg, #0a161d, #000); border-color: #16313d; }
 
-.pagination-glass-rolling { background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.05); padding: 15px 40px; border-radius: 50px; width: fit-content; margin: 40px auto; overflow-x: auto; }
-.p-track { display: flex; gap: 20px; }
-.p-num { font-size: 1.2rem; color: #444; cursor: pointer; }
-.p-num.active { color: var(--main-cyan); font-weight: bold; text-shadow: 0 0 5px var(--main-cyan); }
+/* ألوان البحث - كما في الصورة */
+.search-top-box input { width: 50%; padding: 12px 25px; border-radius: 30px; background: #0d0d0d; border: 1px solid #222; color: #fff; display: block; margin: 0 auto; }
+.tag-pro { padding: 10px 22px; border-radius: 25px; border: 1px solid #333; background: #050505; color: #888; margin: 5px; cursor: pointer; transition: 0.3s; }
+.tag-pro.active { background: #007bff; color: #fff; border-color: var(--ai-color); box-shadow: 0 0 12px #007bff; }
 
-/* الشبكة والفوتر */
-.grid-6x10 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; padding: 30px 5%; min-height: 500px; }
-.mega-footer-contrast { background: #030303; padding: 60px; border-top: 2px solid #080808; text-align: center; }
+/* الترقيم الزجاجي المتوسط الرونق */
+.pagination-glass-rolling { background: rgba(255,255,255,0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.05); padding: 15px 40px; border-radius: 50px; width: fit-content; margin: 40px auto; overflow-x: auto; }
+.rolling-pages { display: flex; gap: 25px; }
+.p-num { font-size: 1.3rem; color: #444; cursor: pointer; }
+.p-num.active { color: var(--ai-color); font-weight: bold; text-shadow: 0 0 8px var(--ai-color); }
+
+/* فوتر ضخم متباين */
+.mega-footer-contrast { background: #050505; padding: 80px 10%; border-top: 2px solid #111; margin-top: 100px; }
+.f-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 50px; }

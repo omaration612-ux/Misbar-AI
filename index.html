@@ -13,56 +13,61 @@
             <button class="signup-link">Sign up</button>
             <button class="signin-btn">Sign in</button>
         </div>
-        <div class="search-top">
+        <div class="search-top-box">
             <input type="text" id="smartSearch" placeholder="...Search 15,000 tools">
         </div>
-        <div class="brand-area">
+        <div class="brand-zone">
             <div class="lang-selector">🌐 ▼</div>
-            <h1 class="logo-text">Misbar <span class="ai-glow">AI</span></h1>
+            <h1 class="main-logo">Misbar <span class="ai-glow">AI</span></h1>
         </div>
     </header>
 
     <section class="rolling-features">
         <div class="feat-track">
-            <div class="f-card gold"><span>مختارات اليوم</span><h2>Midjourney 2</h2></div>
-            <div class="f-card glass"><span>مختارات اليوم</span><h2>ChatGPT 1</h2></div>
-            <div class="f-card blue"><span>مختارات اليوم</span><h2>Claude 3</h2></div>
-            <div class="f-card green"><span>مختارات اليوم</span><h2>Sora AI</h2></div>
-            <div class="f-card red"><span>مختارات اليوم</span><h2>Luma</h2></div>
-            <div class="f-card purple"><span>مختارات اليوم</span><h2>Gemini</h2></div>
+            <div class="f-card gold-style"><span>مختارات اليوم</span><h2>Midjourney 2</h2></div>
+            <div class="f-card glass-style"><span>مختارات اليوم</span><h2>ChatGPT 1</h2></div>
+            <div class="f-card blue-style"><span>مختارات اليوم</span><h2>Claude 3</h2></div>
+            <div class="f-card green-style"><span>مختارات اليوم</span><h2>Sora AI</h2></div>
+            <div class="f-card red-style"><span>مختارات اليوم</span><h2>Luma Dream</h2></div>
+            <div class="f-card cyan-style"><span>مختارات اليوم</span><h2>Gemini Pro</h2></div>
         </div>
     </section>
 
-    <nav class="filter-navigation">
-        <div class="tags-row">
-            <button class="tag active">All</button>
-            <button class="tag">Writing</button><button class="tag">Image</button>
-            <button class="tag">Video</button><button class="tag">Coding</button>
-            <button class="tag">Audio</button>
+    <section class="search-container-pro">
+        <div class="search-logic-row">
+            <div id="logged-filter" style="display:none;"> <label class="switch"><input type="checkbox"> <span class="slider"></span></label>
+                <span>مجاني فقط</span>
+            </div>
         </div>
-    </nav>
+        <div class="color-tags-pro">
+            <button class="tag-pro active">All</button>
+            <button class="tag-pro">Writing</button><button class="tag-pro">Image</button>
+            <button class="tag-pro">Video</button><button class="tag-pro">Coding</button>
+            <button class="tag-pro">Audio</button>
+        </div>
+    </section>
 
     <main id="mainGrid" class="grid-6x10"></main>
 
     <div class="pagination-glass-rolling">
-        <div class="p-track">
+        <div class="rolling-pages">
             <span class="p-num active">1</span><span class="p-num">2</span><span class="p-num">3</span>
             <span class="p-num">4</span><span class="p-num">5</span><span class="p-num">6</span>
         </div>
     </div>
 
-    <div class="ads-placeholder">إعلانات قوقل قريباً</div>
+    <div class="google-ads-area">مساحة إعلانية Google Ads</div>
 
     <footer class="mega-footer-contrast">
-        <div class="f-inner">
-            <div class="f-logo">Misbar <span class="ai-glow">AI</span></div>
-            <p>أكبر رادار لأدوات الذكاء الاصطناعي</p>
+        <div class="f-grid">
+            <div class="f-col"><h2>Misbar <span class="ai-glow">AI</span></h2><p>رادارك العالمي للذكاء الاصطناعي</p></div>
+            <div class="f-col"><h3>روابط</h3><a href="#">اتصل بنا</a><a href="#">الخصوصية</a></div>
         </div>
     </footer>
 
     <script>
         particlesJS('particles-js', {
-            "particles": { "number": { "value": 100 }, "color": { "value": "#00f2ff" }, "opacity": { "value": 0.3 }, "line_linked": { "enable": true, "color": "#00f2ff", "opacity": 0.2 } }
+            "particles": { "number": { "value": 90 }, "color": { "value": "#00f2ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.3 }, "line_linked": { "enable": true, "distance": 150, "color": "#00f2ff", "opacity": 0.2, "width": 1 }, "move": { "enable": true, "speed": 2 } }
         });
     </script>
     <script src="engine.js" type="module"></script>
