@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, collection, query, limit, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-// مفاتيح مشروعك misbar-2026 الحقيقية التي استخرجتها الآن
+// مفاتيح مشروعك misbar-2026 الحقيقية والنهائية
 const firebaseConfig = {
   apiKey: "AIzaSyBzG7ZeOr6uoKbCPoodlJiw2ZmiiVwTDxY",
   authDomain: "misbar-2026.firebaseapp.com",
@@ -13,10 +13,12 @@ const firebaseConfig = {
   measurementId: "G-14VWCKVZYC"
 };
 
+// تهيئة Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const mainGrid = document.getElementById('mainGrid');
 
+// دالة إنشاء البطاقة (متوافقة مع تصميمك 6x10)
 function createToolCard(name, desc, category) {
     return `
         <div class="card">
@@ -28,9 +30,10 @@ function createToolCard(name, desc, category) {
     `;
 }
 
+// دالة جلب الـ 30,000 أداة (تعرض أول 60 أداة للتصميم)
 async function renderTools() {
     try {
-        console.log("رادار مِسبار: جاري سحب 30,000 أداة من misbar-2026...");
+        console.log("رادار مِسبار متصل بـ misbar-2026... جاري جلب الأدوات");
         const q = query(collection(db, "tools"), limit(60)); 
         const querySnapshot = await getDocs(q);
         
@@ -39,17 +42,17 @@ async function renderTools() {
             const data = doc.data();
             toolsHTML += createToolCard(
                 data.name || "أداة ذكاء اصطناعي", 
-                data.description || "اكتشف القوة الحقيقية مع مِسبار", 
-                data.type || "Free"
+                data.description || "استكشف القوة الحقيقية مع مِسبار", 
+                data.type || "AI Tool"
             );
         });
 
         if (mainGrid) {
             mainGrid.innerHTML = toolsHTML;
-            console.log("✅ اكتمل الربط! الموقع حي الآن.");
+            console.log("✅ الموقع يعمل الآن بالبيانات الحقيقية!");
         }
     } catch (error) {
-        console.error("خطأ في الربط بـ Firebase:", error);
+        console.error("خطأ في الربط: تأكد من إعدادات Firestore", error);
     }
 }
 
