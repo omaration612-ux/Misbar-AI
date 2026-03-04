@@ -11,31 +11,35 @@
             <button class="btn-outline">Sign In</button>
             <button class="btn-white">Sign Up</button>
         </div>
-        <div class="lang-selector">🌐 10 Languages</div>
+        <div class="dropdown">
+            <button class="dropbtn">Languages 10 🌐</button>
+            <div class="dropdown-content">
+                <a href="#">العربية</a><a href="#">English</a><a href="#">Français</a><a href="#">Español</a>
+                <a href="#">Deutsch</a><a href="#">中文</a><a href="#">日本語</a><a href="#">Русский</a>
+                <a href="#">Türkçe</a><a href="#">हिन्दी</a>
+            </div>
+        </div>
     </header>
 
     <section class="control-panel">
         <div class="search-row">
-            <input type="text" id="smartSearch" placeholder="ابحث في 30,000 أداة ذكاء اصطناعي...">
-            <div class="switch-box">
-                <span class="label">مجاني</span>
+            <div class="switch-container">
                 <label class="switch"><input type="checkbox" id="freeSwitch"><span class="slider"></span></label>
+                <span class="label-text">مجاني</span>
             </div>
+            <input type="text" id="smartSearch" placeholder="ابحث في 30,000 أداة ذكاء اصطناعي...">
         </div>
         
-        <div class="filter-wrapper">
-            <div class="filter-bar">
-                <button class="active">الكل</button>
-                <button>فيديو</button>
-                <button>برمجة</button>
-                <button>تصميم</button>
-                <button>كتابة</button>
-                <div class="more-dropdown">
-                    <button class="more-btn">المزيد ▼</button>
-                    <div class="dropdown-items">
-                        <a href="#">صوتيات</a><a href="#">تسويق</a><a href="#">تعليم</a>
-                        <a href="#">أعمال</a><a href="#">تحليل</a><a href="#">طب</a>
-                    </div>
+        <div class="filter-bar">
+            <button class="filter-tag active">الكل</button>
+            <button class="filter-tag">فيديو</button>
+            <button class="filter-tag">برمجة</button>
+            <button class="filter-tag">تصميم</button>
+            <button class="filter-tag">كتابة</button>
+            <div class="dropdown">
+                <button class="dropbtn">المزيد ▼</button>
+                <div class="dropdown-content">
+                    <a href="#">صوتيات</a><a href="#">تسويق</a><a href="#">تعليم</a><a href="#">أعمال</a>
                 </div>
             </div>
         </div>
@@ -43,15 +47,14 @@
 
     <main id="mainGrid"></main>
 
-    <nav class="pagination touch-scroll">
-        <span class="page-num active">1</span><span class="page-num">2</span><span class="page-num">3</span>
+    <nav id="paginationContainer" class="pagination touch-scroll">
+        <span class="page-num">1</span><span class="page-num active">2</span><span class="page-num">3</span>
     </nav>
 
-    <footer class="footer-main">
+    <footer class="main-footer">
         <p>© 2026 مِسبار AI - جميع الحقوق محفوظة</p>
     </footer>
 
     <script src="engine.js" type="module"></script>
-    <script src="security.js"></script>
 </body>
 </html>

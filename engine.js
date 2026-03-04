@@ -1,23 +1,16 @@
 
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, query, limit, getDocs, enableIndexedDbPersistence, startAfter } from "firebase/firestore";
-
+import { getFirestore, collection, query, limit, getDocs } from "firebase/firestore";
 const db = getFirestore();
 
-// تفعيل الـ Caching لتقليل القراءات لصفر عند العودة للموقع
-enableIndexedDbPersistence(db).catch(err => console.error("Cache Error:", err));
-
-let lastVisibleDoc = null;
-
-// دالة الجلب المحدود (20 أداة فقط) لسرعة التحميل ومنع الشاشة السوداء
-async function fetchTools(isNextPage = false) {
-    let q = isNextPage && lastVisibleDoc 
-        ? query(collection(db, "tools"), startAfter(lastVisibleDoc), limit(20))
-        : query(collection(db, "tools"), limit(20));
-
+async function initMisbar() {
+    const q = query(collection(db, "tools"), limit(60));
     const snapshot = await getDocs(q);
-    lastVisibleDoc = snapshot.docs[snapshot.docs.length - 1];
-    
-    console.log("تم جلب 20 أداة بنجاح. استهلاك الكوتة آمن.");
+    const grid = document.getElementById('mainGrid');
+    grid.innerHTML = ''; 
+
+    snapshot.forEach(doc => {
+        const data = doc.data();
+        grid.innerHTML += `<div class="card"><h3>${data.name || 'أداة'}</h3><p>${data.description ? data.description.substring(0,30) : 'مِسبار AI'}</p></div>`;
+    });
 }
-fetchTools();
+initMisbar();
