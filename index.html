@@ -2,77 +2,75 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MISBAR AI | رادار مِسبار</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="top-nav">
-        <div class="auth-group">
-            <button class="btn-outline">Sign In</button>
-            <button class="btn-white">Sign Up</button>
+    <header class="main-header">
+        <div class="auth-box">
+            <button class="auth-btn signup">Sign Up</button>
+            <button class="auth-btn login">Sign In</button>
         </div>
-        <div class="dropdown logo-area">
-            <div class="logo-text">🚀 MISBAR <span class="ai-glow">AI</span> ▼</div>
-            <div class="dropdown-content white-elegant">
-                <a href="#">العربية</a><a href="#">English</a><a href="#">Français</a>
-                <a href="#">Español</a><a href="#">Deutsch</a><a href="#">Italiano</a>
-                <a href="#">Türkçe</a><a href="#">日本語</a><a href="#">한국어</a><a href="#">中文</a>
+        <div class="logo-wrapper">
+            <span class="misbar-logo">Misbar <span class="ai-text">AI</span></span>
+            <div class="dropdown world-lang">
+                <span class="world-icon">🌐 ▼</span>
+                <div class="dropdown-content glass-dark">
+                    <a href="#">العربية</a><a href="#">English</a><a href="#">Français</a><a href="#">Español</a>
+                    <a href="#">Deutsch</a><a href="#">Italiano</a><a href="#">Türkçe</a><a href="#">日本語</a>
+                    <a href="#">한국어</a><a href="#">中文</a>
+                </div>
             </div>
         </div>
     </header>
 
-    <section class="feature-section">
-        <div class="feature-grid-top">
-            <div class="f-card gold"><h3>Midjourney v6</h3><p>أفضل مولد صور في العالم</p></div>
-            <div class="f-card"><h3>ChatGPT-5</h3><p>مساعدك الذكي الخارق</p></div>
+    <section class="features-slider">
+        <div class="slider-container">
+            <div class="f-card gold"><h4>Midjourney v6</h4><p>مختارات اليوم</p></div>
+            <div class="f-card blue"><h4>ChatGPT-5</h4><p>مختارات اليوم</p></div>
         </div>
     </section>
 
-    <section class="filter-panel">
-        <div class="search-bar">
-            <div class="free-switch">
+    <section class="search-section">
+        <div class="search-container">
+            <div class="free-filter">
                 <span>مجاني فقط</span>
-                <label class="switch"><input type="checkbox" id="freeOnly"><span class="slider"></span></label>
+                <label class="switch"><input type="checkbox" id="freeOnly"><span class="slider-round"></span></label>
             </div>
-            <input type="text" id="smartSearch" placeholder="Search 30,000 tools...">
+            <input type="text" id="smartSearch" placeholder="Search 30,000+ AI tools...">
         </div>
-        
-        <div class="tags-row">
-            <button class="tag active">الكل</button>
-            <button class="tag">كتابة</button>
-            <button class="tag">صور</button>
-            <button class="tag">فيديو</button>
-            <button class="tag">صوت</button>
-            <button class="tag">برمجة</button>
-            <button class="tag">تصميم</button>
-            <button class="tag">بيانات</button>
-            <div class="dropdown">
-                <button class="tag dropbtn">المزيد ▼</button>
-                <div class="dropdown-content white-elegant">
-                    <a href="#">تسويق</a><a href="#">تعليم</a><a href="#">أعمال</a>
-                    <a href="#">ترجمة</a><a href="#">ألعاب</a>
+        <div class="filters-row">
+            <button class="filter-tag active">All</button>
+            <button class="filter-tag">Writing</button><button class="filter-tag">Image</button>
+            <button class="filter-tag">Video</button><button class="filter-tag">Coding</button>
+            <button class="filter-tag">Audio</button><button class="filter-tag">Design</button>
+            <button class="filter-tag">Marketing</button><button class="filter-tag">Data</button>
+            <div class="dropdown"><button class="filter-tag">المزيد ▼</button>
+                <div class="dropdown-content glass-white">
+                    <a href="#">تعليم</a><a href="#">طب</a><a href="#">أعمال</a><a href="#">ترجمة</a><a href="#">ألعاب</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <main id="mainGrid"></main>
+    <main id="mainGrid" class="grid-6x10"></main>
 
-    <nav class="pagination">
-        <button class="p-btn active">1</button>
-        <button class="p-btn">2</button>
-        <button class="p-btn">3</button>
-        <button class="p-btn">التالي</button>
+    <nav class="pagination-glass">
+        <button class="page-num">السابق</button>
+        <button class="page-num active">1</button>
+        <button class="page-num">التالي</button>
     </nav>
 
-    <footer class="pro-footer">
-        <div class="footer-logo">MISBAR AI</div>
-        <div class="footer-links">
-            <a href="#">عن مِسبار</a><a href="#">سياسة الخصوصية</a><a href="#">اتصل بنا</a>
-        </div>
-        <p>© 2026 رادار مِسبار - أكبر دليل لأدوات الذكاء الاصطناعي</p>
-    </footer>
+    <div class="ads-space">مساحة إعلانية</div>
 
+    <footer class="mega-footer">
+        <div class="footer-grid">
+            <div class="footer-col"><h3>Misbar AI</h3><p>أكبر رادار للذكاء الاصطناعي.</p></div>
+            <div class="footer-col"><h3>روابط</h3><a href="#">اتصل بنا</a></div>
+        </div>
+        <div class="footer-bottom">© 2026 رادار مِسبار</div>
+    </footer>
     <script src="engine.js" type="module"></script>
 </body>
 </html>
