@@ -1,6 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getFirestore, collection, query, limit, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+// مفاتيح الربط الخاصة بـ MISBAR AI (جاهزة لـ 30,000+ أداة)
 const firebaseConfig = {
     apiKey: "AIzaSyB...", 
     authDomain: "misbar-ai.firebaseapp.com",
@@ -14,6 +15,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const mainGrid = document.getElementById('mainGrid');
 
+// دالة توليد بطاقة مِسبار (Glassmorphism) المتوافقة مع الـ 6 أعمدة
 function createToolCard(name, desc, category) {
     return `
         <div class="card">
@@ -25,11 +27,11 @@ function createToolCard(name, desc, category) {
     `;
 }
 
-// دالة ذكية لجلب البيانات تدعم الزيادة المستمرة في عدد الأدوات
+// دالة جلب البيانات الذكية (تتحمل 30,000+ أداة)
 async function renderTools() {
     try {
-        // ترتيب الأدوات حسب الأحدث لضمان ظهور الأدوات الجديدة دائماً أولاً
-        console.log("رادار مِسبار: جاري فحص 30,000+ أداة...");
+        console.log("رادار مِسبار: جاري فحص قاعدة بيانات الـ 30,000 أداة...");
+        // جلب أول 60 أداة لملء شبكة الـ 6x10 فوراً
         const q = query(collection(db, "tools"), limit(60)); 
         const querySnapshot = await getDocs(q);
         
@@ -37,18 +39,18 @@ async function renderTools() {
         querySnapshot.forEach((doc) => {
             const data = doc.data();
             toolsHTML += createToolCard(
-                data.name || "أداة مِسبار", 
-                data.description || "استكشف أحدث حلول الذكاء الاصطناعي", 
+                data.name || "أداة مِسبار الجديدة", 
+                data.description || "استكشف أحدث ابتكارات الذكاء الاصطناعي", 
                 data.type || "AI Tool"
             );
         });
 
         if (mainGrid) {
             mainGrid.innerHTML = toolsHTML;
-            console.log("✅ تم عرض أحدث الأدوات من قاعدة البيانات الضخمة.");
+            console.log("✅ تم عرض الأدوات بنجاح. رادار مِسبار متصل الآن.");
         }
     } catch (error) {
-        console.error("عذراً، حدث خطأ في استدعاء الـ 30,000 أداة:", error);
+        console.error("خطأ في جلب بيانات الأدوات:", error);
     }
 }
 
