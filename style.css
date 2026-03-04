@@ -1,1 +1,4 @@
-body { background: #000; color: #fff; } /* تنسيق الـ Glassmorphism الملكي */
+
+body { background: #000; color: #fff; font-family: sans-serif; transition: all 0.5s ease; }
+/* تنسيق الـ Glassmorphism الملكي لـ MISBAR AI */
+#mainGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; padding: 20px; }
