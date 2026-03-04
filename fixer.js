@@ -92,4 +92,5 @@ function applyMisbarProTouch() {
 }
 
 // تشغيل الفكسر
+
 applyMisbarProTouch();
