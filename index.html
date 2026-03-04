@@ -7,67 +7,58 @@
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 <body>
-    <div id="particles-js"></div> <header class="main-header">
-        <div class="auth-section">
-            <button class="signup-link">Sign up</button>
+    <div id="particles-js"></div>
+    <header class="main-header">
+        <div class="auth-btns">
+            <button class="signup-txt">Sign up</button>
             <button class="signin-btn">Sign in</button>
         </div>
-        <div class="brand-area">
-            <div class="lang-selector">🌐 ▼</div>
-            <h1 class="logo-text">Misbar <span class="ai-style">AI</span></h1>
+        <div class="search-top">
+            <input type="text" placeholder="...Search 15,000 tools">
+        </div>
+        <div class="brand-nav">
+            <span class="world-icon">🌐 ▼</span>
+            <h1 class="main-logo">Misbar <span class="ai-glow">AI</span></h1>
         </div>
     </header>
 
-    <section class="features-rolling">
-        <div class="rolling-track">
-            <div class="f-card gold"><span>مختارات اليوم</span><h2>Midjourney 2</h2></div>
-            <div class="f-card blue"><span>مختارات اليوم</span><h2>ChatGPT 1</h2></div>
-            <div class="f-card purple"><span>مختارات اليوم</span><h2>Claude 3</h2></div>
-            <div class="f-card green"><span>مختارات اليوم</span><h2>Sora AI</h2></div>
-            <div class="f-card red"><span>مختارات اليوم</span><h2>Luma Dream</h2></div>
-            <div class="f-card cyan"><span>مختارات اليوم</span><h2>Gemini Pro</h2></div>
+    <section class="rolling-features">
+        <div class="feat-track">
+            <div class="f-card gold-grad"><span>مختارات اليوم</span><h2>Midjourney 2</h2><p>اكتشف القوة الحقيقية</p></div>
+            <div class="f-card glass-grad"><span>مختارات اليوم</span><h2>ChatGPT 1</h2><p>مستقبل الذكاء الاصطناعي</p></div>
+            <div class="f-card blue-grad"><span>مختارات اليوم</span><h2>Claude 3</h2><p>تحليل بيانات ذكي</p></div>
+            <div class="f-card purple-grad"><span>مختارات اليوم</span><h2>Sora AI</h2><p>فيديو من الخيال</p></div>
+            <div class="f-card green-grad"><span>مختارات اليوم</span><h2>Gemini Pro</h2><p>محرك البحث المطور</p></div>
+            <div class="f-card red-grad"><span>مختارات اليوم</span><h2>Runway</h2><p>إبداع بلا حدود</p></div>
         </div>
     </section>
 
-    <section class="pro-search-area">
-        <div class="search-wrapper">
-            <div id="logged-only-filter" style="display:none;"> <label class="switch"><input type="checkbox"> <span class="slider"></span></label>
-                <span>مجاني فقط</span>
-            </div>
-            <input type="text" class="main-search-input" placeholder="...Search 30,000 tools">
-        </div>
-        <div class="color-tags">
-            <button class="t-all active">All</button>
-            <button class="t-write">Writing</button><button class="t-img">Image</button>
-            <button class="t-vid">Video</button><button class="t-code">Coding</button>
-        </div>
-    </section>
+    <div class="filters-bar">
+        <button class="tag active">All</button>
+        <button class="tag">Writing</button><button class="tag">Image</button>
+        <button class="tag">Video</button><button class="tag">Coding</button>
+        <button class="tag">Audio</button>
+    </div>
 
     <main id="mainGrid" class="grid-6x10"></main>
 
-    <div class="pagination-container">
-        <div class="glass-scroller">
-            <div class="page-numbers">
-                <span class="p-num active">1</span><span class="p-num">2</span><span class="p-num">3</span>
-                <span class="p-num">4</span><span class="p-num">5</span><span class="p-num">6</span>
-            </div>
+    <div class="pagination-glass-rolling">
+        <div class="rolling-pages">
+            <span class="p-btn active">1</span><span class="p-btn">2</span><span class="p-btn">3</span>
+            <span class="p-btn">4</span><span class="p-btn">5</span><span class="p-btn">6</span>
         </div>
     </div>
 
-    <div class="google-ads-slot">Ads Space</div>
-
-    <footer class="mega-footer-contrast">
-        <div class="f-grid">
-            <div class="f-box"><h2>Misbar <span class="ai-style">AI</span></h2><p>رادارك العالمي للذكاء الاصطناعي</p></div>
-            <div class="f-box"><h3>الروابط</h3><a href="#">الرئيسية</a><a href="#">اتصل بنا</a></div>
-            <div class="f-box"><h3>قريباً</h3><p>تطبيق مِسبار للهواتف</p></div>
+    <footer class="mega-footer-dark">
+        <div class="f-content">
+            <h2>Misbar <span class="ai-glow">AI</span></h2>
+            <p>أكبر دليل أدوات ذكاء اصطناعي في الوطن العربي</p>
         </div>
     </footer>
 
     <script>
-        // تفعيل البارتكلز
         particlesJS('particles-js', {
-            "particles": { "number": { "value": 80 }, "color": { "value": "#00f2ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.2 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#00f2ff", "opacity": 0.1, "width": 1 } }
+            "particles": { "number": { "value": 100 }, "color": { "value": "#00f2ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.3 }, "size": { "value": 2 }, "line_linked": { "enable": true, "distance": 150, "color": "#00f2ff", "opacity": 0.2, "width": 1 }, "move": { "enable": true, "speed": 2 } }
         });
     </script>
     <script src="engine.js" type="module"></script>
