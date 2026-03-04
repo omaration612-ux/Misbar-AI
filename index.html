@@ -2,19 +2,22 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>MISBAR AI | رادار مِسبار</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MISBAR AI | رادار مِسبار - أكبر دليل لأدوات الذكاء الاصطناعي</title>
+    <meta name="description" content="اكتشف أكثر من 30,000 أداة ذكاء اصطناعي عبر MISBAR AI. رادارك الخاص للبحث الفوري عن أفضل الحلول التقنية المحدثة لحظياً.">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 <body>
     <div id="particles-js"></div>
+
     <header class="main-header">
         <div class="auth-section">
             <button class="signup-link">Sign up</button>
             <button class="signin-btn">Sign in</button>
         </div>
         <div class="search-top-box">
-            <input type="text" id="smartSearch" placeholder="...Search 15,000 tools">
+            <input type="text" id="smartSearch" placeholder="...Search 30,000+ AI tools">
         </div>
         <div class="brand-zone">
             <div class="lang-selector">🌐 ▼</div>
@@ -34,42 +37,61 @@
     </section>
 
     <section class="search-container-pro">
-        <div class="search-logic-row">
-            <div id="logged-filter" style="display:none;"> <label class="switch"><input type="checkbox"> <span class="slider"></span></label>
-                <span>مجاني فقط</span>
-            </div>
-        </div>
         <div class="color-tags-pro">
             <button class="tag-pro active">All</button>
-            <button class="tag-pro">Writing</button><button class="tag-pro">Image</button>
-            <button class="tag-pro">Video</button><button class="tag-pro">Coding</button>
+            <button class="tag-pro">Writing</button>
+            <button class="tag-pro">Image</button>
+            <button class="tag-pro">Video</button>
+            <button class="tag-pro">Coding</button>
             <button class="tag-pro">Audio</button>
-        </div>
+            </div>
+        
+        <div id="ad-placement" class="google-ads-area">مساحة إعلانية Google Ads قريباً</div>
     </section>
 
-    <main id="mainGrid" class="grid-6x10"></main>
+    <main id="mainGrid" class="grid-6x10">
+        </main>
 
     <div class="pagination-glass-rolling">
         <div class="rolling-pages">
-            <span class="p-num active">1</span><span class="p-num">2</span><span class="p-num">3</span>
-            <span class="p-num">4</span><span class="p-num">5</span><span class="p-num">6</span>
-        </div>
+            <span class="p-num active">1</span>
+            <span class="p-num">2</span>
+            <span class="p-num">3</span>
+            <span class="p-num">4</span>
+            <span class="p-num">5</span>
+            <span class="p-num">6</span>
+            </div>
     </div>
-
-    <div class="google-ads-area">مساحة إعلانية Google Ads</div>
 
     <footer class="mega-footer-contrast">
         <div class="f-grid">
-            <div class="f-col"><h2>Misbar <span class="ai-glow">AI</span></h2><p>رادارك العالمي للذكاء الاصطناعي</p></div>
-            <div class="f-col"><h3>روابط</h3><a href="#">اتصل بنا</a><a href="#">الخصوصية</a></div>
+            <div class="f-col">
+                <h2>Misbar <span class="ai-glow">AI</span></h2>
+                <p>رادارك العالمي للذكاء الاصطناعي</p>
+            </div>
+            <div class="f-col">
+                <h3>روابط</h3>
+                <a href="#">اتصل بنا</a>
+                <a href="#">الخصوصية</a>
+            </div>
         </div>
     </footer>
 
     <script>
         particlesJS('particles-js', {
-            "particles": { "number": { "value": 90 }, "color": { "value": "#00f2ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.3 }, "line_linked": { "enable": true, "distance": 150, "color": "#00f2ff", "opacity": 0.2, "width": 1 }, "move": { "enable": true, "speed": 2 } }
+            "particles": { 
+                "number": { "value": 90 }, 
+                "color": { "value": "#00f2ff" }, 
+                "shape": { "type": "circle" }, 
+                "opacity": { "value": 0.3 }, 
+                "line_linked": { "enable": true, "distance": 150, "color": "#00f2ff", "opacity": 0.2, "width": 1 }, 
+                "move": { "enable": true, "speed": 2 } 
+            }
         });
     </script>
+    
     <script src="engine.js" type="module"></script>
+    
+    <script src="fixer.js"></script>
 </body>
 </html>
