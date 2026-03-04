@@ -2,80 +2,74 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MISBAR AI | رادار مِسبار</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 <body>
-    <header class="main-header">
-        <div class="auth-box">
-            <button class="auth-btn signup">Sign Up</button>
-            <button class="auth-btn login">Sign In</button>
+    <div id="particles-js"></div> <header class="main-header">
+        <div class="auth-section">
+            <button class="signup-link">Sign up</button>
+            <button class="signin-btn">Sign in</button>
         </div>
-        
-        <div class="logo-wrapper">
-            <span class="misbar-logo">Misbar <span class="ai-text">AI</span></span>
-            <div class="dropdown world-lang">
-                <span class="world-icon">🌐 ▼</span>
-                <div class="dropdown-content glass-dark">
-                    <a href="#">العربية</a><a href="#">English</a><a href="#">Français</a><a href="#">Español</a>
-                    <a href="#">Deutsch</a><a href="#">Italiano</a><a href="#">Türkçe</a><a href="#">日本語</a>
-                    <a href="#">한국어</a><a href="#">中文</a>
-                </div>
-            </div>
+        <div class="brand-area">
+            <div class="lang-selector">🌐 ▼</div>
+            <h1 class="logo-text">Misbar <span class="ai-style">AI</span></h1>
         </div>
     </header>
 
-    <section class="features-slider">
-        <div class="slider-container">
-            <div class="f-card gold"><h4>Midjourney v6</h4><p>اكتشف القوة الحقيقية</p></div>
-            <div class="f-card blue"><h4>ChatGPT-5</h4><p>مساعدك الذكي الخارق</p></div>
-            <div class="f-card purple"><h4>Claude 3</h4><p>الإبداع بلا حدود</p></div>
-            <div class="f-card green"><h4>Sora AI</h4><p>مستقبل الفيديو هنا</p></div>
+    <section class="features-rolling">
+        <div class="rolling-track">
+            <div class="f-card gold"><span>مختارات اليوم</span><h2>Midjourney 2</h2></div>
+            <div class="f-card blue"><span>مختارات اليوم</span><h2>ChatGPT 1</h2></div>
+            <div class="f-card purple"><span>مختارات اليوم</span><h2>Claude 3</h2></div>
+            <div class="f-card green"><span>مختارات اليوم</span><h2>Sora AI</h2></div>
+            <div class="f-card red"><span>مختارات اليوم</span><h2>Luma Dream</h2></div>
+            <div class="f-card cyan"><span>مختارات اليوم</span><h2>Gemini Pro</h2></div>
         </div>
     </section>
 
-    <section class="search-section">
-        <div class="search-container">
-            <div class="free-filter">
+    <section class="pro-search-area">
+        <div class="search-wrapper">
+            <div id="logged-only-filter" style="display:none;"> <label class="switch"><input type="checkbox"> <span class="slider"></span></label>
                 <span>مجاني فقط</span>
-                <label class="switch"><input type="checkbox" id="freeOnly"><span class="slider-round"></span></label>
             </div>
-            <input type="text" id="smartSearch" placeholder="Search 30,000 tools...">
+            <input type="text" class="main-search-input" placeholder="...Search 30,000 tools">
         </div>
-        <div class="filters-row">
-            <button class="filter-tag active">الكل</button>
-            <button class="filter-tag">كتابة</button><button class="filter-tag">صور</button>
-            <button class="filter-tag">فيديو</button><button class="filter-tag">صوت</button>
-            <button class="filter-tag">برمجة</button><button class="filter-tag">تصميم</button>
-            <button class="filter-tag">بيانات</button>
-            <div class="dropdown">
-                <button class="filter-tag">المزيد ▼</button>
-                <div class="dropdown-content glass-white">
-                    <a href="#">تسويق</a><a href="#">تعليم</a><a href="#">طب</a><a href="#">أعمال</a>
-                </div>
-            </div>
+        <div class="color-tags">
+            <button class="t-all active">All</button>
+            <button class="t-write">Writing</button><button class="t-img">Image</button>
+            <button class="t-vid">Video</button><button class="t-code">Coding</button>
         </div>
     </section>
 
     <main id="mainGrid" class="grid-6x10"></main>
 
-    <nav class="pagination-glass">
-        <button class="page-num">السابق</button>
-        <button class="page-num active">1</button>
-        <button class="page-num">2</button>
-        <button class="page-num">التالي</button>
-    </nav>
+    <div class="pagination-container">
+        <div class="glass-scroller">
+            <div class="page-numbers">
+                <span class="p-num active">1</span><span class="p-num">2</span><span class="p-num">3</span>
+                <span class="p-num">4</span><span class="p-num">5</span><span class="p-num">6</span>
+            </div>
+        </div>
+    </div>
 
-    <div class="ads-space">مساحة إعلانية Google Ads</div>
+    <div class="google-ads-slot">Ads Space</div>
 
-    <footer class="mega-footer">
-        <div class="footer-grid">
-            <div class="footer-col"><h3>مِسبار AI</h3><p>أكبر دليل لأدوات الذكاء الاصطناعي.</p></div>
-            <div class="footer-col"><h3>روابط</h3><a href="#">عن المشروع</a><a href="#">اتصل بنا</a></div>
+    <footer class="mega-footer-contrast">
+        <div class="f-grid">
+            <div class="f-box"><h2>Misbar <span class="ai-style">AI</span></h2><p>رادارك العالمي للذكاء الاصطناعي</p></div>
+            <div class="f-box"><h3>الروابط</h3><a href="#">الرئيسية</a><a href="#">اتصل بنا</a></div>
+            <div class="f-box"><h3>قريباً</h3><p>تطبيق مِسبار للهواتف</p></div>
         </div>
     </footer>
+
+    <script>
+        // تفعيل البارتكلز
+        particlesJS('particles-js', {
+            "particles": { "number": { "value": 80 }, "color": { "value": "#00f2ff" }, "shape": { "type": "circle" }, "opacity": { "value": 0.2 }, "size": { "value": 3 }, "line_linked": { "enable": true, "distance": 150, "color": "#00f2ff", "opacity": 0.1, "width": 1 } }
+        });
+    </script>
     <script src="engine.js" type="module"></script>
 </body>
 </html>

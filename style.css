@@ -1,32 +1,30 @@
 
-:root { --accent: #00f2ff; }
-body { background: #000; color: #fff; font-family: 'Inter', sans-serif; margin: 0; direction: rtl; }
+:root { --ai-color: #00f2ff; --bg-footer: #0a0a0a; }
+body { background: #000; color: #fff; margin: 0; font-family: sans-serif; direction: rtl; overflow-x: hidden; }
+#particles-js { position: fixed; width: 100%; height: 100%; z-index: -1; }
 
-/* Header & Sign In/Up */
-.main-header { display: flex; justify-content: space-between; padding: 20px 5%; align-items: center; background: rgba(0,0,0,0.95); sticky; top: 0; z-index: 1000; border-bottom: 1px solid #111; }
-.misbar-logo { font-size: 2rem; font-weight: 900; color: #fff; cursor: pointer; }
-.ai-text { color: var(--accent); text-shadow: 0 0 10px var(--accent); }
-.auth-btn { padding: 10px 25px; border-radius: 30px; cursor: pointer; font-weight: 700; transition: 0.3s; margin: 0 5px; }
-.signup { background: var(--accent); color: #000; border: none; box-shadow: 0 0 15px rgba(0, 242, 255, 0.3); }
-.login { background: transparent; border: 1.5px solid #fff; color: #fff; }
-.login:hover { background: #fff; color: #000; }
+/* شعار Ai الموحد */
+.ai-style { color: var(--ai-color); font-family: 'Orbitron', sans-serif; text-shadow: 0 0 15px var(--ai-color); }
+.logo-text { font-size: 28px; font-weight: 900; }
 
-/* World Dropdown */
-.world-lang { margin-right: 20px; }
-.glass-dark { background: rgba(0,0,0,0.9) !important; backdrop-filter: blur(15px); border: 1px solid #222; border-radius: 12px; }
-.glass-dark a { color: #fff !important; padding: 12px 20px; display: block; text-decoration: none; border-bottom: 1px solid #111; font-size: 0.9rem; }
+/* الفيتشرز 6 - رولنق */
+.features-rolling { overflow-x: auto; padding: 30px; scrollbar-width: none; }
+.rolling-track { display: flex; gap: 20px; width: max-content; }
+.f-card { width: 450px; height: 230px; border-radius: 35px; padding: 30px; border: 1px solid rgba(255,255,255,0.1); flex-shrink: 0; }
+.gold { background: linear-gradient(135deg, #221a0a, #000); border-color: #443311; }
+.blue { background: linear-gradient(135deg, #0a1a22, #000); border-color: #113344; }
 
-/* Slider features - Medium Width */
-.features-slider { padding: 40px 5%; overflow: hidden; }
-.slider-container { display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none; }
-.f-card { min-width: 320px; height: 180px; background: #080808; border-radius: 25px; border: 1px solid #1a1a1a; padding: 25px; flex-shrink: 0; }
+/* ألوان البحث - كما في الصورة */
+.main-search-input { width: 50%; padding: 15px 25px; border-radius: 30px; background: #0d0d0d; border: 1px solid #222; color: #fff; margin: 20px auto; display: block; }
+.color-tags button { padding: 10px 20px; border-radius: 20px; border: 1px solid #333; background: #050505; color: #888; margin: 5px; cursor: pointer; transition: 0.3s; }
+.color-tags .active { background: #007bff; color: #fff; border-color: #00f2ff; box-shadow: 0 0 10px #007bff; }
 
-/* Grid 6x10 */
-.grid-6x10 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; padding: 20px 5%; }
-.card { background: #050505; border: 1px solid #111; border-radius: 15px; padding: 20px; text-align: center; transition: 0.4s; position: relative; }
-.card:hover { border-color: var(--accent); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,242,255,0.1); }
+/* الترقيم الزجاجي المتوسط الرولنق */
+.glass-scroller { background: rgba(255,255,255,0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.05); padding: 15px 30px; border-radius: 50px; width: fit-content; margin: 50px auto; overflow-x: auto; }
+.page-numbers { display: flex; gap: 20px; }
+.p-num { font-size: 1.2rem; cursor: pointer; color: #444; }
+.p-num.active { color: var(--ai-color); font-weight: bold; }
 
-/* Dropdown Logic */
-.dropdown { position: relative; display: inline-block; }
-.dropdown-content { display: none; position: absolute; z-index: 100; min-width: 180px; }
-.dropdown:hover .dropdown-content { display: block; }
+/* فوتر ضخم متباين */
+.mega-footer-contrast { background: var(--bg-footer); padding: 80px 10%; border-top: 5px solid #111; margin-top: 100px; }
+.f-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; }
