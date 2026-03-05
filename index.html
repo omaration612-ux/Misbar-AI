@@ -99,27 +99,25 @@
 
 <script src="fixer.js"></script>
 
-<script type="module" src="injector.js"></script>
-
+<script src="injector.js"></script>
 <script src="seo-armor.js"></script>
 <script src="monetizer.js"></script>
 
 <script>
-    window.onload = () => {
-        // 1. تشغيل الحماية
+window.onload = () => {
+        // 1. تشغيل العقل والحماية
         if (typeof MisbarBrain !== 'undefined') MisbarBrain.init();
         
-        // 2. حقن البيانات فوراً (حل مشكلة الشفافية)
-        if (typeof MisbarInjector !== 'undefined' && typeof MisbarData !== 'undefined') {
-            MisbarInjector.allTools = MisbarData.tools; 
-            MisbarInjector.renderTools();
+        // 2. حقن البيانات الحقيقية فوراً
+        if (typeof MisbarInjector !== 'undefined') {
+            MisbarInjector.init();
         }
         
-        // 3. ضبط شكل الجوال والصفوف
+        // 3. ضبط شكل الجوال واللمسات النهائية
         if (typeof applyMisbarProTouch !== 'undefined') applyMisbarProTouch();
     };
 
-    // 4. تفعيل البحث اللحظي
+    // 4. تفعيل الرادار (البحث اللحظي)
     document.addEventListener('input', (e) => {
         if (e.target.id === 'smartSearch' && typeof MisbarInjector !== 'undefined') {
             const term = e.target.value.toLowerCase();
