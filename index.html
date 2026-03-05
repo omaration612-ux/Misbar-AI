@@ -105,11 +105,31 @@
 <script src="monetizer.js"></script>
 
 <script>
-    // تشغيل الأنظمة فور التحميل
+    // 1. تشغيل الأنظمة الأساسية (العقل والمصلح)
     window.onload = () => {
-        MisbarBrain.init(); // تشغيل درع الحماية وبوت الفخ
-        applyMisbarProTouch(); // تشغيل Fixer لضبط الأبعاد والجوال
+        if (typeof MisbarBrain !== 'undefined') MisbarBrain.init();
+        if (typeof applyMisbarProTouch !== 'undefined') applyMisbarProTouch();
     };
+
+    // 2. تفعيل الرادار الخارق (البحث الفوري) - مسبار 2026
+    document.addEventListener('DOMContentLoaded', () => {
+        const searchInput = document.getElementById('smartSearch');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase();
+                console.log(`📡 رادار مسبار يبحث عن: ${term}`);
+                
+                // الربط مع المحرك المحقون (Injector)
+                if (typeof MisbarInjector !== 'undefined') {
+                    const filtered = MisbarInjector.allTools.filter(t => 
+                        t.name.toLowerCase().includes(term) || 
+                        (t.category && t.category.toLowerCase().includes(term))
+                    );
+                    MisbarInjector.renderTools(filtered);
+                }
+            });
+        }
+    });
 </script>
 </body>
 </html>
