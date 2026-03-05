@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# رابط خريطة الموقع لمساعدة جوجل
+Sitemap: https://misbarai.com/sitemap.xml
