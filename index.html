@@ -105,29 +105,29 @@
 <script src="monetizer.js"></script>
 
 <script>
-    // 1. تشغيل الأنظمة الأساسية (العقل والمصلح)
     window.onload = () => {
+        // 1. تشغيل الحماية
         if (typeof MisbarBrain !== 'undefined') MisbarBrain.init();
+        
+        // 2. حقن البيانات فوراً (حل مشكلة الشفافية)
+        if (typeof MisbarInjector !== 'undefined' && typeof MisbarData !== 'undefined') {
+            MisbarInjector.allTools = MisbarData.tools; 
+            MisbarInjector.renderTools();
+        }
+        
+        // 3. ضبط شكل الجوال والصفوف
         if (typeof applyMisbarProTouch !== 'undefined') applyMisbarProTouch();
     };
 
-    // 2. تفعيل الرادار الخارق (البحث الفوري) - مسبار 2026
-    document.addEventListener('DOMContentLoaded', () => {
-        const searchInput = document.getElementById('smartSearch');
-        if (searchInput) {
-            searchInput.addEventListener('input', (e) => {
-                const term = e.target.value.toLowerCase();
-                console.log(`📡 رادار مسبار يبحث عن: ${term}`);
-                
-                // الربط مع المحرك المحقون (Injector)
-                if (typeof MisbarInjector !== 'undefined') {
-                    const filtered = MisbarInjector.allTools.filter(t => 
-                        t.name.toLowerCase().includes(term) || 
-                        (t.category && t.category.toLowerCase().includes(term))
-                    );
-                    MisbarInjector.renderTools(filtered);
-                }
-            });
+    // 4. تفعيل البحث اللحظي
+    document.addEventListener('input', (e) => {
+        if (e.target.id === 'smartSearch' && typeof MisbarInjector !== 'undefined') {
+            const term = e.target.value.toLowerCase();
+            const filtered = MisbarInjector.allTools.filter(t => 
+                t.name.toLowerCase().includes(term) || 
+                (t.category && t.category.toLowerCase().includes(term))
+            );
+            MisbarInjector.renderTools(filtered);
         }
     });
 </script>
