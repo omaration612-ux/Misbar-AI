@@ -1,0 +1,90 @@
+/* 📱 MISBAR AI - EXCLUSIVE MOBILE STYLE */
+/* هذا الملف مخصص فقط للجوال لمنع الزحام وتكبير البحث */
+
+@media (max-width: 768px) {
+    /* 1. إعادة هيكلة الهيدر (فصل الطبقات) */
+    .main-header {
+        display: flex !important;
+        flex-direction: column !important; /* ترتيب عمودي لمنع الزحام */
+        height: auto !important;
+        padding: 15px 10px !important;
+        gap: 15px !important;
+        background: #000 !important;
+    }
+
+    /* السطر الأول: اللوجو واللغة يميناً ويساراً */
+    .brand-zone {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        flex-direction: row-reverse !important; /* اللوجو يمين */
+        order: 1;
+    }
+
+    /* السطر الثاني: البحث بطل المشهد (عريض ومريح) */
+    .search-top-box {
+        width: 100% !important;
+        margin: 0 !important;
+        order: 2;
+    }
+
+    .search-top-box input {
+        width: 100% !important;
+        height: 50px !important; /* تكبير الخانة لسهولة اللمس */
+        background: #0d0d0d !important;
+        border: 1px solid #222 !important;
+        border-radius: 12px !important;
+        font-size: 16px !important;
+        padding: 0 15px !important;
+    }
+
+    /* السطر الثالث: أزرار الدخول (تحت البحث) */
+    .auth-section {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        gap: 10px !important;
+        order: 3;
+    }
+
+    .signup-link {
+        background: transparent !important;
+        color: #00f2ff !important;
+        border: 1px solid #00f2ff !important;
+        padding: 8px 15px !important;
+        border-radius: 20px !important;
+        font-size: 13px;
+    }
+
+    .signin-btn {
+        background: #fff !important;
+        color: #000 !important;
+        padding: 8px 20px !important;
+        border-radius: 20px !important;
+        font-size: 13px;
+    }
+
+    /* 2. تصغير الفيتشرز (إلغاء الهيرو سكشن المزعج) */
+    .rolling-features {
+        padding: 10px 15px !important;
+        gap: 10px !important;
+        overflow-x: auto !important;
+        display: flex !important;
+        scrollbar-width: none;
+    }
+
+    .f-card {
+        min-width: 80vw !important; /* عرض مريح للسحب */
+        height: 120px !important;   /* ارتفاع صغير جداً وأنيق */
+        flex-shrink: 0;
+        padding: 15px !important;
+        border-radius: 12px !important;
+    }
+
+    /* 3. شبكة الأدوات (عمودين متساويين) */
+    #mainGrid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        padding: 15px 10px !important;
+    }
+}
