@@ -1,0 +1,137 @@
+/**
+ * 🎨 MISBAR AI - UNIFIED STYLE PRO v5.0
+ * Integrated: General Style + Mobile Responsive + Grid 6x10
+ * هذا الملف يجمع كل خصائص التصميم لضمان صفر اهتزاز وصفر تداخل.
+ */
+
+:root { 
+    --ai-color: #00f2ff; 
+    --bg-dark: #000; 
+    --card-bg: #080808;
+    --border-color: #111;
+}
+
+/* 1. التنسيق العام والأساسيات */
+body { 
+    background: var(--bg-dark); 
+    color: #fff; 
+    margin: 0; 
+    font-family: 'Inter', sans-serif; 
+    direction: rtl; 
+    overflow-x: hidden; 
+}
+
+#particles-js { 
+    position: fixed; 
+    width: 100%; 
+    height: 100%; 
+    z-index: -1; 
+}
+
+/* 2. الهيدر (Header) للكمبيوتر */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-logo { font-size: 28px; font-weight: 900; color: #fff; margin: 0; }
+.ai-glow { color: var(--ai-color); text-shadow: 0 0 15px var(--ai-color); }
+
+.search-top-box input { 
+    width: 450px; 
+    padding: 12px 25px; 
+    border-radius: 30px; 
+    background: #0d0d0d; 
+    border: 1px solid #222; 
+    color: #fff; 
+    transition: 0.3s;
+}
+
+.search-top-box input:focus {
+    border-color: var(--ai-color);
+    box-shadow: 0 0 10px var(--ai-color);
+    outline: none;
+}
+
+/* 3. شبكة الـ 30,000 أداة (6 أعمدة للكمبيوتر) */
+#mainGrid {
+    display: grid !important;
+    grid-template-columns: repeat(6, 1fr) !important; /* القوة هنا لمنع الاهتزاز */
+    gap: 20px;
+    padding: 40px 5%;
+    min-height: 400px;
+}
+
+/* تنسيق البطاقة (Card Style) */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 15px;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--ai-color);
+}
+
+/* 4. استثناءات الجوال (Mobile Logic) - تفعيل الصفين */
+@media (max-width: 992px) {
+    /* الهيدر يتحول لطبقات */
+    .main-header {
+        flex-direction: column !important;
+        height: auto !important;
+        padding: 15px 10px !important;
+        gap: 15px !important;
+    }
+
+    .brand-zone {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        flex-direction: row-reverse !important;
+    }
+
+    .search-top-box { width: 100% !important; }
+    .search-top-box input { width: 100% !important; }
+
+    /* شبكة الجوال - صفين إجباري */
+    #mainGrid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+        padding: 15px 10px !important;
+    }
+
+    /* تصغير الكروت لتناسب الشاشة */
+    .f-card {
+        min-width: 85vw !important;
+        height: 140px !important;
+    }
+}
+
+/* 5. الترقيم والفوتر (Pagination & Footer) */
+.pagination-glass-rolling {
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 15px 40px;
+    border-radius: 50px;
+    width: fit-content;
+    margin: 40px auto;
+}
+
+.p-num.active { color: var(--ai-color); font-weight: bold; text-shadow: 0 0 8px var(--ai-color); }
+
+.mega-footer-contrast { 
+    background: #050505; 
+    padding: 60px 10%; 
+    border-top: 2px solid #111; 
+    margin-top: 50px; 
+}

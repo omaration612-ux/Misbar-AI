@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MISBAR AI | رادار مِسبار - أكبر دليل لأدوات الذكاء الاصطناعي</title>
+    
     <meta name="description" content="اكتشف أكثر من 30,000 أداة ذكاء اصطناعي عبر MISBAR AI. رادارك الخاص للبحث الفوري عن أفضل الحلول التقنية المحدثة لحظياً.">
-<link rel="canonical" href="https://misbarai.com/" />
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="mobile.css">
+    <link rel="canonical" href="https://misbarai.com/" />
+    
+    <link rel="stylesheet" href="misbar-style-pro.css">
+    
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-</head>
+
+    </head>
 <body>
     <div id="particles-js"></div>
 
@@ -91,60 +94,33 @@
         });
     </script>
     
+<script src="misbar-data-pro.js"></script>
+    <script src="misbar-guard.js"></script>
+    <script src="misbar-ui-engine.js"></script>
 
-<script src="data-engine.js"></script>
-<script src="firebase-bridge.js"></script>
-<script src="misbar-core.js"></script>
-<script src="fixer.js"></script> <script src="injector.js"></script>
-<script src="misbar-guard.js"></script>
-<script>
-window.onload = () => {
-    console.log("🛰️ رادار مِسبار: جاري تشغيل الأنظمة...");
+    <script>
+        window.addEventListener('load', () => {
+            console.log("🚀 رادار مِسبار: جاري المزامنة النهائية...");
 
-    // 1. تشغيل العقل والحماية (منع الكشط)
-    if (typeof MisbarBrain !== 'undefined') {
-        MisbarBrain.init();
-    }
-    
-    // 2. حقن البيانات (ربط المحرك بالمحقن)
-    if (typeof MisbarInjector !== 'undefined') {
-        // إذا كانت البيانات في data-engine تسمى tools
-        MisbarInjector.allTools = (typeof MisbarData !== 'undefined') ? MisbarData.tools : [];
-        MisbarInjector.init(); 
-    }
+            // التأكد من وجود الأنظمة قبل التشغيل
+            if (typeof MisbarDataPro !== 'undefined' && typeof MisbarUI !== 'undefined') {
+                
+                // سحب البيانات (السحابية إذا وجدت، وإلا فالمحلية)
+                const finalTools = (MisbarDataPro.cloudTools && MisbarDataPro.cloudTools.length > 0) 
+                                   ? MisbarDataPro.cloudTools 
+                                   : MisbarDataPro.localTools;
 
-    // 3. منع الاهتزاز: إيقاف أي تدخل خارجي في الـ Grid بعد التحميل
-    const grid = document.getElementById('mainGrid');
-    if (grid) {
-        grid.style.transition = "opacity 0.3s ease";
-    }
-};
-
-// 4. الرادار (البحث اللحظي الذكي) - نسخة محسنة لـ 30,000 أداة
-let searchDebounce;
-document.addEventListener('input', (e) => {
-    if (e.target.id === 'smartSearch' && typeof MisbarInjector !== 'undefined') {
-        
-        clearTimeout(searchDebounce);
-        searchDebounce = setTimeout(() => {
-            const term = e.target.value.toLowerCase().trim();
-            const grid = document.getElementById('mainGrid');
-
-            // تأثير بصري ناعم أثناء الفلترة لمنع القفز المفاجئ
-            if (grid) grid.style.opacity = '0.6';
-
-            const filtered = MisbarInjector.allTools.filter(t => 
-                (t.name && t.name.toLowerCase().includes(term)) || 
-                (t.category && t.category.toLowerCase().includes(term)) ||
-                (t.desc && t.desc.toLowerCase().includes(term))
-            );
-
-            MisbarInjector.renderTools(filtered);
-
-            if (grid) grid.style.opacity = '1';
-        }, 200); // تأخير بسيط (Debounce) لمنع الـ Lag أثناء الكتابة
-    }
-});
-</script>
+                // تزويد المحرك البصري بالبيانات
+                MisbarUI.allTools = finalTools;
+                
+                // رسم الأدوات فوراً
+                MisbarUI.renderTools();
+                
+                console.log(`✅ تم تحميل ${finalTools.length} أداة بنجاح.`);
+            } else {
+                console.error("❌ خطأ: أحد المحركات الأساسية لم يتم تحميله!");
+            }
+        });
+    </script>
 </body>
 </html>
